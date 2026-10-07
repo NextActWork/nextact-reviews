@@ -1,0 +1,1762 @@
+<!-- Keep the charset first: a bare static server otherwise mangles punctuation. -->
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where to report what you saw at work — NextAct (BETA)</title>
+<!-- ⭐ Head metadata, added 2026-08-17. Both tool pages shipped public and
+     indexable with NO favicon, description, canonical or social card — they
+     showed a blank tab icon and no preview when shared. The paths are absolute
+     because the page is served from the site root; on file:// they 404
+     harmlessly, which is what the test harness wants.
+     ⚠️ No webfont link on purpose: a Google Fonts request would send this
+     reader's IP and user-agent to a third party on load, and this page tells
+     them nothing about them leaves the browser. Typography falls back to the
+     system stack until Inter is self-hosted. -->
+<meta name="description" content="Answer a few questions about what you saw at work and get the official U.S. government channels whose own published description may match it. Nothing you select leaves your browser.">
+<link rel="canonical" href="https://nextacts.xyz/reporting/">
+<link rel="icon" type="image/svg+xml" href="/nextact-reviews/r/3157d07/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/nextact-reviews/r/3157d07/favicon-32.png">
+<link rel="icon" href="/nextact-reviews/r/3157d07/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/nextact-reviews/r/3157d07/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Where to report what you saw at work — NextAct (BETA)">
+<meta property="og:description" content="Official U.S. government reporting channels, matched to what you saw. NextAct does not decide whether a law was broken.">
+<meta property="og:url" content="https://nextacts.xyz/reporting/">
+<meta property="og:image" content="https://nextacts.xyz/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where to report what you saw at work — NextAct (BETA)">
+<meta name="twitter:description" content="Official U.S. government reporting channels, matched to what you saw.">
+<meta name="twitter:image" content="https://nextacts.xyz/img/og-card.png">
+<style>
+/* NextAct brand tokens — MIRROR of nextacts-xyz/src/styles/brand.css
+ *
+ * ⚠️ This file is a VENDORED COPY. The site repo's brand.css is the source of
+ * truth; eval/brand-drift.test.mjs asserts the locked kit values below match
+ * it, and reports NOT CHECKED loudly when the site repo is absent.
+ *
+ * ⭐ WHY A COPY AND NOT A <link>. Each prototype is one self-contained file on
+ * purpose: the build inlines everything so the artifact the tests run against
+ * is byte-identical to what ships, `vendor:check` can prove no drift, and the
+ * real-browser suite can load it over file://. An external stylesheet breaks
+ * all three at once. So the tokens are inlined the same way the JS modules
+ * are, and a test guards the copy — the same trade already made for the
+ * marketplace registry and the channel registry.
+ */
+/* ⭐ Inter, self-hosted and SAME-ORIGIN. A fonts.googleapis.com link would send
+   this reader's IP and user-agent to a third party on load, on pages that tell
+   them nothing about them leaves the browser. Served from /fonts/ on
+   nextacts.xyz; on file:// (the test harness) these 404 and the system stack
+   takes over, which is fine. Mirrored from the site's brand.css. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/nextact-reviews/r/3157d07/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/nextact-reviews/r/3157d07/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* ── The locked kit (Round 3, 2026-05-12). These values must match the site. ── */
+  --navy: #14213D;
+  --brick: #BC4749;
+  --brick-30: #E4A8AA;
+  --cream: #FAF7F2;
+  --slate: #4A5568;
+  --white: #ffffff;
+  --line: rgba(20, 33, 61, 0.12);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --maxw: 1080px;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(20,33,61,.06), 0 8px 24px rgba(20,33,61,.06);
+
+  /* ── Tool aliases. The prototypes already use these names throughout, so
+     repointing the VALUES converts the palette without touching a single rule.
+     The old cool-grey set (--bg #f7f8fb, --line #dfe3eb, --ink #1b1f2a,
+     --muted #606778) is what made the tools look like a different product. ── */
+  --bg: var(--cream);
+  --ink: var(--navy);
+  --muted: var(--slate);
+  --card: var(--white);
+  --soft: rgba(20, 33, 61, 0.05);
+  --sand: #E4DED4;          /* hairline on cream, as used on /offer */
+
+  /* ── Semantic status colours, WARM. Taken from /offer, which has been in
+     production on a cream background since launch — the cool mint/blue tints
+     the tools used were chosen against #f7f8fb and read as a foreign palette
+     on cream. Contrast re-checked against --cream, not against white. ── */
+  --green: #2F6F4E;
+  --greenbg: #EFF5F1;
+  --amber: #8A6D1F;
+  --amberbg: #FAF0D8;
+  --amberline: #EAD9A6;
+  --red: #A83C3E;
+  --redbg: #FAE7E7;
+  --redline: #F0A5A6;
+
+  color-scheme: light;
+}
+
+/* Chrome styles for the self-contained tool pages — MIRROR of the scoped
+   <style> blocks in Nav.astro and Footer.astro, plus the few brand.css rules
+   the chrome depends on (.wordmark, .btn, section[data-dark]).
+   Guarded by eval/brand-drift.test.mjs. */
+
+/* ⚠️⚠️ THE STICKY-NAV SCROLL TRAP. `scrollIntoView({block:'start'})` puts a
+   target's top edge at y=0 — which is UNDERNEATH a sticky header. Measured on
+   the live page 2026-08-17: 65px of the question card, including its
+   "QUESTION 1 OF 7" eyebrow, sat behind the nav, so advancing looked like
+   being dropped into the middle of the options rather than landing on the new
+   question. It is a regression introduced by adding the chrome, not by the
+   flow.
+   scroll-padding-top on the SCROLLPORT fixes every programmatic scroll and
+   every anchor jump on the page at once, so it belongs here in the shared
+   chrome rather than at each call site — there are eight of them across the
+   two tools and more on /offer. */
+:root { --nav-h: 64px; }
+html { scroll-padding-top: calc(var(--nav-h) + 14px); }
+
+.chrome-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+/* wordmark */
+.wordmark { font-weight: 800; letter-spacing: -0.02em; font-size: 1.2rem; text-decoration: none; }
+.wordmark .n { color: var(--navy); }
+.wordmark .a { color: var(--brick); }
+[data-dark] .wordmark .n { color: var(--cream); }
+
+/* buttons (chrome only — the tool's own buttons keep their existing styles) */
+.nav .btn { display: inline-block; font-weight: 700; font-size: .95rem; padding: .7rem 1.15rem;
+  border-radius: 10px; cursor: pointer; border: 1.5px solid transparent; text-decoration: none; }
+.nav .btn-primary { background: var(--brick); color: #fff; }
+.nav .btn-primary:hover { background: #a83c3e; }
+
+/* nav */
+.nav { border-bottom: 1px solid var(--line); background: rgba(250,247,242,.85);
+  backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 20; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav nav { display: flex; align-items: center; gap: 1.25rem; }
+.nav-link { color: var(--navy); font-weight: 600; font-size: .95rem; text-decoration: none; }
+.nav-link:hover { text-decoration: underline; }
+.nav-link.active { color: var(--brick); }
+.nav-cta { padding: .5rem .9rem !important; font-size: .85rem !important; }
+@media (max-width: 640px) {
+  /* ⚠️ Sized so the nav cannot overflow 375px. Measured when the site briefly
+     carried a fifth link: wordmark 83 + nav 317 + 40 padding = 440 against a
+     375 viewport. The link was withdrawn again upstream, but the headroom
+     stays — this is the second nav overflow in two days and both were
+     invisible to checks scoped to `.wrap`, because the nav sits outside it. */
+  .nav nav { gap: .6rem; }
+  .nav .nav-link { font-size: .85rem; }
+  /* ⚠️ `.nav .nav-cta`, NOT `.nav-cta`. A media query adds NO specificity, so
+     the bare selector (0,1,0) lost to `.nav .btn { display: inline-block }`
+     (0,2,0) and the CTA kept rendering at every width. Measured at 375px: the
+     nav overflowed the viewport to 474px — the one element on the page that
+     did, on all four tools, while every in-page check passed because they
+     scoped themselves to `.wrap` and the nav sits outside it. */
+  .nav .nav-cta { display: none; }
+}
+
+/* footer */
+.site-foot { padding: 3rem 0 2rem; background: var(--navy); color: var(--cream); margin-top: 3rem; }
+.site-foot .muted { color: rgba(250,247,242,.72); }
+.site-foot .foot { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.site-foot .foot-links { display: flex; flex-direction: column; gap: .5rem; }
+.site-foot .foot-links a { color: var(--cream); opacity: .85; font-size: .95rem; text-decoration: none; }
+.site-foot .foot-links a:hover { opacity: 1; text-decoration: underline; }
+.site-foot .foot-parent { margin: .9rem 0 0; font-size: .85rem; color: var(--cream); opacity: .85; }
+.site-foot .parent-link { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(250,247,242,.35); }
+.site-foot .parent-link:hover { border-bottom-color: var(--cream); }
+.site-foot .foot-legal { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(250,247,242,.15); }
+.site-foot .foot-legal .muted { font-size: .78rem; }
+
+/* ⭐ The BETA banner now sits BELOW the nav rather than above it, so every tool
+   reads: site identity, then this-page-is-beta, then the tool. It is full-bleed
+   and not sticky — the nav is the sticky element, and two stacked sticky bars
+   eat a third of a phone screen. */
+.banner { padding: 9px 20px; background: var(--brick); color: #fff;
+  font-size: .78rem; font-weight: 700; text-align: center; line-height: 1.35; }
+
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 var(--font-sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:28px 20px 72px} h1{margin:0;color:var(--navy);font-size:clamp(1.7rem,4vw,2.35rem);line-height:1.12;letter-spacing:-.025em}
+  .lede{max-width:65ch;margin:10px 0 0;color:var(--muted);font-size:1.02rem}.privacy{color:var(--navy);font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:20px 0;box-shadow:0 1px 2px rgba(20,33,61,.03)}
+  h2{margin:0 0 6px;color:var(--navy);font-size:1.17rem;line-height:1.3}.eyebrow{margin:0 0 7px;color:var(--muted);font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  .lh{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.lh select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);max-width:340px;width:100%}
+.lh .scope{background:#FAF0D8;color:#8A6D1F;border-radius:8px;padding:8px 10px;font-size:.86rem;margin:8px 0}
+.lh .kind{font-size:.86rem;color:var(--muted);margin:2px 0 6px}
+p{margin:8px 0}.muted,.help{color:var(--muted)}.help{font-size:.86rem;max-width:68ch}.tiny{font-size:.78rem;color:var(--muted)}
+  label{display:block;margin:16px 0 6px;font-size:.9rem;font-weight:700;color:var(--navy)}
+  input{width:100%;border:1px solid #cfd5e1;border-radius:9px;background:white;padding:10px 12px;font:inherit;color:var(--ink);max-width:460px}
+  input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid rgba(20,33,61,.25);outline-offset:2px}
+  button,.button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--navy);border-radius:9px;padding:11px 17px;background:white;color:var(--navy);font:inherit;font-weight:750;text-decoration:none;cursor:pointer}
+  button.primary,.button.primary{background:var(--navy);color:white}.button.secondary{background:white}.button.small,button.small{padding:7px 11px;font-size:.82rem;font-weight:650}
+  button:disabled{opacity:.45;cursor:not-allowed}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.actions{margin-top:16px}
+  .hidden{display:none!important}.notice{padding:13px 15px;border-radius:10px;background:var(--soft);font-size:.9rem}.notice.warn{background:var(--amberbg);color:#593900}.notice.stop{background:var(--redbg);color:#6d1e1b}
+  .progress{display:flex;gap:8px;margin:20px 0}.dot{height:5px;flex:1;border-radius:4px;background:#d9dde6}.dot.on{background:var(--navy)}
+  .section-title{margin:28px 0 10px;color:var(--navy);font-size:1.1rem}
+  .source{margin:10px 0;padding:9px 11px;border-left:3px solid var(--line);font-size:.82rem;color:var(--muted);font-style:italic;overflow-wrap:anywhere}
+  .waiting{padding:10px 0;border-bottom:1px solid var(--line);font-size:.88rem}.waiting:last-child{border:0}.waiting b{color:var(--navy)}
+  .page-foot{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:.8rem;max-width:72ch}
+  .foot-lede{margin:0 0 10px}
+  .page-foot details{border:1px solid var(--line);border-radius:10px;background:white}
+  .page-foot summary{padding:10px 13px;color:var(--navy);font-weight:750;cursor:pointer;font-size:.82rem}
+  .page-foot .details-body{padding:0 13px 13px}
+  .page-foot .details-body p{margin:0 0 10px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  /* Options are buttons, not native inputs, but they must LOOK like the control
+     they are: a square box means "as many as you like", a circle means "one".
+     ⚠️ The box is always rendered and always the same size, so every label
+     starts at the same x. An earlier version put the tick in a text span that
+     collapsed when empty, which left a ragged gutter down the left edge.
+     ⚠️ Selected state is a filled box + a tick + a ring — shape, not color
+     alone — so it survives greyscale, and aria-pressed carries it to a screen
+     reader. Same rule as the coverage page's "Use this" / "Using this". */
+  .opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;justify-content:flex-start;margin:8px 0;padding:13px 15px;border-radius:11px;border:1px solid var(--line);font-weight:650}
+  /* inset ring rather than a thicker border: a border-width change on select
+     reflows the whole list and the options visibly jump under the cursor. */
+  .opt[aria-pressed="true"]{border-color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy);background:var(--soft)}
+  .opt .box{flex:0 0 auto;width:21px;height:21px;margin-top:1px;border:2px solid var(--muted);border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;
+    color:transparent;background:white;line-height:1}
+  .opt.single .box{border-radius:50%}
+  .opt[aria-pressed="true"] .box{background:var(--navy);border-color:var(--navy);color:white}
+  .opt .txt{min-width:0}
+  .opt .eg{display:block;margin-top:4px;font-weight:400;font-size:.83rem;color:var(--muted)}
+  /* Says how many may be chosen BEFORE the list, because by the time someone
+     has read three options they have already decided it is a radio group. */
+  .qmode{display:inline-block;border-radius:999px;background:var(--soft);padding:4px 11px;
+    font-size:.72rem;font-weight:800;color:var(--navy);letter-spacing:.06em;text-transform:uppercase;margin:4px 0 6px}
+  .chan{border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;background:white;padding:18px;margin:13px 0}
+  .chan h3{margin:0 0 3px;color:var(--navy);font-size:1.05rem}.chan .agency{font-size:.8rem;color:var(--muted);margin:0 0 8px}
+  .chan.counsel{border-left-color:var(--brick)}
+  .chan.subdued{border-left-color:var(--line);background:transparent;box-shadow:none}
+  .chan.subdued h3{font-size:.98rem;color:var(--muted)}
+  .elapsed{border:2px solid var(--navy);border-radius:12px;padding:16px;margin:15px 0}
+  .elapsed .n{font-size:1.45rem;line-height:1.2;font-weight:800;color:var(--navy)}
+  .track-note{font-size:.86rem;color:var(--muted);max-width:68ch;margin:2px 0 12px}
+  @media(max-width:700px){.wrap{padding:22px 15px 56px}.card{padding:18px}.button,button{width:100%}.row .small{width:auto}.opt{padding:12px 13px}}
+</style>
+
+<!-- Site chrome for the self-contained tool pages — MIRROR of
+     nextacts-xyz/src/components/Nav.astro and Footer.astro.
+
+     ⚠️ VENDORED COPY. Those components are used by eight Astro pages and are
+     not being refactored to feed this file; the risk of touching every page on
+     the live site outweighs the purity. eval/brand-drift.test.mjs instead
+     asserts the link list, the wordmark and the CTA here match the components,
+     and reports NOT CHECKED loudly if the site repo is absent. Add a nav link
+     in one place and the test names the other.
+
+     ⭐ The active-link state is set by SCRIPT rather than at build time, because
+     these pages are static and have no server to know their own path. It reads
+     location.pathname, which works identically in both worlds. -->
+
+<header class="nav">
+  <div class="chrome-wrap nav-inner">
+    <a href="/nextact-reviews/r/3157d07/" class="wordmark" aria-label="NextActs home"><span class="n">Next</span><span class="a">Acts</span></a>
+    <nav aria-label="Primary">
+      <a href="/nextact-reviews/r/3157d07/trends" class="nav-link">Trends</a>
+      <a href="/nextact-reviews/r/3157d07/research" class="nav-link">Research</a>
+      <a href="/nextact-reviews/r/3157d07/blog" class="nav-link">Blog</a>
+      <a href="/nextact-reviews/r/3157d07/about" class="nav-link">About</a>
+      <a class="btn btn-primary nav-cta" href="https://nextact.work">NextAct.work &rarr;</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  /* Mirrors Nav.astro's `path.startsWith(l.href)`. Inert on file:// where the
+     pathname is a local directory, which is exactly what the test harness wants. */
+  (function () {
+    var p = location.pathname;
+    document.querySelectorAll('.nav .nav-link').forEach(function (a) {
+      if (p.startsWith(a.getAttribute('href'))) a.classList.add('active');
+    });
+  })();
+</script>
+
+<div class="banner">BETA — NextAct does not decide whether a law was broken. Check each channel against its own official page before you act.</div>
+<main class="wrap">
+  <header>
+    <h1>You saw something at work. Find where it can be taken.</h1>
+    <p class="lede">Answer a few questions about what you saw — never names, never your employer's name, never a written account in your own words — and get the official government channels that publish a description matching it. <span class="privacy">Nothing you select leaves this browser, and there is nowhere here to type what happened.</span></p>
+  </header>
+
+  <div class="progress" aria-hidden="true"><span class="dot on" id="d1"></span><span class="dot" id="d2"></span><span class="dot" id="d3"></span></div>
+
+  <!-- ⭐ The safety gate comes before anything else, because a page about
+       paperwork must not stand between a person and an emergency. It is the
+       one question that can end the flow. -->
+  <section class="card" id="s0">
+    <p class="eyebrow">First</p>
+    <h2>Is anyone in immediate physical danger right now?</h2>
+    <p class="help">If someone could be hurt today, that comes first. Reporting paperwork can wait; this page will still be here.</p>
+    <div class="row actions">
+      <button id="danger-yes" type="button">Yes</button>
+      <button class="primary" id="danger-no" type="button">No — continue</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="emergency">
+    <p class="eyebrow">Stop here for now</p>
+    <h2>Call emergency services first.</h2>
+    <p>In the United States, call <strong>911</strong> for an immediate danger to life or safety.</p>
+    <p class="help">For an unsafe workplace that is not an immediate emergency, OSHA takes safety and health complaints directly. You can come back to the rest of this page afterwards.</p>
+    <div class="row actions" id="emergencyLinks"></div>
+    <div class="row actions"><button id="emergency-back" type="button">← Back</button></div>
+  </section>
+
+  <!-- The question screens are generated: one shape, seven instances, so a
+       navigation bug cannot exist on one screen and not the others. -->
+  <section class="card hidden" id="s1">
+    <p class="eyebrow" id="qStep"></p>
+    <h2 id="qTitle" tabindex="-1"></h2>
+    <p class="help" id="qHelp"></p>
+    <p class="qmode" id="qMode"></p>
+    <div id="qBody"></div>
+    <!-- ⚠️ OUTSIDE anything conditional, and never disabled. The coverage page
+         shipped a Back button nested inside a block that stayed hidden until a
+         question was answered, so the only escape from that step was reloading.
+         130 tests missed it because every one drove the flow forwards.
+         Navigation must never be gated on answering something. -->
+    <div class="row actions">
+      <button class="primary" id="qNext" type="button">Next</button>
+      <button id="qSkip" type="button">Skip this question</button>
+      <button id="qBack" type="button">← Back</button>
+    </div>
+  </section>
+
+  <section id="out" class="hidden" aria-live="polite"></section>
+
+  <!-- ⭐ The one-line summary carries the SUBSTANTIVE claim, so collapsing the
+       detail hides nothing material. Measured at 390x844: the full footer was
+       384px — roughly half a screen appended below every question. A privacy
+       promise nobody scrolls past is not more honest for being long. -->
+  <footer class="page-foot">
+    <p class=foot-lede><strong>Nothing you select is sent.</strong> Not what you saw, not who was harmed, not the industry, not your employer type, not any date — and there is nowhere here to write what happened. We record the name of a step you reach, and nothing else.</p>
+    <details id=privacyFull><summary>Privacy and limits, in full</summary><div class=details-body>
+      <p><strong>What this does not do.</strong> NextAct does not decide whether a law was broken, does not tell you which channel is right for you, does not rank these channels or order them by any award, does not file anything, does not receive your report, and does not create a lawyer–client relationship. Each channel below is shown with a sentence from its own official page so that you can judge whether it fits — that judgment is yours, and a lawyer can help you make it.</p>
+      <p><strong>What we count.</strong> We record the name of a step you reach — for example that the questions were started, that a result was shown, or that a channel link was opened. That name is the only page data we send, and it never includes anything you selected: not what you saw, not who was harmed, not the setting, not your employer type, not any date. Each event is kept as a separate anonymous record for up to 180 days and used only to produce totals; the records are not linked to an account, to you, or to one another. The request carries no cookie and no referrer.</p>
+    </div></details>
+  </footer>
+</main>
+<!-- Site footer — MIRROR of nextacts-xyz/src/components/Footer.astro.
+     Rendered AFTER the page's own privacy disclosure, matching /offer, where
+     the page-specific note and the site footer are two separate things. -->
+<footer class="site-foot" data-dark>
+  <div class="chrome-wrap foot">
+    <div>
+      <span class="wordmark"><span class="n">Next</span><span class="a">Acts</span></span>
+      <p class="muted" style="margin-top:.6rem;max-width:38ch">A weekly read on the US labor market. NextAct.work helps people file for unemployment.</p>
+      <p class="foot-parent">An initiative of <a class="parent-link" href="https://250tech.com"><strong>250tech&nbsp;Labs</strong></a></p>
+    </div>
+    <div class="foot-links">
+      <a href="/nextact-reviews/r/3157d07/trends">Trends</a>
+      <a href="/nextact-reviews/r/3157d07/research">Research</a>
+      <a href="/nextact-reviews/r/3157d07/blog">Blog</a>
+      <a href="/nextact-reviews/r/3157d07/about">About</a>
+      <a href="https://nextact.work">NextAct.work</a>
+    </div>
+  </div>
+  <div class="chrome-wrap foot-legal">
+    <span class="muted">&copy; 2026 NextActs, an initiative of <a class="parent-link" href="https://250tech.com">250tech Labs</a>.</span>
+  </div>
+</footer>
+
+
+<script type="module">
+const { REPORTING_LAST_VERIFIED, OBSERVATIONS, AFFECTED, SETTINGS, EMPLOYERS, WORKER_ISSUES, RETALIATION, CHANNELS, TRACK_ORDER, TRACK_LABEL, daysSince, routeReport } = (() => {
+/**
+ * Where an employee can take something they saw at work.
+ *
+ * ⭐ THE DESIGN DECISION THIS FILE EXISTS TO ENFORCE. Naming an agency is a
+ * short step from characterising conduct, and characterising conduct is a legal
+ * conclusion. So the routing never says "this is securities fraud." It offers
+ * channels whose OWN published description is shown verbatim, and the reader
+ * decides whether it matches. The quote is doing product work: it carries the
+ * condition, so the condition is applied by the person, not by us.
+ *
+ * ⭐ NOTHING IS RANKED. Channels come back in a fixed track order — report,
+ * protect, award, help — and inside a track, registry order. There is no
+ * "what matters most to you" input, because its only job in the prototype this
+ * replaces was to re-sort award-bearing channels to the top, which is ranking
+ * options by payout. A test pins the order against the registry.
+ *
+ * ⭐ NO DATE IS EVER COMPUTED. `daysSince` is arithmetic on a date the reader
+ * typed and reports elapsed days as a fact. Nothing here turns a published
+ * filing window into "your deadline is X" — which window applies depends on
+ * facts this page does not evaluate. Missing anchor ⇒ WAITING, same rule as
+ * the coverage engine.
+ *
+ * ⚠️ CHANNELS below is a COPY of rules/reporting-channels-2026.json, because
+ * the prototype is a single self-contained file and cannot fetch JSON. Copies
+ * drift; eval/report-routing.test.mjs asserts the two are identical.
+ */
+
+const REPORTING_LAST_VERIFIED = '2026-08-16';
+
+/* ── What the reader saw. Plain observations, never legal categories. ────────
+   The ordering puts the patterns that recur most often in public enforcement
+   descriptions first, but this is presentation only — it does not weight the
+   routing, and no option is a better answer than another. */
+const OBSERVATIONS = [
+  { id: 'false_record',        label: 'Something billed, claimed, certified, or recorded was not true', eg: 'An invoice, an application, a time record, a test result, a compliance sign-off' },
+  { id: 'not_provided',        label: 'Something was charged for but not provided, not needed, or far below what was promised', eg: 'Work never done, unnecessary treatment, an account nobody asked for' },
+  { id: 'improper_influence',  label: 'Money, gifts, favors, or a side arrangement influenced a decision', eg: 'Referral payments, sham consulting fees, contract steering' },
+  { id: 'manipulated_numbers', label: 'Prices, costs, or accounting were moved around to change what something looked like', eg: 'Commercial costs charged to a government contract, an inflated rate' },
+  { id: 'hidden_risk',         label: 'A safety, quality, testing, or security problem was hidden or signed off anyway', eg: 'Skipped tests, a concealed defect, a false quality certification' },
+  { id: 'false_eligibility',   label: 'Someone or something was treated as qualified, covered, or compliant when it was not', eg: 'A loan certification, a license, a diagnosis, an ownership status' },
+  { id: 'misleading_promotion',label: 'A product, service, or investment was sold with claims that were not accurate', eg: 'Uses a product was not approved for, overstated results' },
+  { id: 'taxes_fees',          label: 'Taxes, duties, royalties, or fees were hidden or underpaid', eg: 'Offshore accounts, payroll taxes, customs values' },
+  { id: 'misled_people',       label: 'Investors, auditors, customers, or patients were given a false picture', eg: 'Financial results, disclosures, what a customer was told' },
+  { id: 'environmental',       label: 'Something was released, dumped, buried, or vented that should not have been', eg: 'Discharges, emissions, waste handling, a monitoring result that was changed' },
+  { id: 'competitors_coordinated', label: 'Competitors quietly agreed with each other instead of competing', eg: 'Price fixing, bid rigging, losing a bid on purpose, splitting up customers' },
+  { id: 'aml_sanctions',       label: 'Money-laundering, suspicious-activity, or sanctions controls were bypassed', eg: 'Ignored alerts, a hidden owner, a prohibited counterparty, a report that was suppressed' },
+  { id: 'worker_rights',       label: 'Workers were underpaid, put in danger, treated unfairly, or punished for speaking up', eg: 'Pay, safety, discrimination, organizing, retaliation' },
+  { id: 'unsure',              label: 'Something else — or I am not sure how to describe it', eg: 'We will keep the result broad and say what would narrow it' },
+];
+
+/* Who was on the other side of it. This is what separates "a company did
+   something" from "a company did something to a government program", which
+   is the split that actually changes the channel. */
+const AFFECTED = [
+  { id: 'gov_health',    label: 'Medicare, Medicaid, TRICARE, or another government health program' },
+  { id: 'gov_contract',  label: 'A government contract, purchase, grant, loan, or insurance program' },
+  { id: 'investors',     label: 'Investors, shareholders, retirement savers, or public markets' },
+  { id: 'treasury',      label: 'Public revenue — taxes, tariffs, duties, royalties' },
+  { id: 'public_env',    label: 'The public, a community, or the environment' },
+  { id: 'customers',     label: 'Customers or patients' },
+  { id: 'employees',     label: 'Employees or job applicants' },
+  { id: 'unsure',        label: 'I am not sure who paid or who was harmed' },
+];
+
+const SETTINGS = [
+  { id: 'healthcare',   label: 'Health care, pharmaceuticals, medical devices, or insurance' },
+  { id: 'finance',      label: 'Banking, lending, payments, mortgages, or crypto' },
+  { id: 'securities',   label: 'A public company, accounting, auditing, or investing' },
+  { id: 'commodities',  label: 'Commodities, futures, swaps, or derivatives' },
+  { id: 'gov_program',  label: 'Government contracting, defense, research, or grants' },
+  { id: 'industrial',   label: 'Energy, environment, mining, manufacturing, or imports' },
+  { id: 'transport',    label: 'Vehicles, aviation, rail, pipelines, or shipping' },
+  { id: 'general',      label: 'Retail, hospitality, staffing, agriculture, or another workplace' },
+  { id: 'unsure',       label: 'Another setting — or I am not sure' },
+];
+
+const EMPLOYERS = [
+  { id: 'private',    label: 'A private company, nonprofit, or union' },
+  { id: 'contractor', label: 'A company working on a government contract or grant' },
+  { id: 'federal',    label: 'The federal government' },
+  { id: 'state_local',label: 'A state or local government, school, or public authority' },
+  { id: 'unsure',     label: 'I am not sure' },
+];
+
+/* Kept separate from the observations on purpose. What happened to the
+   COMPANY'S customers and what happened to YOU are different filings with
+   different clocks, and the single most common misunderstanding is that one
+   report covers both. */
+const WORKER_ISSUES = [
+  { id: 'safety',         label: 'Unsafe conditions or injury risk' },
+  { id: 'wages',          label: 'Unpaid wages, overtime, or being classified as a contractor' },
+  { id: 'discrimination', label: 'Discrimination, harassment, or a refused accommodation' },
+  { id: 'collective',     label: 'Being stopped from raising things together with coworkers' },
+  { id: 'none',           label: 'None of these' },
+];
+
+const RETALIATION = [
+  { id: 'happened',  label: 'Yes — something has already happened to me' },
+  { id: 'threatened',label: 'It has been threatened' },
+  { id: 'no',        label: 'No' },
+  { id: 'unsure',    label: 'I am not sure' },
+];
+
+/* ── Registry copy. Byte-compared against the JSON by the test suite. ─────── */
+const CHANNELS = [
+  {"id":"agency_ig","track":"report","title":"Inspector General of the federal agency involved","agency":"Offices of Inspector General (via DOJ Civil Division)","url":"https://www.justice.gov/civil/report-fraud","quote":"All federal agencies have an Inspector General whose duties include investigating fraud committed against their agency.","quote_source":"https://www.justice.gov/civil/report-fraud","last_verified":"2026-08-16","note":"The DOJ page links a directory of every federal agency Inspector General.","action":"Open the DOJ fraud-reporting guide"},
+  {"id":"hhs_oig","track":"report","title":"HHS Office of Inspector General Hotline","agency":"U.S. Department of Health and Human Services, OIG","url":"https://oig.hhs.gov/fraud/report-fraud/","quote":"OIG Hotline Operations accepts tips and complaints from all sources about potential fraud, waste, abuse, and mismanagement in the U.S. Department of Health and Human Services' programs.","quote_source":"https://oig.hhs.gov/fraud/report-fraud/","last_verified":"2026-08-16","note":"Reporting to the hotline is not the same thing as applying for an award.","action":"Open the HHS OIG hotline"},
+  {"id":"epa","track":"report","title":"Report an environmental violation to EPA","agency":"U.S. Environmental Protection Agency","url":"https://www.epa.gov/report-violation","quote":"We invite you to help us protect our nation's environment by identifying and reporting environmental violations.","quote_source":"https://www.epa.gov/report-violation","last_verified":"2026-08-16","note":"Reporting the environmental violation and complaining about retaliation for reporting it are two different filings.","action":"Open EPA’s violation report"},
+  {"id":"cfpb","track":"report","title":"CFPB channel for industry employees and insiders","agency":"Consumer Financial Protection Bureau","url":"https://www.consumerfinance.gov/enforcement/information-industry-whistleblowers/","quote":"current or former industry employees and industry insiders to reach out to us about possible violations of consumer financial rights","quote_is_fragment":true,"quote_source":"https://www.consumerfinance.gov/enforcement/information-industry-whistleblowers/","last_verified":"2026-08-16","note":"This is a separate route from the CFPB's consumer complaint form. The page also lists 'Any unfair, deceptive, or abusive act or practice with respect to any consumer financial product or service' among the conduct it wants to hear about.","action":"Open the CFPB whistleblower page"},
+  {"id":"fincen","track":"report","title":"FinCEN whistleblower program","agency":"Financial Crimes Enforcement Network","url":"https://www.fincen.gov/whistleblower-program","quote":"FinCEN administers a whistleblower program that offers incentives and protections to encourage individuals to provide information about violations or conspiracies to commit violations of the following statutes and their implementing regulations:","quote_is_fragment":true,"quote_source":"https://www.fincen.gov/whistleblower-program","last_verified":"2026-08-16","award_quote":"Once that regulation is finalized, FinCEN will begin processing and paying awards.","note":"Listed under reporting, not awards, on purpose: FinCEN says the implementing regulation is not final and that it will begin paying awards once it is. The statutes named on its page are the Bank Secrecy Act, IEEPA, the Trading With the Enemy Act and the Kingpin Act.","action":"Open the FinCEN whistleblower program"},
+  {"id":"osha_safety","track":"report","title":"OSHA safety and health complaint","agency":"Occupational Safety and Health Administration","url":"https://www.osha.gov/workers/file-complaint","quote":"You (or your representative) have the right to file a confidential safety and health complaint and request an OSHA inspection","quote_is_fragment":true,"quote_source":"https://www.osha.gov/workers/file-complaint","last_verified":"2026-08-16","note":"This reports the hazard. Being punished for raising it is a different complaint, listed under protecting yourself.","action":"File an OSHA safety complaint"},
+  {"id":"osc","track":"report","title":"U.S. Office of Special Counsel","agency":"U.S. Office of Special Counsel","url":"https://osc.gov/","quote":"The U.S. Office of Special Counsel (OSC) safeguards the merit system in federal employment by protecting whistleblowers, enforcing the Hatch Act, and providing secure channels for disclosures of wrongdoing.","quote_source":"https://osc.gov/","last_verified":"2026-08-16","note":"This channel exists for the federal workforce.","action":"Open the Office of Special Counsel"},
+  {"id":"osha_retaliation","track":"protect","title":"OSHA whistleblower (retaliation) complaint","agency":"Occupational Safety and Health Administration","url":"https://www.whistleblowers.gov/complaint_page","quote":"You have the right to file a whistleblower complaint with OSHA if you believe your employer retaliated against you for exercising your rights as an employee under the whistleblower protection laws enforced by OSHA.","quote_source":"https://www.whistleblowers.gov/complaint_page","last_verified":"2026-08-16","clock_quote":"The time frame for filing a complaint begins when the adverse action, such as a firing, occurs and is communicated to the employee.","clock_quote_source":"https://www.whistleblowers.gov/complaint_page","note":"Which filing deadline applies depends on which law your original report fell under, and OSHA publishes them per statute. This page does not work out which one is yours.","action":"Open OSHA’s retaliation complaint page"},
+  {"id":"eeoc","track":"protect","title":"EEOC charge of discrimination","agency":"U.S. Equal Employment Opportunity Commission","url":"https://www.eeoc.gov/how-file-charge-employment-discrimination","quote":"In general, you need to file a charge within 180 calendar days from the day the discrimination took place. The 180 calendar day filing deadline is extended to 300 calendar days if a state or local agency enforces a law that prohibits employment discrimination on the same basis.","quote_source":"https://www.eeoc.gov/time-limits-filing-charge","last_verified":"2026-08-16","note":"Whether the longer period applies depends on the state or local agency where you worked. This page does not determine that.","action":"Open the EEOC filing guide"},
+  {"id":"federal_eeo","track":"protect","title":"Your agency's EEO counselor (federal workforce)","agency":"Federal-sector EEO process","url":"https://www.eeoc.gov/federal-sector/overview-federal-sector-eeo-complaint-process","quote":"Federal employees and job applicants have a different complaint process, and generally must contact an agency EEO Counselor within 45 days.","quote_source":"https://www.eeoc.gov/time-limits-filing-charge","last_verified":"2026-08-16","note":"This is the shortest published window on this page.","action":"Open the federal-sector EEO process"},
+  {"id":"nlrb","track":"protect","title":"NLRB unfair labor practice charge","agency":"National Labor Relations Board","url":"https://www.nlrb.gov/about-nlrb/what-we-do/investigate-charges","quote":"If you believe your NLRA rights have been violated, you may file a charge against an employer or a labor organization.","quote_source":"https://www.nlrb.gov/about-nlrb/what-we-do/investigate-charges","last_verified":"2026-08-16","note":"NLRA rights cover employees acting together about working conditions, not only union members. Some workers and employers fall outside the Act.","action":"Open the NLRB charge page"},
+  {"id":"whd","track":"protect","title":"Wage and Hour Division complaint","agency":"U.S. Department of Labor","url":"https://www.dol.gov/agencies/whd/contact/complaints","quote":"Many investigations are initiated by complaints, which are confidential. The name of the complainant, the nature of the complaint, and whether a complaint exists may not be disclosed. An employer cannot retaliate against a worker for exercising their rights, filing a complaint or cooperating with an investigation.","quote_source":"https://www.dol.gov/agencies/whd/contact/complaints","last_verified":"2026-08-16","note":"Your state may also enforce its own pay laws. This page does not cover state routes.","action":"Contact the Wage and Hour Division"},
+  {"id":"fca","track":"award","title":"False Claims Act qui tam — read this before filing anywhere","agency":"U.S. Department of Justice, Civil Division","url":"https://www.justice.gov/civil/report-fraud","quote":"Because there are important procedural requirements involved in filing a False Claims Act qui tam action – such as filing the complaint under seal – many individuals obtain legal counsel before filing a qui tam action.","quote_source":"https://www.justice.gov/civil/report-fraud","last_verified":"2026-08-16","counsel_first":true,"note":"A qui tam action is a sealed federal lawsuit, not a hotline form. The order in which you do things can matter here, which is why it is listed even though this page does not tell you to file one.","action":"Read the DOJ qui tam procedure"},
+  {"id":"sec","track":"award","title":"SEC whistleblower program","agency":"U.S. Securities and Exchange Commission","url":"https://www.sec.gov/enforcement-litigation/whistleblower-program","quote":"The SEC's whistleblower program was established by Congress to incentivize whistleblowers to report specific, timely and credible information about possible federal securities laws violations.","quote_source":"https://www.sec.gov/enforcement-litigation/whistleblower-program","last_verified":"2026-08-16","award_quote":"The range for awards is between 10% and 30% of the money collected.","counsel_first":true,"note":"The SEC publishes its own rules on submitting a tip, including what an anonymous submission requires. Read them on the SEC’s site rather than relying on a summary.","action":"Open the SEC whistleblower program"},
+  {"id":"cftc","track":"award","title":"CFTC tips, complaints and whistleblower program","agency":"Commodity Futures Trading Commission","url":"https://www.cftc.gov/complaint","quote":"If you have information about a violation of the Commodity Exchange Act or Commission regulations, you can report such violations or any other suspicious activities to our Division of Enforcement","quote_is_fragment":true,"quote_source":"https://www.cftc.gov/complaint","last_verified":"2026-08-16","award_quote":"Whistleblowers can file a Form TCR anonymously but must provide a way for the Division of Enforcement to contact them","counsel_first":true,"note":"The CFTC’s forms distinguish a general tip from a whistleblower award submission.","action":"Open the CFTC complaint forms"},
+  {"id":"antitrust","track":"award","title":"DOJ Antitrust whistleblower rewards","agency":"U.S. Department of Justice, Antitrust Division","url":"https://www.justice.gov/atr/whistleblower-rewards","quote":"The Antitrust Division encourages whistleblowers to report antitrust crimes and related offenses. Criminal antitrust offenses include price fixing, bid rigging, and market allocation.","quote_source":"https://www.justice.gov/atr/whistleblower-rewards","last_verified":"2026-08-16","award_quote":"Whistleblowers who voluntarily report original information about antitrust and related offenses that result in criminal fines or other recoveries of at least $1 million may be eligible to receive a whistleblower reward.","counsel_first":true,"note":"This is also the route for reporting the conduct itself, not only for a reward. The Division says it will disclose a whistleblower’s identity only for law enforcement purposes.","action":"Open the DOJ Antitrust rewards program"},
+  {"id":"irs","track":"award","title":"IRS Whistleblower Office","agency":"Internal Revenue Service","url":"https://www.irs.gov/compliance/whistleblower-office","quote":"The Whistleblower Office administers claims for awards from people who report specific, timely and credible information about noncompliance with tax laws or other laws the IRS is authorized to administer, enforce or investigate.","quote_source":"https://www.irs.gov/compliance/whistleblower-office","last_verified":"2026-08-16","award_quote":"The award amount generally is 15 to 30% of the proceeds collected and attributable to the whistleblower's information.","counsel_first":true,"note":"Reporting suspected tax fraud and claiming an award are different submissions.","action":"Open the IRS Whistleblower Office"},
+  {"id":"legal_help","track":"help","title":"Find an employment lawyer who represents employees","agency":"National Employment Lawyers Association","url":"https://engagement.nela.org/NELA/NELA/findalawyer.aspx","quote":"We offer this directory to help individuals connect with attorneys; however, NELA does not operate a lawyer referral service. Inclusion in this directory should not be considered a recommendation.","quote_source":"https://engagement.nela.org/NELA/NELA/findalawyer.aspx","last_verified":"2026-08-18","note":"NextAct does not select, rank, recommend, or take any payment from any lawyer, and no listing is an endorsement. If your state has its own directory of lawyers who represent employees, it is offered below.","action":"Search the national directory"},
+];
+
+const TRACK_ORDER = ['report', 'protect', 'award', 'help'];
+const TRACK_LABEL = {
+  report:  'Report the conduct',
+  protect: 'Protect yourself',
+  award:   'Award programs — read the procedure first',
+  help:    'Independent legal help',
+};
+
+const has = (arr, id) => Array.isArray(arr) && arr.includes(id);
+const any = (arr, ids) => Array.isArray(arr) && ids.some(id => arr.includes(id));
+
+/* Observations that describe money or value being obtained on a false basis.
+   Deliberately does NOT include `worker_rights` or `environmental`: those are
+   their own tracks, and folding them in here is how the prototype this
+   replaces sent an illegal-dumping report to a corporate award pilot. */
+const FRAUD_PATTERN = ['false_record', 'not_provided', 'improper_influence',
+  'manipulated_numbers', 'hidden_risk', 'false_eligibility', 'misleading_promotion'];
+
+/**
+ * Elapsed whole days between a typed date and today. Pure arithmetic on a
+ * value the reader supplied — it characterises nothing.
+ * @returns {number|null} null when there is no usable date, which the caller
+ *   must render as WAITING rather than as zero.
+ */
+function daysSince(date, today = new Date()) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return null;
+  const a = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const b = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+  return Math.round((b - a) / 86400000);
+}
+
+/**
+ * @param {object} a  answers: {observations[], affected[], settings[],
+ *   workerIssues[], employer, retaliation, eventDate?: Date}
+ * @returns {{channels: object[], waiting: object[], narrowedBy: string[]}}
+ *
+ * `waiting` is the honest half of the output. A router that silently returns
+ * fewer channels when it knows less looks equally confident either way; this
+ * one says which unanswered thing would have changed the result.
+ */
+function routeReport(a = {}) {
+  const obs = a.observations ?? [], aff = a.affected ?? [],
+        set = a.settings ?? [], wrk = a.workerIssues ?? [];
+  const ids = new Set();
+  const narrowedBy = [];
+
+  const fraud = any(obs, FRAUD_PATTERN);
+  const govMoney = any(aff, ['gov_health', 'gov_contract'])
+    || has(set, 'gov_program') || a.employer === 'contractor';
+
+  /* ── Report the conduct ─────────────────────────────────────────────── */
+  if (govMoney && fraud) { ids.add('agency_ig'); narrowedBy.push('government money was involved'); }
+  if (has(aff, 'gov_health') || (has(set, 'healthcare') && govMoney)) ids.add('hhs_oig');
+  if (has(obs, 'environmental') || (has(set, 'industrial') && any(obs, ['hidden_risk', 'false_record']))) {
+    ids.add('epa'); narrowedBy.push('an environmental release was described');
+  }
+  if (has(obs, 'aml_sanctions')) ids.add('fincen');
+  if (has(set, 'finance') && any(obs, ['misled_people', 'misleading_promotion', 'false_eligibility', 'not_provided'])) {
+    ids.add('cfpb'); narrowedBy.push('consumer financial products were involved');
+  }
+  if (has(wrk, 'safety')) ids.add('osha_safety');
+  if (a.employer === 'federal') { ids.add('osc'); narrowedBy.push('you said the employer is the federal government'); }
+
+  /* ── Protect yourself ───────────────────────────────────────────────────
+     ⭐ This is the block that fixes the dead end in the prototype this
+     replaces: there, someone punished for speaking up at a retail job got a
+     lawyer directory and nothing else, and a passing test called that
+     correct. Retaliation ALWAYS surfaces the retaliation channels. Whether a
+     given one covers this person is decided by the reader against the quoted
+     condition, not by us — but they are never left with no door. */
+  const retaliated = a.retaliation === 'happened' || a.retaliation === 'threatened';
+  if (retaliated) ids.add('osha_retaliation');
+  /* ⚠️ NLRB is NOT offered for retaliation in general — that was a false
+     positive, reported 2026-08-16 and reproduced: a securities-accounting
+     concern with no worker issue returned an unfair-labor-practice charge.
+     The NLRA protects employees acting together about working conditions, so
+     the trigger is the reader saying they acted with coworkers, not the bare
+     fact of being punished. Narrowing this does NOT restore the lone-lawyer
+     dead end: retaliation still yields the OSHA route plus counsel, and a
+     WAITING entry below names what would narrow it further. */
+  if (has(wrk, 'collective')) ids.add('nlrb');
+  if (has(wrk, 'discrimination')) ids.add(a.employer === 'federal' ? 'federal_eeo' : 'eeoc');
+  if (has(wrk, 'wages')) ids.add('whd');
+
+  /* ── Award programs. Listed, never recommended, never sorted to the top. */
+  if (govMoney && fraud) ids.add('fca');
+  if (has(aff, 'treasury') && fraud) ids.add('fca');
+  if ((has(aff, 'investors') || has(set, 'securities'))
+      && any(obs, ['misled_people', 'false_record', 'manipulated_numbers', 'improper_influence'])) ids.add('sec');
+  if (has(set, 'commodities')) ids.add('cftc');
+  if (has(obs, 'taxes_fees')) ids.add('irs');
+  if (has(obs, 'competitors_coordinated')) ids.add('antitrust');
+
+  /* ── Independent help. Always present: there is no result in which knowing
+     a lawyer exists is the wrong information, and it guarantees the page can
+     never render an empty answer.
+     ⚠️ This used to be the ABA's directory of local bar referral programmes —
+     general-practice, and the one channel with no quote. It is now NELA's
+     national directory, which is employee-side and states its own conditions,
+     and the page offers a state-level directory beside it where one has been
+     verified. */
+  ids.add('legal_help');
+
+  const byId = Object.fromEntries(CHANNELS.map(c => [c.id, c]));
+  const channels = CHANNELS.filter(c => ids.has(c.id));   // registry order, per track
+  channels.sort((x, y) => TRACK_ORDER.indexOf(x.track) - TRACK_ORDER.indexOf(y.track)
+    || CHANNELS.indexOf(byId[x.id]) - CHANNELS.indexOf(byId[y.id]));
+
+  /* ── WAITING. Only genuinely missing inputs that would change the answer. */
+  const waiting = [];
+  const days = daysSince(a.eventDate, a.today);
+  /* ⚠️ A future date is REJECTED, not rendered. It used to produce "That is
+     26,436 days from now" for 1 Jan 2099 — arithmetically true and product
+     nonsense, and on a page whose whole discipline is not showing numbers it
+     cannot stand behind, a number nobody can act on is the same defect class
+     as a fabricated one. Reported 2026-08-16 and reproduced. */
+  if (days === null) {
+    waiting.push({ id:'event_date', label:'How long ago this happened',
+      why:'Several of these channels publish a filing window, and some are short. Without the date of the most recent event we will not show elapsed time, and we will not guess it.',
+      need:'The date of the most recent thing that happened' });
+  } else if (days < 0) {
+    waiting.push({ id:'event_date_future', label:'How long ago this happened',
+      why:'The date given is in the future, so there is no elapsed time to report. We would rather show nothing than a number you cannot act on.',
+      need:'A date on or before today' });
+  }
+  /* Retaliation narrows to OSHA alone unless the reader says they acted with
+     coworkers — so name the thing that would add the labour route, rather
+     than silently offering one law and not the other. */
+  if (retaliated && !has(wrk, 'collective')) {
+    waiting.push({ id:'concerted', label:'Whether you raised it together with coworkers',
+      why:'Which retaliation law protects you depends on what you originally raised and how. Acting together with coworkers about working conditions engages a different agency from a safety or securities report.',
+      need:'The worker-treatment question' });
+  }
+  if (!obs.length || has(obs, 'unsure')) {
+    waiting.push({ id:'observation', label:'What you saw',
+      why:'The channels below are the broad ones. Naming what you saw usually adds more specific routes.',
+      need:'Any of the descriptions on the first question' });
+  }
+  if (has(aff, 'unsure') || !aff.length) {
+    waiting.push({ id:'affected', label:'Who paid or was harmed',
+      why:'Whether government money was involved is the single biggest fork in this page, and it changes which channels appear at all.',
+      need:'Who was on the other side of it' });
+  }
+  if (a.employer === 'unsure' || !a.employer) {
+    waiting.push({ id:'employer', label:'Who employs you',
+      why:'The federal workforce has its own channels and the shortest published window on this page.',
+      need:'The kind of employer' });
+  }
+  if (a.retaliation === 'unsure') {
+    waiting.push({ id:'retaliation', label:'Whether anything has happened to you',
+      why:'Retaliation is a separate filing from reporting the conduct, and it is the one with the shortest clocks.',
+      need:'Yes, threatened, or no' });
+  }
+
+  /* ⭐ `narrowed` is false when the answers produced nothing but the standing
+     legal-help route. The page must then LEAD with "we cannot narrow this
+     yet" and point back at the question that would, rather than presenting a
+     lawyer directory as though it were the answer to what was asked. */
+  const narrowed = channels.some(c => c.track !== 'help');
+  return { channels, waiting, narrowedBy, narrowed, elapsedDays: days !== null && days >= 0 ? days : null };
+}
+
+return { REPORTING_LAST_VERIFIED, OBSERVATIONS, AFFECTED, SETTINGS, EMPLOYERS, WORKER_ISSUES, RETALIATION, CHANNELS, TRACK_ORDER, TRACK_LABEL, daysSince, routeReport };
+})();
+const { LEGAL_HELP_VIEW, ALL_JURISDICTIONS, JURISDICTION_NAMES, ROUTE_ACTION, ROUTE_KIND, actionFor, kindFor, routesFor, isPartialCoverage } = (() => {
+/**
+ * Where a reader can find their own lawyer, by jurisdiction.
+ *
+ * ⭐ THE RULE THIS FILE EXISTS TO ENFORCE. A directory listing is not an
+ * endorsement, and an association that cannot actually locate a lawyer is not
+ * a route. Replacing one dead end (a generic national directory) with a nicer
+ * dead end (an association homepage with no search) is not an improvement, so
+ * only entries a reader can use are inlined at all, and the national fallback
+ * is always returned alongside them.
+ *
+ * ⭐ NOTHING IS RANKED. Entries come back in registry order, then the national
+ * fallback. `route_type` says what a source IS — a government list, a paid
+ * member directory, a referral service — so the reader can tell them apart.
+ * It is a label, not an order, and not a recommendation.
+ *
+ * ⭐ WE LINK TO ORGANISATIONS, NEVER TO AN INDIVIDUAL LAWYER. That is the line
+ * between publishing a list of resources and referring someone to counsel, and
+ * it is the property that keeps this page out of the state referral-service
+ * rules (California Business & Professions Code § 6155 turns on the FUNCTION of
+ * referring clients to attorneys, not on whether anyone is paid — and nobody is
+ * paid here, in either direction). A test enforces it so it cannot drift.
+ *
+ * ⚠️ LEGAL_HELP_VIEW below is a PROJECTION of
+ * rules/legal-help-registry-2026.json, generated by scripts/sync-legal-help.mjs
+ * because the prototype is one self-contained file and cannot fetch JSON.
+ * Projections drift; eval/legal-help-registry.test.mjs recomputes it and fails
+ * if it has.
+ */
+
+/*__VIEW_START__*/
+const LEGAL_HELP_VIEW = {
+  "national": [
+    {
+      "id": "nela_national",
+      "name": "NELA Find-A-Lawyer",
+      "url": "https://engagement.nela.org/NELA/NELA/findalawyer.aspx",
+      "quote": "We offer this directory to help individuals connect with attorneys; however, NELA does not operate a lawyer referral service. Inclusion in this directory should not be considered a recommendation.",
+      "quote_source": "https://engagement.nela.org/NELA/NELA/findalawyer.aspx",
+      "route_type": "national_directory",
+      "coverage_scope": "national, filterable by state",
+      "last_verified": "2026-08-18",
+      "is_referral_service": false
+    }
+  ],
+  "jurisdictions": {
+    "AZ": [
+      {
+        "id": "azela",
+        "name": "Arizona Employment Lawyers Association (AzELA)",
+        "url": "https://azela.org/azela-find-lawyer-directory",
+        "quote": "The Arizona Employment Lawyers Association (AzELA) is an Arizona-statewide specialty bar association of lawyers and related professionals who exclusively or primarily represent employees in employment-related legal matters.",
+        "quote_source": "https://azela.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "CA": [
+      {
+        "id": "cela",
+        "name": "California Employment Lawyers Association (CELA)",
+        "url": "https://cela.org/?pg=FindaLawyer",
+        "quote": "CELA is a statewide organization of over 1,400 California attorneys who devote the major portion of their practices to representing employees in individual employment cases and class actions, including cases involving unpaid wages, discrimination, harassment, retaliation and whistleblowing.",
+        "quote_source": "https://cela.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "CO": [
+      {
+        "id": "co_pela",
+        "name": "Colorado Plaintiff Employment Lawyers Association (PELA)",
+        "url": "https://coloradopela.wildapricot.org/find-a-lawyer",
+        "quote": "All PELA members specialize in the representation of employees in a broad range of employment related matters.",
+        "quote_source": "https://coloradopela.wildapricot.org/find-a-lawyer",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "FL": [
+      {
+        "id": "fl_nela",
+        "name": "Florida NELA",
+        "url": "https://floridanela.org/lawyers/",
+        "quote": "Our membership is restricted to attorneys who primarily represent employees when handling employment-related legal matters.",
+        "quote_source": "https://floridanela.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "GA": [
+      {
+        "id": "nela_ga",
+        "name": "NELA Georgia",
+        "url": "https://exchange.nela.org/nelaga/publicdirectory",
+        "quote": "Members have paid a fee to have a listing within this directory.",
+        "quote_source": "https://nelaga.org/lawyers/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true,
+        "paid_quote": "Members have paid a fee to have a listing within this directory."
+      }
+    ],
+    "IL": [
+      {
+        "id": "nela_il",
+        "name": "NELA-Illinois",
+        "url": "https://nela-illinois.org/content.aspx?page_id=78&club_id=853437",
+        "quote": "Founded in 1985, NELA is the country's first and only bar association that is exclusively comprised of lawyers who solely or primarily represent individuals in employment-related matters.",
+        "quote_source": "https://nela-illinois.org/content.aspx?page_id=22&club_id=853437&module_id=242697",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "LA": [
+      {
+        "id": "pela_south_la",
+        "name": "PELA of South Louisiana",
+        "url": "https://louisianaemploymentlawyers.wordpress.com/find-a-lawyer-2/",
+        "quote": "Plaintiffs' Employment Lawyers Association (PELA) – South Louisiana is an organization that promotes public awareness of employee rights and provides collaboration with attorneys who represent employees.",
+        "quote_source": "https://louisianaemploymentlawyers.org/",
+        "route_type": "specialized_regional",
+        "coverage_scope": "regional — South Louisiana only",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": false
+      }
+    ],
+    "MA": [
+      {
+        "id": "ma_mela",
+        "name": "Massachusetts Employment Lawyers Association (MELA)",
+        "url": "https://www.massnela.org/sectiondirectory",
+        "quote": "We are an organization of attorneys who devote a majority of their practice to representing employees, rather than companies.",
+        "quote_source": "https://www.massnela.org/about/about",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "MD": [
+      {
+        "id": "md_mela",
+        "name": "Maryland Employment Lawyers Association (MELA)",
+        "url": "https://www.marylandemploymentlawyers.org/directory",
+        "quote": "MELA members are attorneys who dedicate 60% or more of their employment practice to representing people, not companies.",
+        "quote_source": "https://www.marylandemploymentlawyers.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      },
+      {
+        "id": "mwela_md",
+        "name": "Metropolitan Washington Employment Lawyers Association (MWELA)",
+        "url": "https://www.mwela.org/find-a-lawyer",
+        "quote": "MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.",
+        "quote_source": "https://www.mwela.org/find-a-lawyer",
+        "route_type": "specialized_regional",
+        "coverage_scope": "regional — DC, Maryland and Northern Virginia only",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": false,
+        "paid_quote": "the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"
+      }
+    ],
+    "MI": [
+      {
+        "id": "bar_mi",
+        "name": "State Bar of Michigan Lawyer Referral Service",
+        "url": "https://lrs.michbar.org/LRS-Info/Lawyer-Referral-Service",
+        "quote": "For a $25 administrative fee for up to a 25-minute initial consultation, a referral assistant will match you with a participating lawyer referral attorney who will provide up to a 25-minute initial consultation free of charge.",
+        "quote_source": "https://lrs.michbar.org/LRS-Info/Lawyer-Referral-Service",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "MN": [
+      {
+        "id": "mn_nela",
+        "name": "Minnesota NELA",
+        "url": "https://mn-nela.org/about-us/member-list/",
+        "quote": "Please note, MN-NELA is not a law firm and makes no representation about the legal services provided by its member attorneys.",
+        "quote_source": "https://mn-nela.org/about-us/member-list/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NE": [
+      {
+        "id": "nenela",
+        "name": "Nebraska NELA",
+        "url": "https://exchange.nela.org/nenela/publicdirectory",
+        "quote": "NE NELA is dedicated to promoting the interests of individual or classes of employees and assisting the lawyers who represent them through professional networking, information sharing, continuing education, and advocacy on issues important to the members of NE NELA and the employees they represent.",
+        "quote_source": "https://exchange.nela.org/nenela/aboutus",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NJ": [
+      {
+        "id": "nela_nj",
+        "name": "NELA-NJ",
+        "url": "https://www.nelanj.org/find-a-lawyer/",
+        "quote": "The members of the National Employment Lawyers Association of New Jersey practice employment law as well as other areas of specialty in all 21 New Jersey counties.",
+        "quote_source": "https://www.nelanj.org/find-a-lawyer/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NY": [
+      {
+        "id": "nelars",
+        "name": "NELA/NY Referral Service (NELARS)",
+        "url": "https://nelany.com/nelars_main.php",
+        "quote": "The NELA/NY referral service was established as a public service to provide individuals with a need with the ability to find knowledgeable lawyers in specific areas of employment law.",
+        "quote_source": "https://nelany.com/nelars_main.php",
+        "route_type": "employee_side_referral_service",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "OH": [
+      {
+        "id": "oh_oela",
+        "name": "Ohio Employment Lawyers Association (OELA)",
+        "url": "https://ohioela.org/members",
+        "quote": "OELA members dedicate 70% or more of their employment practice to protecting and promoting the rights of employees, rather than employers.",
+        "quote_source": "https://ohioela.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "OK": [
+      {
+        "id": "ok_oela",
+        "name": "Oklahoma Employment Lawyers Association (OELA)",
+        "url": "https://www.oela.org/",
+        "quote": "OELA is dedicated to the diligent representation of victims of employment discrimination, harassment, wage theft, wrongful termination or other unlawful conduct by their employer.",
+        "quote_source": "https://www.oela.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "PA": [
+      {
+        "id": "bar_pa",
+        "name": "Pennsylvania Bar Association Lawyer Referral Service",
+        "url": "https://www.pabar.org/site/For-the-Public/Find-a-Lawyer",
+        "quote": "The PBA Lawyer Referral Service (LRS) will refer you to a qualified attorney ready to help you.",
+        "quote_source": "https://www.pabar.org/site/For-the-Public/Find-a-Lawyer",
+        "route_type": "bar_referral",
+        "coverage_scope": "partial — 47 of Pennsylvania’s 67 counties",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": false
+      }
+    ],
+    "TX": [
+      {
+        "id": "tela",
+        "name": "Texas Employment Lawyers Association (TELA)",
+        "url": "https://www.mytela.org/?pg=FindALawyer",
+        "quote": "TELA was founded in 1992 as the voluntary bar association of Texas attorneys who represent people rather than companies.",
+        "quote_source": "https://www.mytela.org/?pg=Welcome_To_TELA",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "UT": [
+      {
+        "id": "uela",
+        "name": "Utah Employment Lawyers Association (UELA)",
+        "url": "https://www.utahemploymentlawyers.org/directory",
+        "quote": "Representing workers and seeking to promote equality and justice in the Utah workplace.",
+        "quote_source": "https://www.utahemploymentlawyers.org/about-1",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "VA": [
+      {
+        "id": "mwela_va",
+        "name": "Metropolitan Washington Employment Lawyers Association (MWELA)",
+        "url": "https://www.mwela.org/find-a-lawyer",
+        "quote": "MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.",
+        "quote_source": "https://www.mwela.org/find-a-lawyer",
+        "route_type": "specialized_regional",
+        "coverage_scope": "regional — Northern Virginia only",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": false,
+        "paid_quote": "the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"
+      }
+    ],
+    "WA": [
+      {
+        "id": "wela",
+        "name": "Washington Employment Lawyers Association (WELA)",
+        "url": "https://welalaw.org/members/",
+        "quote": "WELA is composed of attorneys, law professors, paralegals and law students devoted to the promotion of employee rights.",
+        "quote_source": "https://welalaw.org/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "WV": [
+      {
+        "id": "wvela",
+        "name": "West Virginia Employment Lawyers Association (WVELA)",
+        "url": "https://www.wvela.com/members/default.html",
+        "quote": "WVELA is a state wide organization of employment lawyers providing representation and protection to employees who have been wrongfully terminated, harassed, discriminated against, or injured in the workplace.",
+        "quote_source": "https://wvela.com/",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "DC": [
+      {
+        "id": "mwela",
+        "name": "Metropolitan Washington Employment Lawyers Association (MWELA)",
+        "url": "https://www.mwela.org/find-a-lawyer",
+        "quote": "MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.",
+        "quote_source": "https://www.mwela.org/find-a-lawyer",
+        "route_type": "specialized_regional",
+        "coverage_scope": "regional — DC, Maryland and Northern Virginia only",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true,
+        "paid_quote": "the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"
+      }
+    ],
+    "NC": [
+      {
+        "id": "ncaj",
+        "name": "North Carolina Advocates for Justice (NCAJ)",
+        "url": "https://www.ncaj.com/for-the-public",
+        "quote": "If you need a lawyer referral near you, please feel free to search our membership directory below to explore your options. Please note that attorney members of NCAJ may require compensation for their time in working with you to resolve your issue or to provide legal advice.",
+        "quote_source": "https://www.ncaj.com/for-the-public",
+        "route_type": "general_directory",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "CT": [
+      {
+        "id": "ctnela",
+        "name": "Connecticut Employment Lawyers Association (CTNELA)",
+        "url": "https://exchange.nela.org/ctnela/new-item/ctnela-members",
+        "quote": "The Connecticut Employment Lawyers Association (CELA) is a nonprofit organization comprised of employment law attorneys from around the state who share in a common mission; providing quality representation to employees and vindicating employees’ rights.",
+        "quote_source": "https://exchange.nela.org/ctnela/home",
+        "route_type": "specialized_statewide",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NV": [
+      {
+        "id": "bar_nv",
+        "name": "State Bar of Nevada Lawyer Referral Service",
+        "url": "https://nvbar.org/lawyerreferral/lrs/",
+        "quote": "The LRS staff are not lawyers and therefore cannot give you legal advice, but will help you find the right resource for your situation.",
+        "quote_source": "https://nvbar.org/lawyerreferral/lrs/",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "OR": [
+      {
+        "id": "or_boli_complainants",
+        "name": "Oregon BOLI attorney list — Complainants",
+        "url": "https://www.oregon.gov/boli/about/Documents/20260424%20Attorney%20List%20Complainants%20ENG.pdf",
+        "quote": "You can find a list of attorneys who may be willing to represent Respondents (Empresas) and Complainants (Empleados) updated April 29, 2026.",
+        "quote_source": "https://www.oregon.gov/boli/about/pages/contact-us.aspx",
+        "route_type": "government_directory",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NM": [
+      {
+        "id": "tela_nm",
+        "name": "Texas Employment Lawyers Association (TELA) — cross-state search",
+        "url": "https://www.mytela.org/?pg=FindALawyer",
+        "quote": "TELA was founded in 1992 as the voluntary bar association of Texas attorneys who represent people rather than companies.",
+        "quote_source": "https://www.mytela.org/?pg=Welcome_To_TELA",
+        "route_type": "specialized_regional",
+        "coverage_scope": "cross-state — TELA's own search offers Texas, Colorado and New Mexico",
+        "last_verified": "2026-08-18",
+        "is_referral_service": false,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "AK": [
+      {
+        "id": "bar_ak",
+        "name": "Alaska Lawyer Referral Service",
+        "url": "https://alaskabar.org/for-the-public/lawyer-referral-service/",
+        "quote": "The Alaska Lawyer Referral Service is made up of Alaska lawyers who have signed up to be listed on the Lawyer Referral Service.",
+        "quote_source": "https://alaskabar.org/for-the-public/lawyer-referral-service/",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "HI": [
+      {
+        "id": "bar_hi",
+        "name": "Hawaii State Bar Lawyer Referral & Information Service",
+        "url": "https://hsba.org/find-a-lawyer/attorney-client-relations/lris",
+        "quote": "The Lawyer Referral & Information Service (LRIS) is a public service provided by the Hawaii State Bar Association, a 501(c)(6) non-profit organization.",
+        "quote_source": "https://hsba.org/find-a-lawyer/attorney-client-relations/lris",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "KS": [
+      {
+        "id": "bar_ks",
+        "name": "Kansas Bar Association Lawyer Referral Service",
+        "url": "https://www.ksbar.org/?pg=lrs_public",
+        "quote": "The LRS refers clients to licensed and experienced attorneys who have registered to receive referrals in specific areas of law and who are in good standing with the Kansas Supreme Court.",
+        "quote_source": "https://www.ksbar.org/?pg=lrs_public",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "MT": [
+      {
+        "id": "bar_mt",
+        "name": "Licensed Lawyer Montana (State Bar of Montana)",
+        "url": "https://www.montanabar.org/For-the-Public",
+        "quote": "The State Bar also provides a lawyer referral service, Licensed Lawyer Montana, which is available free of charge to the public.",
+        "quote_source": "https://www.montanabar.org/For-the-Public",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "NH": [
+      {
+        "id": "bar_nh",
+        "name": "New Hampshire Bar Association Lawyer Referral Service",
+        "url": "https://www.nhbar.org/lawyer-referral-service/",
+        "quote": "A Referral Specialist will help clarify your legal issue and attempt to match you with the right attorney or another resource.",
+        "quote_source": "https://www.nhbar.org/lawyer-referral-service/",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "RI": [
+      {
+        "id": "bar_ri",
+        "name": "Rhode Island Bar Association Lawyer Referral Service",
+        "url": "https://ribar.com/?pg=lawyerreferralservice",
+        "quote": "Every year, the Rhode Island Bar Association’s Lawyer Referral Service (LRS) receives thousands of calls from individuals seeking help finding the right attorney.",
+        "quote_source": "https://ribar.com/?pg=lawyerreferralservice",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "WI": [
+      {
+        "id": "bar_wi",
+        "name": "State Bar of Wisconsin Lawyer Referral Service",
+        "url": "https://www.wisbar.org/forPublic/INeedaLawyer/pages/lrs.aspx",
+        "quote": "When you contact the Lawyer Referral Service, you won’t receive legal advice, but you will speak with a trained legal assistant who can assess your situation and connect you with the most appropriate resource.",
+        "quote_source": "https://www.wisbar.org/forPublic/INeedaLawyer/pages/lrs.aspx",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ],
+    "WY": [
+      {
+        "id": "bar_wy",
+        "name": "Wyoming State Bar Lawyer Referral Directory",
+        "url": "https://www.wyomingbar.org/for-the-public/hire-a-lawyer/lawyer-search/",
+        "quote": "The Lawyer Referral Directory consists only of attorneys who are part of our referral program",
+        "quote_source": "https://www.wyomingbar.org/for-the-public/hire-a-lawyer/lawyer-search/",
+        "route_type": "bar_referral",
+        "coverage_scope": "statewide",
+        "last_verified": "2026-08-19",
+        "is_referral_service": true,
+        "covers_jurisdiction_fully": true
+      }
+    ]
+  }
+};
+/*__VIEW_END__*/
+
+const ALL_JURISDICTIONS = [
+  'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
+  'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA',
+  'RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
+];
+
+const JURISDICTION_NAMES = {
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',
+  DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',
+  KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',
+  MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
+  NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',
+  ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',
+  SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',
+  VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',
+  DC:'District of Columbia',
+};
+
+/** What the reader is invited to do, per kind of source. A referral service
+ *  refers you; a directory is something you browse. Saying "get a referral"
+ *  about a member list would promise an intake that does not exist.
+ *  ⚠️ `is_referral_service` is ORTHOGONAL to route_type and wins: NELA/NY is a
+ *  statewide employee-side body AND runs a real intake-based referral service.
+ *  Keying the copy on route_type alone told its readers to "browse" a thing
+ *  that actually refers them — caught by L16. */
+const ROUTE_ACTION = {
+  specialized_statewide: 'Browse employee-side employment lawyers',
+  specialized_regional:  'Browse employee-side employment lawyers',
+  general_directory:     'Search this directory and filter it to employment law',
+  government_directory:  'Open the list this agency publishes',
+  national_directory:    'Search a national directory of workers’ rights lawyers',
+  bar_referral:          'Ask the state bar for a referral',
+  employee_side_referral_service: 'Ask this service for a referral',
+};
+
+/** Plain description of what the source is. Ours, never in quotation marks. */
+const ROUTE_KIND = {
+  specialized_statewide: 'A member directory of an association of lawyers who represent employees.',
+  specialized_regional:  'A member directory of an association of lawyers who represent employees.',
+  general_directory:     'A directory of lawyers in many practice areas, not only employment.',
+  government_directory:  'A list published by a government agency, not by an association.',
+  national_directory:    'A national directory of lawyers who represent employees, filterable by state.',
+  bar_referral:          'A general lawyer referral service run by the state bar. It covers every area of law, not only employment, and it is not limited to lawyers who represent employees.',
+  employee_side_referral_service: 'A referral service run by an association of lawyers who represent employees. You contact it and it puts you in touch with a lawyer.',
+};
+
+/** Copy for one entry, keyed on route_type ALONE.
+ *  ⚠️ This briefly short-circuited on `is_referral_service`, which was right
+ *  for NELA/NY and then quietly wrong for the state bars: every bar referral
+ *  would have rendered the generic referral blurb and LOST the one thing a
+ *  reader most needs to know about it — that it is general practice and not
+ *  limited to lawyers who represent employees. NELA/NY now has a route_type of
+ *  its own instead, and the flag is left as data rather than as control flow. */
+const actionFor = e => ROUTE_ACTION[e.route_type];
+const kindFor  = e => ROUTE_KIND[e.route_type];
+
+/**
+ * @returns {{local: object[], national: object[], hasLocal: boolean}}
+ * `local` is empty for a jurisdiction we have not covered, and that is not a
+ * failure state: the national entry is returned either way, so an uncovered
+ * state is never worse off than before this existed.
+ */
+function routesFor(code, view = LEGAL_HELP_VIEW) {
+  const local = (view.jurisdictions && view.jurisdictions[code]) || [];
+  return { local, national: view.national || [], hasLocal: local.length > 0 };
+}
+
+/** True when every route we have covers only PART of the jurisdiction, so the
+ *  scope has to be shown rather than implied. Virginia's only locatable route
+ *  covers Northern Virginia; a reader who picked "Virginia" must be told. */
+function isPartialCoverage(code, view = LEGAL_HELP_VIEW) {
+  const { local } = routesFor(code, view);
+  return local.length > 0 && local.every(e => !e.covers_jurisdiction_fully);
+}
+
+return { LEGAL_HELP_VIEW, ALL_JURISDICTIONS, JURISDICTION_NAMES, ROUTE_ACTION, ROUTE_KIND, actionFor, kindFor, routesFor, isPartialCoverage };
+})();
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, text) => { const n=document.createElement(tag); if(cls)n.className=cls; if(text!=null)n.textContent=text; return n; };
+const short = d => d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+const fromInput = v => { if(!/^\d{4}-\d{2}-\d{2}$/.test(v||'')) return null; const [y,m,d]=v.split('-').map(Number); const out=new Date(y,m-1,d); return out.getFullYear()===y&&out.getMonth()===m-1&&out.getDate()===d?out:null; };
+
+/* ⭐ Beacon allowlist — bare step names only. Every entry here is a place in
+   the flow, never a thing the reader selected. On a page about reporting an
+   employer, an event named for the ANSWER would put a fact about the reader's
+   situation on the wire ("this person saw kickbacks"), which is exactly the
+   defect this project shipped once already on the coverage page and renamed
+   within hours. A test asserts no option id can ever appear here. */
+/* ⚠️ 'legal_help_state' is a BARE STEP NAME. It records that somebody used the
+   state selector and NOTHING about which state — a jurisdiction is a fact about
+   the reader, and this page's promise is that nothing you select is sent. A
+   test asserts no option id AND no jurisdiction code can reach this set. */
+const BEACON=new Set(['view','emergency_shown','started','question_advanced','question_back',
+  'question_skipped','result_shown','result_back','channel_opened','restarted','legal_help_state']);
+
+function track(name){
+  const safe=String(name).replace(/[^a-z0-9_:-]/gi,'').slice(0,80);
+  window.dispatchEvent(new CustomEvent('nextact:event',{detail:{name:safe}}));
+  if(Array.isArray(window.dataLayer)) window.dataLayer.push({event:safe});
+  send(safe);
+}
+/* Not navigator.sendBeacon(): its credentials mode is fixed to "include" by
+   spec, so it sends Cookie and Referer. Measured on the coverage page against
+   a server that set a cookie — 4/4 beacons carried both while the comment
+   beside it claimed otherwise. fetch() is the only form that drops them. */
+function send(name){
+  try{
+    if(!BEACON.has(name)) return;
+    if(!/^https?:$/.test(location.protocol)) return;
+    fetch(`/nextact-reviews/r/3157d07/api/e/rep_${encodeURIComponent(name)}`,{
+      method:'POST',keepalive:true,mode:'same-origin',
+      credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',
+    }).catch(()=>{});
+  }catch{/* never surface a metrics failure to the reader */}
+}
+
+const answers={observations:[],affected:[],settings:[],workerIssues:[],employer:'',retaliation:'',eventDate:null};
+
+const QUESTIONS=[
+  { key:'observations', multi:true, options:OBSERVATIONS,
+    title:'Which of these sounds most like what you saw?',
+    help:'You do not need to know which law was broken or which agency handles it. Pick everything that sounds familiar — overlap is normal and expected.' },
+  { key:'affected', multi:true, options:AFFECTED,
+    title:'Who paid for it, funded it, or was harmed by it?',
+    help:'Whether government money was involved changes which channels exist at all. If you are not sure, say so — that is a real answer here.' },
+  /* ⚠️ Titled by KIND, not location. "Where did this happen?" contradicted the
+     header's promise that we never ask where — the question always meant
+     industry, but a reader has no way to know that before answering. */
+  { key:'settings', multi:true, options:SETTINGS,
+    title:'What kind of workplace or industry was involved?',
+    help:'The kind of work, not the company and not the place. We never ask for a company name or a location.' },
+  { key:'employer', multi:false, options:EMPLOYERS,
+    title:'What kind of employer is involved?',
+    help:'The federal workforce has its own channels, and the shortest published window on this page.' },
+  /* ⚠️ Retaliation now comes BEFORE the worker-treatment question, because it
+     is one of the things that decides whether that question is asked at all. */
+  { key:'retaliation', multi:false, options:RETALIATION,
+    title:'Has your employer done anything to you, or threatened to, for raising a concern?',
+    help:'Reporting the conduct and complaining about being punished for reporting it are two separate filings. The second one generally has the shortest deadlines.' },
+  /* ⭐ CONDITIONAL. Someone reporting a kickback scheme who has no personal
+     grievance should not have to answer three screens about wages,
+     discrimination and organizing.
+     ⚠️ The predicate is deliberately NEGATIVE: the question is shown unless we
+     affirmatively know there is no personal stake. An unanswered or skipped
+     retaliation question therefore still shows it — we never hide something
+     because we do not know, only because we were told. */
+  { key:'workerIssues', multi:true, options:WORKER_ISSUES,
+    when: a => !(a.retaliation === 'no'
+                 && !a.observations.includes('worker_rights')
+                 && !a.affected.includes('employees')),
+    title:'Does any of this describe how you have been treated at work?',
+    help:'What happened to the company’s customers and what happened to you are different filings, with different clocks. This question is about you.' },
+  { key:'eventDate', date:true,
+    title:'Roughly when did the most recent thing happen?',
+    help:'Optional. We use it for one purpose: to show how many days ago it was, next to each channel’s own published window. We do not work out a deadline from it, and if you leave it empty we will say so rather than assume a date.' },
+];
+
+let step=0, started=false;
+
+/* ── Emergency gate ─────────────────────────────────────────────────────── */
+$('#danger-yes').addEventListener('click',()=>{
+  $('#s0').classList.add('hidden'); $('#emergency').classList.remove('hidden');
+  const box=$('#emergencyLinks'); box.textContent='';
+  const osha=CHANNELS.find(c=>c.id==='osha_safety');
+  if(osha) box.appendChild(makeLink('Open OSHA’s safety complaint page',osha.url,true));
+  track('emergency_shown');
+});
+$('#emergency-back').addEventListener('click',()=>{ $('#emergency').classList.add('hidden'); $('#s0').classList.remove('hidden'); });
+$('#danger-no').addEventListener('click',()=>{ started=true; step=0; $('#s0').classList.add('hidden'); $('#s1').classList.remove('hidden'); $('#d2').classList.add('on'); track('started'); renderQuestion(); land(); });
+
+$('#qNext').addEventListener('click',()=>advance(false));
+$('#qSkip').addEventListener('click',()=>advance(true));
+$('#qBack').addEventListener('click',back);
+
+/* ── Conditional questions ────────────────────────────────────────────────
+   `step` indexes the FULL question list; navigation steps over anything whose
+   `when` is false. Indexing a filtered list instead would silently repoint at
+   a different question the moment an earlier answer changed its length. */
+function isVisible(i){ const q=QUESTIONS[i]; return !q.when || q.when(answers); }
+function seek(from,dir){ let i=from+dir; while(i>=0 && i<QUESTIONS.length && !isVisible(i)) i+=dir; return i; }
+function visibleQuestions(){ return QUESTIONS.filter((q,i)=>isVisible(i)); }
+
+/* ⚠️ An answer to a question the reader can no longer see must not keep
+   routing. Pick "unpaid wages", walk back, change the answers so the
+   worker-treatment question no longer applies — without this, the Wage and
+   Hour route stays in the result, driven by an answer that is now unreachable
+   and invisible. Silent, and a correctness bug rather than a cosmetic one. */
+function clearHidden(){
+  QUESTIONS.forEach((q,i)=>{
+    if(isVisible(i)) return;
+    if(Array.isArray(answers[q.key])) answers[q.key]=[];
+    else if(q.date) answers[q.key]=null;
+    else answers[q.key]='';
+  });
+}
+
+function back(){
+  const i=seek(step,-1);
+  if(i<0){ $('#s1').classList.add('hidden'); $('#s0').classList.remove('hidden'); $('#d2').classList.remove('on'); window.scrollTo({top:0}); return; }
+  step=i; track('question_back'); renderQuestion(); land();
+}
+function advance(skipped){
+  if(skipped) track('question_skipped');
+  clearHidden();
+  const i=seek(step,+1);
+  if(i>=QUESTIONS.length){ showResult(); return; }
+  step=i; track('question_advanced'); renderQuestion(); land();
+}
+
+/* ⭐ Put the reader ON the new question. Measured on a 390×844 viewport
+   2026-08-16: after pressing Next from the bottom of a long question, the next
+   question's heading rendered 673px ABOVE the fold, so the screen still showed
+   the navigation buttons and the footer and nothing appeared to have happened.
+   Scroll alone is not enough — keyboard and screen-reader users need focus to
+   move too, or Tab resumes from wherever it was. #qTitle carries tabindex="-1"
+   so it can take focus without becoming a tab stop. */
+/* ⭐ ONE rule for every step transition, entry included: go to the top of the
+   page and put focus on the new question.
+   Scrolling to the card instead left the heading, the lede and the progress bar
+   above the fold — and on a step short enough to fit the screen it stranded the
+   scroll position entirely, because hiding the previous step shrinks the
+   document after the scroll has already been computed. Measured on /coverage as
+   scrollY 250 with maxScroll 0.
+   ⚠️ There were briefly two separate functions doing this, one for entry and
+   one for advancing. That is exactly how a canary ends up mutating something
+   that no longer matters — one of them went decorative within the hour — so
+   there is deliberately only one now. */
+function land(h){
+  window.scrollTo({top:0});
+  const t=h||$('#qTitle');
+  if(!t) return;
+  try{ t.focus({preventScroll:true}); }catch{ t.focus(); }
+}
+
+/* ⭐ ONE implementation of "go back to the questions". There were two — the
+   button under a not-narrowed result called land(), the button at the foot of
+   every result called scrollIntoView on #s1 — so the same action obeyed the
+   go-to-top rule in one place and broke it in the other. Two names for one
+   behaviour is exactly how a canary goes decorative, which this project has
+   already paid for once. */
+function backToQuestions(){
+  $('#out').classList.add('hidden');
+  $('#s1').classList.remove('hidden');
+  $('#d3').classList.remove('on');
+  track('result_back');
+  renderQuestion();
+  land();
+}
+
+function renderQuestion(){
+  const q=QUESTIONS[step];
+  /* Counted over the VISIBLE questions, or the counter lies the moment one is
+     skipped — 'Question 6 of 7' on the last screen is its own small defect. */
+  const vis=visibleQuestions(), pos=vis.indexOf(q)+1;
+  $('#qStep').textContent=`Question ${pos} of ${vis.length}`;
+  $('#qTitle').textContent=q.title;
+  $('#qHelp').textContent=q.help;
+  const box=$('#qBody'); box.textContent='';
+  $('#qNext').textContent = seek(step,+1)>=QUESTIONS.length ? 'Show me where to take this' : 'Next';
+
+  /* Stated in the control's own terms before the list is read. The shape of
+     the boxes says the same thing a second time; a reader should not have to
+     infer "can I pick two?" from a visual convention alone. */
+  const mode=$('#qMode');
+  mode.textContent = q.date ? '' : q.multi ? 'Choose all that apply' : 'Choose one';
+  mode.classList.toggle('hidden', !!q.date);
+
+  if(q.date){
+    const l=el('label',null,'Date of the most recent event'); l.htmlFor='q_eventDate';
+    const i=el('input'); i.id='q_eventDate'; i.type='date';
+    /* A future date has no elapsed time to report. Capped here so most
+       browsers refuse it in the picker, and rejected in routeReport as well —
+       an attribute is a hint, not a guarantee. */
+    i.max=isoOf(new Date());
+    i.value = answers.eventDate ? isoOf(answers.eventDate) : '';
+    i.addEventListener('change',e=>{ answers.eventDate=fromInput(e.target.value); });
+    i.addEventListener('input',e=>{ answers.eventDate=fromInput(e.target.value); });
+    box.append(l,i);
+    box.appendChild(el('p','help','Leaving this empty is a complete answer. The result will say that elapsed time is unknown rather than showing a number we made up.'));
+    return;
+  }
+
+  q.options.forEach(o=>{
+    const selected = q.multi ? answers[q.key].includes(o.id) : answers[q.key]===o.id;
+    const b=el('button',`opt${q.multi?'':' single'}`); b.type='button';
+    b.setAttribute('aria-pressed',selected?'true':'false');
+    /* The tick is always in the DOM and only changes color, so selecting an
+       option cannot change the row height or the label position. Hidden from
+       assistive tech because aria-pressed already carries the state. */
+    const mark=el('span','box','✓'); mark.setAttribute('aria-hidden','true');
+    const txt=el('span','txt');
+    txt.appendChild(el('span','lab',o.label));
+    if(o.eg) txt.appendChild(el('span','eg',o.eg));
+    b.append(mark,txt);
+    b.addEventListener('click',()=>{
+      if(q.multi){
+        const list=answers[q.key];
+        const at=list.indexOf(o.id);
+        if(at>=0) list.splice(at,1); else list.push(o.id);
+      } else {
+        answers[q.key] = answers[q.key]===o.id ? '' : o.id;
+      }
+      renderQuestion();
+    });
+    box.appendChild(b);
+  });
+}
+function isoOf(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function makeLink(label,href,primary){ const a=el('a',`button ${primary?'primary':'secondary'}`,label); a.href=href; a.target='_blank'; a.rel='noopener noreferrer'; a.addEventListener('click',()=>track('channel_opened')); return a; }
+
+/* ── Result ─────────────────────────────────────────────────────────────── */
+function showResult(){
+  clearHidden();
+  const r=routeReport(answers);
+  $('#s1').classList.add('hidden'); $('#out').classList.remove('hidden'); $('#d3').classList.add('on');
+  renderResult(r);
+  /* Same rule as every other step transition: top of the page, focus on the
+     heading of the step you just reached. Scrolling to #out landed the result
+     under the sticky nav and, on a short result, stranded the position — the
+     document shrinks when #s1 is hidden, after the scroll has been computed. */
+  land($('#outTitle'));
+  track('result_shown');
+}
+
+function renderResult(r){
+  const out=$('#out'); out.textContent='';
+
+  out.appendChild(el('p','eyebrow','Where you can take this'));
+  /* ⭐ When nothing but the standing legal-help route matched, say THAT first.
+     Presenting a lawyer directory under a heading that counts 'channels' reads
+     as an answer to the question asked; it is not one. */
+  /* ⚠️ Counts GOVERNMENT channels only. It used to count r.channels.length,
+     so an antitrust result reading '2 official channels' was one agency plus
+     the bar-association directory — a page that exists to not misstate things,
+     misstating its own output. Legal help is named separately below. */
+  const n=r.channels.filter(c=>c.track!=='help').length;
+  const h=el('h2',null, r.narrowed
+    ? `${n} official channel${n===1?'':'s'} ${n===1?'publishes':'publish'} a description that may match what you selected.`
+    : 'We do not have enough to narrow this yet.');
+  h.id='outTitle'; h.tabIndex=-1;   // focusable without becoming a tab stop
+  h.style.fontSize='1.32rem'; out.appendChild(h);
+  out.appendChild(el('p','help', r.narrowed
+    ? 'These are not ranked, and they are not a recommendation. NextAct has not decided that anything here broke a law — each one is shown with a sentence from its own official page so you can judge the fit yourself. A route to independent legal help is listed with them, and is not one of the official channels counted above.'
+    : 'You skipped the questions that choose between channels, so there is no honest way for us to pick one. Nothing below is a dead end: answering any question in the list further down will add routes, and independent legal help stands on its own.'));
+  if(!r.narrowed && r.waiting.length){
+    const jump=el('div','row actions');
+    const j=el('button','primary','Answer what would narrow this'); j.type='button'; j.id='narrowBack';
+    j.addEventListener('click',()=>{ step=0; backToQuestions(); });
+    jump.appendChild(j); out.appendChild(jump);
+  }
+
+  /* ⭐ Elapsed time is stated as arithmetic on a date the reader typed, and
+     nothing more. No window is computed from it. When the date is absent the
+     page says so in the same place it would have shown the number — an empty
+     space would read as "no urgency", which is a claim we cannot make. */
+  const days=r.elapsedDays;
+  const e=el('div','elapsed');
+  if(days===null){
+    e.appendChild(el('div','tiny','How long ago this happened'));
+    e.appendChild(el('div','n','Not known'));
+    const fut=r.waiting.find(w=>w.id==='event_date_future');
+    e.appendChild(el('p','help', fut ? fut.why + ' Some of the windows quoted below are short, and they are measured from the event.'
+      : 'You did not give a date, so we are not showing elapsed time and we have not assumed one. Some of the windows quoted below are short, and they are measured from the event, not from today.'));
+  } else {
+    e.appendChild(el('div','tiny',`Most recent event: ${short(answers.eventDate)}`));
+    e.appendChild(el('div','n',days===0?'That was today':days===1?'That was 1 day ago':`That was ${days} days ago`));
+    e.appendChild(el('p','help','This is elapsed time only. Which filing window applies to you depends on which law covers what you reported, and this page does not work that out.'));
+  }
+  out.appendChild(e);
+
+  for(const track_ of TRACK_ORDER){
+    const inTrack=r.channels.filter(c=>c.track===track_);
+    if(!inTrack.length) continue;
+    out.appendChild(el('h2','section-title',TRACK_LABEL[track_]));
+    if(track_==='protect') out.appendChild(el('p','track-note','Separate from reporting the conduct. These are about what happens to you, and they generally have the shortest deadlines.'));
+    if(track_==='award') out.appendChild(el('p','track-note','Listed because the procedure can matter and some steps are hard to undo — not because NextAct suggests you pursue an award. We do not order these by amount, and we make no statement about your eligibility for any of them.'));
+    /* When nothing narrowed, the only card present is legal help. It is a
+       real option, but it is not an answer to what was asked, so it is
+       visually subordinate to the button that gets a real answer. */
+    inTrack.forEach(c=>out.appendChild(channelCard(c,days,!r.narrowed&&track_==='help')));
+    /* ⭐ The state selector lives HERE — inside the result, in the help track —
+       and nowhere else. Asking for a location up front would add an eighth
+       question to a flow already too long, and it would contradict the promise
+       made on question three that we never ask where. Nothing routes on it: the
+       national directory above is returned either way, so a jurisdiction we have
+       not covered is never worse off than before this existed. */
+    if(track_==='help') out.appendChild(legalHelpPicker());
+  }
+
+  /* ⭐ WAITING is a visible section, not a collapsed panel. On the coverage
+     page the most differentiated fact in the product sat inside a closed
+     <details> at 86% of page depth and was measured to be unreachable in
+     normal use. What the page does not know belongs where it can be read. */
+  out.appendChild(el('h2','section-title','What is still open'));
+  const w=el('div','card');
+  if(!r.waiting.length){
+    w.appendChild(el('p','help','You answered everything this page asks. That does not make the result complete — it means nothing further here would change it.'));
+  } else {
+    w.appendChild(el('p','help','Each of these would change what is shown above. None of them is guessed.'));
+    r.waiting.forEach(i=>{
+      const n=el('div','waiting');
+      n.append(el('b',null,i.label),el('div',null,i.why),el('div','tiny',`Needed: ${i.need}`));
+      w.appendChild(n);
+    });
+  }
+  out.appendChild(w);
+
+  const nav=el('div','row actions');
+  const b=el('button',null,'← Change my answers'); b.id='resultBack'; b.type='button';
+  b.addEventListener('click',()=>backToQuestions());
+  const s=el('button',null,'Start over'); s.id='restart'; s.type='button';
+  s.addEventListener('click',()=>{
+    answers.observations=[];answers.affected=[];answers.settings=[];answers.workerIssues=[];
+    answers.employer='';answers.retaliation='';answers.eventDate=null;step=0;
+    $('#out').classList.add('hidden'); $('#s1').classList.add('hidden'); $('#s0').classList.remove('hidden');
+    $('#d2').classList.remove('on'); $('#d3').classList.remove('on');
+    track('restarted'); window.scrollTo({top:0});
+  });
+  nav.append(b,s); out.appendChild(nav);
+}
+
+/* ── State-level legal help ──────────────────────────────────────────────
+   ⚠️ Re-renders IN PLACE. This is not a step transition, so it must not scroll
+   and must not steal focus — the reader is reading the thing they just changed.
+   The list is announced through aria-live instead. */
+function legalHelpPicker(){
+  const box=el('div','lh');
+  const lab=el('label','tiny','Where did you mainly do this work?'); lab.htmlFor='lhState';
+  box.appendChild(lab);
+  const sel=document.createElement('select'); sel.id='lhState';
+  const opt=(v,t)=>{ const o=document.createElement('option'); o.value=v; o.textContent=t; sel.appendChild(o); };
+  opt('','Choose a state (optional)');
+  ALL_JURISDICTIONS.slice().sort((a,b)=>JURISDICTION_NAMES[a].localeCompare(JURISDICTION_NAMES[b]))
+    .forEach(c=>opt(c,JURISDICTION_NAMES[c]));
+  opt('multi','More than one state, or remote');
+  opt('unsure','I am not sure');
+  box.appendChild(sel);
+  box.appendChild(el('p','help','We use this only to show directories for that state. It does not decide which state’s law applies to you, and — like every other answer on this page — it is not sent anywhere.'));
+  const outBox=el('div'); outBox.id='lhOut'; outBox.setAttribute('aria-live','polite'); box.appendChild(outBox);
+  sel.addEventListener('change',()=>{ track('legal_help_state'); renderLegalHelp(sel.value,outBox); });
+  return box;
+}
+
+const scopeText=v=>{ const i=String(v).indexOf('—'); return (i<0?String(v):String(v).slice(i+1)).trim(); };
+
+function renderLegalHelp(code,box){
+  box.textContent='';
+  if(!code) return;
+  if(code==='multi'||code==='unsure'){
+    box.appendChild(el('p','help','Then the national directory above is the honest place to start — we are not going to pick a state for you.'));
+    return;
+  }
+  const name=JURISDICTION_NAMES[code];
+  const {local}=routesFor(code);
+  if(!local.length){
+    box.appendChild(el('p','help',`We have not verified a directory of employee-side employment lawyers for ${name} yet. The national directory above covers every state, and you can filter it to ${name}.`));
+    return;
+  }
+  if(isPartialCoverage(code)) box.appendChild(el('div','scope banner',
+    `Everything we found for ${name} covers only part of the state. Read the scope on each one — if you did not work in that area, use the national directory above.`));
+  local.forEach(e=>{
+    const n=el('div','chan');
+    /* Deliberately NOT data-track: these are state directories, not channels,
+       and they must never be counted in the "official channels" headline. */
+    n.dataset.lh='1';
+    n.appendChild(el('h3',null,e.name));
+    n.appendChild(el('p','kind',kindFor(e)));
+    /* ⚠️ The scope string is stored as "kind — description" for the registry's
+       own taxonomy ("regional — Northern Virginia only"). Rendering it raw gave
+       "Covers regional — Northern Virginia only", which is our filing system
+       leaking onto the page. Only the description half is the reader's. */
+    /* ⚠️ Shown whenever the scope is not plainly statewide, NOT only when
+       coverage is partial. New Mexico's only route is the TEXAS association,
+       whose own search happens to offer New Mexico — it covers the state fully,
+       so the partial-coverage rule stayed silent and a New Mexico reader was
+       shown a Texas body with no explanation. Found by reading the page. */
+    if(e.coverage_scope && e.coverage_scope!=='statewide')
+      n.appendChild(el('div','scope',`Scope — ${scopeText(e.coverage_scope)}`));
+    if(e.quote){
+      n.appendChild(el('div','source',`“${e.quote}”`));
+      n.appendChild(el('p','tiny',`${e.name} · read ${e.last_verified}`));
+    }
+    if(e.paid_quote && e.paid_quote!==e.quote) n.appendChild(el('div','source',`“${e.paid_quote}”`));
+    const row=el('div','row actions');
+    row.appendChild(makeLink(actionFor(e),e.url,false));
+    n.appendChild(row);
+    box.appendChild(n);
+  });
+}
+
+function channelCard(c,days,subdued){
+  const n=el('div',`chan${c.counsel_first?' counsel':''}${subdued?' subdued':''}`);
+  /* ⭐ Structural marker, so a test can count government channels without
+     matching on copy. The old test identified the lawyer route by the words
+     "bar referral" in its title and went vacuous the moment that title changed
+     — its positive control is what caught it. */
+  n.dataset.track=c.track;
+  n.appendChild(el('h3',null,c.title));
+  n.appendChild(el('p','agency',c.agency));
+
+  /* The agency's own words, in quotation marks, attributed and dated. `note`
+     is ours and never renders inside quotation marks — a reader must always be
+     able to tell which is which. */
+  if(c.quote){
+    n.appendChild(el('div','source',`“${c.quote}”`));
+    const src=el('p','tiny',`${c.agency} · read ${c.last_verified}`);
+    n.appendChild(src);
+  }
+  if(c.award_quote) n.appendChild(el('div','source',`“${c.award_quote}”`));
+  if(c.clock_quote){
+    n.appendChild(el('div','source',`“${c.clock_quote}”`));
+    if(days!==null && days>=0) n.appendChild(el('p','help',`You said the most recent event was ${days} day${days===1?'':'s'} ago. Compare that against this channel’s own published window.`));
+  }
+  if(c.note) n.appendChild(el('p','help',c.note));
+  if(c.counsel_first) n.appendChild(el('p','help','Worth a conversation with a lawyer before you act on this one.'));
+
+  const row=el('div','row actions');
+  row.appendChild(makeLink(c.action,c.url,false));
+  n.appendChild(row);
+  return n;
+}
+
+track('view');
+</script>

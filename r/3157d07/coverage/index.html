@@ -1,0 +1,1781 @@
+<!-- Keep the charset first: a bare static server otherwise mangles punctuation. -->
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Health coverage after work ends — NextAct (BETA)</title>
+<!-- ⭐ Head metadata added 2026-08-17 with the brand alignment. The page shipped
+     public and indexable with no favicon, description, canonical or social card.
+     ⚠️ No webfont link: Inter is self-hosted same-origin at /fonts/, so this
+     page still makes zero third-party requests. -->
+<meta name="description" content="Work out when your job-based health coverage ends, find your state's official Marketplace, and keep the COBRA dates that matter in one place. Your document text stays in your browser.">
+<link rel="canonical" href="https://nextacts.xyz/coverage/">
+<link rel="icon" type="image/svg+xml" href="/nextact-reviews/r/3157d07/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/nextact-reviews/r/3157d07/favicon-32.png">
+<link rel="icon" href="/nextact-reviews/r/3157d07/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/nextact-reviews/r/3157d07/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Health coverage after work ends — NextAct (BETA)">
+<meta property="og:description" content="Find the enrollment window that applies to you and your state's official Marketplace. Your document text stays in your browser.">
+<meta property="og:url" content="https://nextacts.xyz/coverage/">
+<meta property="og:image" content="https://nextacts.xyz/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Health coverage after work ends — NextAct (BETA)">
+<meta name="twitter:description" content="Find the enrollment window that applies to you and your state's official Marketplace.">
+<meta name="twitter:image" content="https://nextacts.xyz/img/og-card.png">
+<style>
+/* NextAct brand tokens — MIRROR of nextacts-xyz/src/styles/brand.css
+ *
+ * ⚠️ This file is a VENDORED COPY. The site repo's brand.css is the source of
+ * truth; eval/brand-drift.test.mjs asserts the locked kit values below match
+ * it, and reports NOT CHECKED loudly when the site repo is absent.
+ *
+ * ⭐ WHY A COPY AND NOT A <link>. Each prototype is one self-contained file on
+ * purpose: the build inlines everything so the artifact the tests run against
+ * is byte-identical to what ships, `vendor:check` can prove no drift, and the
+ * real-browser suite can load it over file://. An external stylesheet breaks
+ * all three at once. So the tokens are inlined the same way the JS modules
+ * are, and a test guards the copy — the same trade already made for the
+ * marketplace registry and the channel registry.
+ */
+/* ⭐ Inter, self-hosted and SAME-ORIGIN. A fonts.googleapis.com link would send
+   this reader's IP and user-agent to a third party on load, on pages that tell
+   them nothing about them leaves the browser. Served from /fonts/ on
+   nextacts.xyz; on file:// (the test harness) these 404 and the system stack
+   takes over, which is fine. Mirrored from the site's brand.css. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/nextact-reviews/r/3157d07/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/nextact-reviews/r/3157d07/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* ── The locked kit (Round 3, 2026-05-12). These values must match the site. ── */
+  --navy: #14213D;
+  --brick: #BC4749;
+  --brick-30: #E4A8AA;
+  --cream: #FAF7F2;
+  --slate: #4A5568;
+  --white: #ffffff;
+  --line: rgba(20, 33, 61, 0.12);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --maxw: 1080px;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(20,33,61,.06), 0 8px 24px rgba(20,33,61,.06);
+
+  /* ── Tool aliases. The prototypes already use these names throughout, so
+     repointing the VALUES converts the palette without touching a single rule.
+     The old cool-grey set (--bg #f7f8fb, --line #dfe3eb, --ink #1b1f2a,
+     --muted #606778) is what made the tools look like a different product. ── */
+  --bg: var(--cream);
+  --ink: var(--navy);
+  --muted: var(--slate);
+  --card: var(--white);
+  --soft: rgba(20, 33, 61, 0.05);
+  --sand: #E4DED4;          /* hairline on cream, as used on /offer */
+
+  /* ── Semantic status colours, WARM. Taken from /offer, which has been in
+     production on a cream background since launch — the cool mint/blue tints
+     the tools used were chosen against #f7f8fb and read as a foreign palette
+     on cream. Contrast re-checked against --cream, not against white. ── */
+  --green: #2F6F4E;
+  --greenbg: #EFF5F1;
+  --amber: #8A6D1F;
+  --amberbg: #FAF0D8;
+  --amberline: #EAD9A6;
+  --red: #A83C3E;
+  --redbg: #FAE7E7;
+  --redline: #F0A5A6;
+
+  color-scheme: light;
+}
+
+/* Chrome styles for the self-contained tool pages — MIRROR of the scoped
+   <style> blocks in Nav.astro and Footer.astro, plus the few brand.css rules
+   the chrome depends on (.wordmark, .btn, section[data-dark]).
+   Guarded by eval/brand-drift.test.mjs. */
+
+/* ⚠️⚠️ THE STICKY-NAV SCROLL TRAP. `scrollIntoView({block:'start'})` puts a
+   target's top edge at y=0 — which is UNDERNEATH a sticky header. Measured on
+   the live page 2026-08-17: 65px of the question card, including its
+   "QUESTION 1 OF 7" eyebrow, sat behind the nav, so advancing looked like
+   being dropped into the middle of the options rather than landing on the new
+   question. It is a regression introduced by adding the chrome, not by the
+   flow.
+   scroll-padding-top on the SCROLLPORT fixes every programmatic scroll and
+   every anchor jump on the page at once, so it belongs here in the shared
+   chrome rather than at each call site — there are eight of them across the
+   two tools and more on /offer. */
+:root { --nav-h: 64px; }
+html { scroll-padding-top: calc(var(--nav-h) + 14px); }
+
+.chrome-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+/* wordmark */
+.wordmark { font-weight: 800; letter-spacing: -0.02em; font-size: 1.2rem; text-decoration: none; }
+.wordmark .n { color: var(--navy); }
+.wordmark .a { color: var(--brick); }
+[data-dark] .wordmark .n { color: var(--cream); }
+
+/* buttons (chrome only — the tool's own buttons keep their existing styles) */
+.nav .btn { display: inline-block; font-weight: 700; font-size: .95rem; padding: .7rem 1.15rem;
+  border-radius: 10px; cursor: pointer; border: 1.5px solid transparent; text-decoration: none; }
+.nav .btn-primary { background: var(--brick); color: #fff; }
+.nav .btn-primary:hover { background: #a83c3e; }
+
+/* nav */
+.nav { border-bottom: 1px solid var(--line); background: rgba(250,247,242,.85);
+  backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 20; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav nav { display: flex; align-items: center; gap: 1.25rem; }
+.nav-link { color: var(--navy); font-weight: 600; font-size: .95rem; text-decoration: none; }
+.nav-link:hover { text-decoration: underline; }
+.nav-link.active { color: var(--brick); }
+.nav-cta { padding: .5rem .9rem !important; font-size: .85rem !important; }
+@media (max-width: 640px) {
+  /* ⚠️ Sized so the nav cannot overflow 375px. Measured when the site briefly
+     carried a fifth link: wordmark 83 + nav 317 + 40 padding = 440 against a
+     375 viewport. The link was withdrawn again upstream, but the headroom
+     stays — this is the second nav overflow in two days and both were
+     invisible to checks scoped to `.wrap`, because the nav sits outside it. */
+  .nav nav { gap: .6rem; }
+  .nav .nav-link { font-size: .85rem; }
+  /* ⚠️ `.nav .nav-cta`, NOT `.nav-cta`. A media query adds NO specificity, so
+     the bare selector (0,1,0) lost to `.nav .btn { display: inline-block }`
+     (0,2,0) and the CTA kept rendering at every width. Measured at 375px: the
+     nav overflowed the viewport to 474px — the one element on the page that
+     did, on all four tools, while every in-page check passed because they
+     scoped themselves to `.wrap` and the nav sits outside it. */
+  .nav .nav-cta { display: none; }
+}
+
+/* footer */
+.site-foot { padding: 3rem 0 2rem; background: var(--navy); color: var(--cream); margin-top: 3rem; }
+.site-foot .muted { color: rgba(250,247,242,.72); }
+.site-foot .foot { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.site-foot .foot-links { display: flex; flex-direction: column; gap: .5rem; }
+.site-foot .foot-links a { color: var(--cream); opacity: .85; font-size: .95rem; text-decoration: none; }
+.site-foot .foot-links a:hover { opacity: 1; text-decoration: underline; }
+.site-foot .foot-parent { margin: .9rem 0 0; font-size: .85rem; color: var(--cream); opacity: .85; }
+.site-foot .parent-link { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(250,247,242,.35); }
+.site-foot .parent-link:hover { border-bottom-color: var(--cream); }
+.site-foot .foot-legal { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(250,247,242,.15); }
+.site-foot .foot-legal .muted { font-size: .78rem; }
+
+/* ⭐ The BETA banner now sits BELOW the nav rather than above it, so every tool
+   reads: site identity, then this-page-is-beta, then the tool. It is full-bleed
+   and not sticky — the nav is the sticky element, and two stacked sticky bars
+   eat a third of a phone screen. */
+.banner { padding: 9px 20px; background: var(--brick); color: #fff;
+  font-size: .78rem; font-weight: 700; text-align: center; line-height: 1.35; }
+
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 var(--font-sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:28px 20px 72px} h1{margin:0;color:var(--navy);font-size:clamp(1.7rem,4vw,2.35rem);line-height:1.12;letter-spacing:-.025em}
+  .lede{max-width:65ch;margin:10px 0 0;color:var(--muted);font-size:1.02rem}.privacy{color:var(--navy);font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:20px 0;box-shadow:0 1px 2px rgba(20,33,61,.03)}
+  h2{margin:0 0 6px;color:var(--navy);font-size:1.17rem;line-height:1.3}.eyebrow{margin:0 0 7px;color:var(--muted);font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  p{margin:8px 0}.muted,.help{color:var(--muted)}.help{font-size:.86rem;max-width:68ch}.tiny{font-size:.78rem;color:var(--muted)}
+  label{display:block;margin:16px 0 6px;font-size:.9rem;font-weight:700;color:var(--navy)}
+  textarea,select,input{width:100%;border:1px solid #cfd5e1;border-radius:9px;background:white;padding:10px 12px;font:inherit;color:var(--ink)}
+  textarea{min-height:152px;resize:vertical;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+  select,input{max-width:460px} textarea:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid rgba(20,33,61,.25);outline-offset:2px}
+  button,.button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--navy);border-radius:9px;padding:11px 17px;background:white;color:var(--navy);font:inherit;font-weight:750;text-decoration:none;cursor:pointer}
+  button.primary,.button.primary{background:var(--navy);color:white}.button.secondary{background:white}.button.small,button.small{padding:7px 11px;font-size:.82rem;font-weight:650}
+  button:disabled{opacity:.45;cursor:not-allowed}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.actions{margin-top:16px}
+  .hidden{display:none!important}.notice{padding:13px 15px;border-radius:10px;background:var(--soft);font-size:.9rem}.notice.warn{background:var(--amberbg);color:#593900}.notice.stop{background:var(--redbg);color:#6d1e1b}
+  .coverage-answer{margin:15px 0;border:2px solid var(--navy);border-radius:12px;padding:17px}.coverage-answer .date{font-size:1.45rem;line-height:1.2;font-weight:800;color:var(--navy)}
+  .source{margin:10px 0;padding:9px 11px;border-left:3px solid var(--line);font-size:.82rem;color:var(--muted);font-style:italic;overflow-wrap:anywhere;white-space:pre-wrap}
+  .progress{display:flex;gap:8px;margin:20px 0}.dot{height:5px;flex:1;border-radius:4px;background:#d9dde6}.dot.on{background:var(--navy)}
+  .action-card{border:2px solid var(--navy);border-radius:15px;background:white;padding:21px;margin:18px 0}.action-card.open{border-color:var(--green);background:var(--greenbg)}
+  .action-card.urgent{border-color:var(--red);background:var(--redbg)}.action-card h2{font-size:1.32rem}.action-card .date{font-size:1.03rem;font-weight:750;color:var(--navy)}
+  .option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:14px 0}.option{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;min-width:0}.option h3{font-size:1rem;color:var(--navy);margin:0 0 7px}.option p{font-size:.86rem}.option .status{font-weight:800;color:var(--green)}
+  .section-title{margin:28px 0 10px;color:var(--navy);font-size:1.1rem}.quick{display:grid;grid-template-columns:1fr 1fr;gap:13px}.quick .card{margin:0;padding:16px}.quick label{margin-top:5px}
+  .timeline{border-left:3px solid var(--navy);padding:4px 0 4px 15px;margin:13px 0}.timeline .when{font-size:1.08rem;font-weight:800;color:var(--navy)}.timeline .what{font-weight:700}.timeline .calc{font-size:.8rem;color:var(--muted);margin-top:5px}
+  details{border:1px solid var(--line);border-radius:11px;background:white;margin:13px 0}summary{padding:14px 16px;color:var(--navy);font-weight:750;cursor:pointer}.details-body{padding:0 16px 17px}
+  .finding{border:1px solid var(--line);border-radius:10px;padding:13px;margin:10px 0}.finding .value{font-weight:800;color:var(--navy)}.finding.rejected{opacity:.55}.finding.used{border-color:var(--green);background:var(--greenbg)}
+  .pill{display:inline-block;border-radius:999px;background:var(--soft);padding:2px 8px;font-size:.7rem;font-weight:800;color:var(--navy)}
+  .waiting{padding:10px 0;border-bottom:1px solid var(--line);font-size:.88rem}.waiting:last-child{border:0}.waiting b{color:var(--navy)}
+  .branch{border-left:4px solid var(--red);padding:11px 13px;background:var(--redbg);border-radius:0 9px 9px 0;margin:12px 0}.branch.ask{border-color:var(--amber);background:var(--amberbg)}.branch b{color:var(--navy)}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.full{grid-column:1/-1}.gate{margin:11px 0 0;color:var(--amber);font-weight:700;font-size:.87rem}
+  .page-foot{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:.8rem;max-width:72ch}
+  @media(max-width:700px){.option-grid,.quick,.field-grid{grid-template-columns:1fr}.wrap{padding:22px 15px 56px}.card{padding:18px}.button,button{width:100%}.row .small{width:auto}.action-card{padding:17px}}
+  .hint-btn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+    min-width:20px;padding:0;margin-left:7px;border-radius:50%;border:1px solid var(--muted);
+    background:white;color:var(--muted);font-size:.72rem;font-weight:800;line-height:1;vertical-align:middle}
+  .hint-btn[aria-expanded="true"]{background:var(--navy);border-color:var(--navy);color:white}
+  .hint{margin:7px 0 0;padding:11px 13px;border-radius:9px;background:var(--soft);
+    font-size:.84rem;color:var(--ink);max-width:68ch}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .card.instant{border-color:var(--navy);margin-top:14px}
+  .card.instant h3{margin:0 0 4px;color:var(--navy)}
+</style>
+
+<!-- Site chrome for the self-contained tool pages — MIRROR of
+     nextacts-xyz/src/components/Nav.astro and Footer.astro.
+
+     ⚠️ VENDORED COPY. Those components are used by eight Astro pages and are
+     not being refactored to feed this file; the risk of touching every page on
+     the live site outweighs the purity. eval/brand-drift.test.mjs instead
+     asserts the link list, the wordmark and the CTA here match the components,
+     and reports NOT CHECKED loudly if the site repo is absent. Add a nav link
+     in one place and the test names the other.
+
+     ⭐ The active-link state is set by SCRIPT rather than at build time, because
+     these pages are static and have no server to know their own path. It reads
+     location.pathname, which works identically in both worlds. -->
+
+<header class="nav">
+  <div class="chrome-wrap nav-inner">
+    <a href="/nextact-reviews/r/3157d07/" class="wordmark" aria-label="NextActs home"><span class="n">Next</span><span class="a">Acts</span></a>
+    <nav aria-label="Primary">
+      <a href="/nextact-reviews/r/3157d07/trends" class="nav-link">Trends</a>
+      <a href="/nextact-reviews/r/3157d07/research" class="nav-link">Research</a>
+      <a href="/nextact-reviews/r/3157d07/blog" class="nav-link">Blog</a>
+      <a href="/nextact-reviews/r/3157d07/about" class="nav-link">About</a>
+      <a class="btn btn-primary nav-cta" href="https://nextact.work">NextAct.work &rarr;</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  /* Mirrors Nav.astro's `path.startsWith(l.href)`. Inert on file:// where the
+     pathname is a local directory, which is exactly what the test harness wants. */
+  (function () {
+    var p = location.pathname;
+    document.querySelectorAll('.nav .nav-link').forEach(function (a) {
+      if (p.startsWith(a.getAttribute('href'))) a.classList.add('active');
+    });
+  })();
+</script>
+
+<div class="banner">BETA — confirm important dates with the relevant plan or Marketplace before acting on them.</div>
+<main class="wrap">
+  <header>
+    <h1>Keep your health coverage on track after your job ends</h1>
+    <p class="lede">Find the enrollment window that applies to you, go to your state's official Marketplace, and keep the COBRA dates that matter in one place. <span class="privacy">Your document text stays in this browser.</span></p>
+  </header>
+
+  <div class="progress" aria-hidden="true"><span class="dot on"></span><span class="dot" id="progress2"></span><span class="dot" id="progress3"></span></div>
+
+  <section class="card" id="s1">
+    <p class="eyebrow">Optional shortcut</p>
+    <h2>Paste the benefits section</h2>
+    <p class="muted">We'll look for when active medical coverage ends and any employer-paid COBRA period. You will confirm anything we find. Pasting the whole document is not required.</p>
+    <label for="paste">Benefits or health-coverage text</label>
+    <textarea id="paste" placeholder="Paste text here. It never leaves this page."></textarea>
+    <div class="row actions">
+      <button class="primary" id="go" type="button">Find my coverage date</button>
+      <button id="skip" type="button">I don't have it</button>
+      <button class="small" data-sample="1" type="button">Use a sample</button>
+    </div>
+  </section>
+
+  <!-- ⭐ ONE INPUT, THEN VALUE. The state question comes first and its answer
+       reveals the official Marketplace immediately — no second answer, no
+       submit. Everything below it is optional and framed as improving that
+       answer, which is also what the pilot measures: whether the prompts pull
+       people from the easy state answer into the coverage date, the input that
+       unlocks the part only NextAct does. -->
+  <section class="card hidden" id="s2">
+    <p class="eyebrow">Start here</p>
+    <h2>Where will you live when this coverage ends?</h2>
+    <p class="help">This sends you to the correct official Marketplace. We use only the state—never your ZIP or document text—in the destination.</p>
+    <!-- ⭐ The scan must SAY what it found. Measured 2026-08-15: a genuine
+         employer-paid COBRA period was detected and then never mentioned until
+         a closed panel at 86% page depth, so a reader could finish the whole
+         flow unaware of the one finding that unlocks 45 CFR 155.420(d)(15).
+         This states the outcome factually — names the fields found, claims
+         nothing about them, and adds no input. -->
+    <div id="scanOutcome"></div>
+    <label for="q_state" class="sr-only">State</label>
+    <select id="q_state"><option value="">Choose a state or DC</option></select>
+    <div id="instantDestination"></div>
+
+    <div id="enhancements" class="hidden">
+      <p class="eyebrow">Improve this answer</p>
+      <div id="coverageReview"></div>
+      <div id="manualCoverage" class="hidden">
+        <label for="q_coverageEndRule">When does active health coverage end?</label>
+        <p class="help">This is what turns the link above into a dated enrollment deadline.</p>
+        <select id="q_coverageEndRule">
+          <option value="">Choose one</option>
+          <option value="date">I know the exact date</option>
+          <option value="end_of_month">At the end of the month my employment ends</option>
+          <option value="last_day">On my last day of employment</option>
+          <option value="unsure">I don't know yet</option>
+        </select>
+        <div id="manualDates"></div>
+      </div>
+      <!-- Non-driver findings (employer-paid COBRA period, notice timing) are
+           offered HERE, not only inside a collapsed panel below the result.
+           They never gate the first result — coreState() still asks for state
+           + coverage-end alone — but confirming one before Build is what lets
+           the employer-contribution window appear in the first result at all. -->
+      <div id="secondaryReview"></div>
+      <p class="gate hidden" id="gate" role="status"></p>
+      <div class="row actions"><button class="primary" id="build" type="button">Show my next step</button></div>
+    </div>
+    <!-- ⚠️ OUTSIDE #enhancements on purpose. It used to sit next to the Build
+         button, which lives inside a block that stays hidden until a state is
+         chosen — so on arriving at this step there was NO way back at all and
+         reloading the page was the only escape. Reported from real use, not
+         caught by any structural test, because every test drove the flow
+         forwards. Navigation must never be gated on answering something. -->
+    <div class="row actions"><button id="back" type="button">← Back</button></div>
+  </section>
+
+  <section id="out" class="hidden" aria-live="polite"></section>
+
+  <!-- ⭐ DISCLOSED, deliberately and in the reader's own words. An undisclosed
+       beacon found in devtools by exactly the security-minded person we want to
+       trust us costs far more than the data is worth. -->
+  <footer class="page-foot"><strong>What this does not do.</strong> NextAct does not decide eligibility, predict a subsidy, rank plans, or tell you which coverage to choose. It applies published timing rules to facts you confirm and links you to official enrollment sites and certified help. Plan prices and eligibility are determined on those sites.
+  <br><br><strong>What we count.</strong> We record the name of a step you reach—for example that a state was chosen, that a result was shown, or simply whether the text you pasted contained anything we recognised. That name is the only page data we send. Each event is kept as a separate anonymous record for up to 180 days and used only to produce totals; the records are not linked to an account, to you, or to one another. We never send which state you chose, which field a detail came from, your dates, any premium you type, the text you paste, or any value shown to you—those stay in your browser. The request carries no cookie and no referrer.</footer>
+</main>
+<!-- Site footer — MIRROR of nextacts-xyz/src/components/Footer.astro.
+     Rendered AFTER the page's own privacy disclosure, matching /offer, where
+     the page-specific note and the site footer are two separate things. -->
+<footer class="site-foot" data-dark>
+  <div class="chrome-wrap foot">
+    <div>
+      <span class="wordmark"><span class="n">Next</span><span class="a">Acts</span></span>
+      <p class="muted" style="margin-top:.6rem;max-width:38ch">A weekly read on the US labor market. NextAct.work helps people file for unemployment.</p>
+      <p class="foot-parent">An initiative of <a class="parent-link" href="https://250tech.com"><strong>250tech&nbsp;Labs</strong></a></p>
+    </div>
+    <div class="foot-links">
+      <a href="/nextact-reviews/r/3157d07/trends">Trends</a>
+      <a href="/nextact-reviews/r/3157d07/research">Research</a>
+      <a href="/nextact-reviews/r/3157d07/blog">Blog</a>
+      <a href="/nextact-reviews/r/3157d07/about">About</a>
+      <a href="https://nextact.work">NextAct.work</a>
+    </div>
+  </div>
+  <div class="chrome-wrap foot-legal">
+    <span class="muted">&copy; 2026 NextActs, an initiative of <a class="parent-link" href="https://250tech.com">250tech Labs</a>.</span>
+  </div>
+</footer>
+
+
+<script type="module">
+const { addDays, partBSepEnd, daysBetween, endOfMonth, firstOfNextMonth, buildPlan } = (() => {
+/**
+ * Health Coverage Transition — planning engine.
+ *
+ * Pure. No DOM, no network, no clock reads except an injected `today`.
+ * Every clock it emits traces to a rule_id in rules/coverage-rules.json.
+ *
+ * Design rules this encodes, all of them load-bearing:
+ *  1. Missing anchor -> WAITING, never a fabricated date.
+ *  2. COBRA election needs TWO anchors (loss AND notice). Usually unresolvable
+ *     on first visit; that is the default, not an edge case.
+ *  3. A printed notice deadline is always the ACT-BY date. A computed federal
+ *     floor is explanation only and never a reason to wait past it.
+ *  4. Medicare is an early BRANCH, not an output row.
+ *  5. The shortest known deadline leads.
+ *  6. Never assert eligibility, never rank or recommend a coverage option.
+ */
+
+const MS = 864e5;
+const cal = d => Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / MS;
+const addDays = (d, n) => { const o = new Date(d); o.setDate(o.getDate() + n); return o; };
+/**
+ * ⭐ Medicare Part B SEP is NOT generic month addition.
+ * SSA: "the eight-month period that begins with the MONTH AFTER your group
+ * health plan coverage or the current employment it is based on ends."
+ * So it ends on the LAST DAY of the eighth month. Trigger Aug 15 -> months
+ * Sept..April -> April 30, not April 15. A clamped addMonths() happens to get
+ * Aug 31 right and gets every other day of the month wrong.
+ */
+const partBSepEnd = trigger => {
+  const first = new Date(trigger.getFullYear(), trigger.getMonth() + 1, 1); // month after
+  return new Date(first.getFullYear(), first.getMonth() + 8, 0);            // last day of 8th month
+};
+const daysBetween = (a, b) => cal(b) - cal(a);
+
+const known   = (id, label, date, rule, calc) => ({ kind: 'known', id, label, date, rule, calc });
+const range   = (id, label, from, to, rule, calc) => ({ kind: 'known', id, label, from, to, rule, calc });
+const waiting = (id, label, why, need) => ({ kind: 'waiting', id, label, why, need });
+
+/**
+ * @param f facts: {
+ *   coverageEnd, employmentEnd, noticeDate, printedDeadline, electionDate, subsidyEnd  (Date|null)
+ *   employerType: 'private'|'state_local'|'federal'|'church'|'unknown'
+ *   employerSize: '20plus'|'under20'|'unknown'
+ *   medicareEligible: 'yes'|'no'|'unknown'
+ *   otherPlanAvailable: 'yes'|'no'|'unknown'
+ *   elected: 'yes'|'no'|'unknown'   // enrolment is a CONDITION of 155.420(d)(15)
+ *   state: string|null
+ * }
+ */
+const endOfMonth = d => new Date(d.getFullYear(), d.getMonth() + 1, 0);
+const firstOfNextMonth = d => new Date(d.getFullYear(), d.getMonth() + 1, 1);
+/** Money is only ever ECHOED back — a figure the user typed, never one we derived. */
+const money = n => '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+function buildPlan(f, today = new Date()) {
+  const branches = [], items = [], notes = [];
+  f = { ...f };
+
+  /* ── 0 · Coverage-end is often DERIVABLE, not stated as a date ────────
+     Real employer benefits guides commonly say coverage runs to "the end of
+     the month in which your employment ends". A user who does not know their
+     coverage-end date usually DOES know their last day. Asking which rule
+     their plan uses converts the commonest dead end into a real answer.
+     ⚠️ ASKED, never assumed — some plans end coverage on the last day worked. */
+  let derivedCoverageEnd = false;
+  if (!f.coverageEnd && f.employmentEnd && f.coverageEndRule) {
+    if (f.coverageEndRule === 'end_of_month') { f.coverageEnd = endOfMonth(f.employmentEnd); derivedCoverageEnd = true; }
+    else if (f.coverageEndRule === 'last_day') { f.coverageEnd = f.employmentEnd; derivedCoverageEnd = true; }
+  }
+  if (!f.coverageEnd && f.employmentEnd && !f.coverageEndRule) {
+    notes.push({ id: 'coverage_rule_ask', rule: null,
+      text: 'You gave us your last day but not when coverage ends. Benefits guides usually state one of two rules: coverage runs to the end of the month your employment ends, or it stops on your last day.',
+      action: 'Check your benefits-at-termination document for that sentence, then tell us which rule applies.' });
+  }
+
+  /* ── 1 · Medicare is an early branch, before any COBRA framing ───────── */
+  if (f.medicareEligible === 'yes') {
+    branches.push({
+      id: 'medicare',
+      severity: 'high',
+      rule: 'medicare.part_b.sep',
+      text: 'COBRA and Medicare interact differently. Do not treat the COBRA dates below as your Medicare timeline.',
+      detail: 'Medicare states the Part B sign-up window runs up to 8 months after you stop working, or lose the coverage if that happens first — whether or not you choose COBRA. It also states that if you are eligible for Medicare but not enrolled, COBRA may pay only a small portion of your care.'
+    });
+    branches.push({
+      id: 'medicare_no_definitive_date', severity: 'high', rule: 'medicare.part_b.iep_exception',
+      text: 'We will not give you a Part B date.',
+      detail: 'SSA states the eight-month period does not apply at all if your coverage or employment ended during your Initial Enrollment Period. We do not ask your date of birth or about ESRD, so we cannot tell which applies to you. Use the indicative window below only to see roughly how much time is involved, then confirm with Medicare or your free SHIP counsellor.'
+    });
+    branches.push({
+      id: 'medicare_cobra_trap', severity: 'high', rule: 'medicare.cobra_is_not_current_employment',
+      text: 'Electing COBRA does not extend your Part B window.',
+      detail: 'SSA states COBRA and retiree plans are not coverage based on current employment, and that you will not be eligible for a special enrollment period when that coverage ends. The clock runs from the end of your active-employment coverage, not from the end of COBRA.'
+    });
+    const anchor = [f.employmentEnd, f.coverageEnd].filter(Boolean).sort((a, b) => a - b)[0];
+    if (anchor) items.push(known('medicare_part_b', 'Part B window — indicative only, confirm with Medicare',
+      partBSepEnd(anchor), 'medicare.part_b.sep',
+      `SSA: eight months beginning the month AFTER the earlier of employment end and coverage loss (${fmt(anchor)}) — so it runs to the last day of that eighth month.`));
+    else items.push(waiting('medicare_part_b', 'Medicare Part B window',
+      'We need either your last day of employment or the date coverage ends.',
+      'Your employment end date or coverage end date'));
+  } else if (f.medicareEligible === 'unknown') {
+    branches.push({ id: 'medicare_unknown', severity: 'ask', rule: 'medicare.part_b.sep',
+      text: 'Is anyone losing coverage eligible for Medicare? It changes which deadline matters most, and we will not guess.' });
+  }
+
+  /* ── 2 · Does federal COBRA even apply? ──────────────────────────────── */
+  let cobra = 'unknown';
+  if (f.employerType === 'federal' || f.employerType === 'church') cobra = 'no';
+  else if (f.employerSize === 'under20') cobra = 'no';
+  else if ((f.employerType === 'private' || f.employerType === 'state_local') && f.employerSize === '20plus') cobra = 'yes';
+
+  if (cobra === 'no') {
+    const why = (f.employerType === 'federal' || f.employerType === 'church')
+      ? 'Federal COBRA was not calculated. DOL states COBRA does not cover plans sponsored by the federal government or by churches and certain church-related organizations. Other continuation rights may still apply.'
+      : 'Federal COBRA was not calculated. DOL states COBRA generally covers employers with 20 or more employees. State continuation rights ("mini-COBRA") may still apply, and they vary by state.';
+    notes.push({ id: 'cobra_na', rule: 'cobra.applies.employer_type', text: why,
+      action: (f.employerType === 'federal')
+        ? 'Federal employees have a separate continuation program. Ask your agency benefits office or OPM.'
+        : (f.employerType === 'church')
+          ? 'Ask your plan administrator what continuation the plan offers, and check your state insurance commissioner\'s office.'
+          : 'Check with your state insurance commissioner\'s office about mini-COBRA.' });
+  } else if (cobra === 'unknown') {
+    notes.push({ id: 'cobra_unknown', rule: 'cobra.applies.employer_size',
+      text: 'We cannot tell yet whether federal COBRA applies to your plan.',
+      action: 'Tell us your employer type and roughly how many employees it had.' });
+  }
+
+  /* ── 3 · Clocks that do not depend on COBRA ──────────────────────────── */
+  if (f.coverageEnd) {
+    items.push(range('marketplace', 'Marketplace enrollment window',
+      addDays(f.coverageEnd, -60), addDays(f.coverageEnd, 60), 'marketplace.sep.loss_of_coverage',
+      `${fmt(f.coverageEnd)} − 60 days to + 60 days. CMS: you may enrol up to 60 days before coverage ends, so it can start without a gap.`));
+  } else {
+    items.push(waiting('marketplace', 'Marketplace enrollment window',
+      'We need the date your active coverage ends.', 'Your coverage end date'));
+  }
+
+  if (f.otherPlanAvailable === 'yes') {
+    if (f.coverageEnd) items.push(known('other_plan', 'Request enrollment in the other plan by',
+      addDays(f.coverageEnd, 30), 'employer_plan.special_enrollment',
+      `${fmt(f.coverageEnd)} + 30 days. Plans must allow at least 30 days to request enrollment.`));
+    else items.push(waiting('other_plan', 'Request enrollment in the other plan',
+      'We need the date your active coverage ends.', 'Your coverage end date'));
+  } else if (f.otherPlanAvailable === 'unknown') {
+    notes.push({ id: 'other_plan_ask', rule: 'employer_plan.special_enrollment',
+      text: 'Coverage through a spouse, partner, parent or new employer often carries the shortest deadline of all — about 30 days.',
+      action: 'Check whether any of those plans are available to you.' });
+  }
+
+  if (f.coverageEnd) items.push(known('coverage_ends', 'Active coverage ends', f.coverageEnd, null,
+    derivedCoverageEnd
+      ? (f.coverageEndRule === 'end_of_month'
+          ? `Worked out from your last day (${fmt(f.employmentEnd)}) using the end-of-the-month rule you told us your plan uses. Confirm it against your benefits document.`
+          : `Same as your last day (${fmt(f.employmentEnd)}), which is the rule you told us your plan uses.`)
+      : 'You told us this.'));
+
+  if (f.hadLifeInsurance === 'yes') {
+    /* ⚠️ The conversion window is PLAN-SPECIFIC. A "typical 30 days" was
+       invented here. Only compute it if the document supplied both the period
+       and its anchor; otherwise this is an action, not a date. */
+    if (f.lifeConversionDays && f.employmentEnd) {
+      items.push(known('life_conversion', 'Convert group life cover by',
+        addDays(f.employmentEnd, f.lifeConversionDays), null,
+        `${fmt(f.employmentEnd)} + ${f.lifeConversionDays} days, as stated in your document.`));
+    } else {
+      items.push(waiting('life_conversion', 'Group life conversion deadline',
+        'Your document mentions the right to convert group life cover to an individual policy. Conversion windows are set by the plan and we will not assume one.',
+        'The conversion period stated in your plan notice'));
+    }
+  }
+
+  if (!f.subsidyEnd && f.subsidyMonths) {
+    items.push(waiting('subsidy_ends', 'Employer contribution to COBRA ends',
+      `Your document says the employer pays for about ${f.subsidyMonths} months, but not clearly what those months run from.`,
+      'The last date the employer contribution covers — your HR team can confirm it'));
+  }
+  if (f.subsidyEnd) {
+    items.push(known('subsidy_ends', 'Employer contribution to COBRA ends',
+      f.subsidyEnd, null, 'You told us this. After this date the premium is yours.'));
+
+    /* ⭐⭐ THE MARQUEE JOIN: the severance agreement's own "we will pay your
+       COBRA premiums for N months" is the ANCHOR for a Marketplace window.
+       45 CFR 155.420(d)(15) makes an employer COMPLETELY ceasing its COBRA
+       contribution a triggering event in its own right, and names the trigger
+       date as the last day of the subsidised period. (c)(2) gives it 60 days
+       before and after.
+
+       ⚠️ Stated as mechanics, never as a play. We do not tell anyone to switch,
+       do not say the Marketplace is cheaper, and pair it every time with the
+       fact that ENDING COBRA yourself does the opposite. */
+    /* ⚠️ ENROLLMENT IS A CONDITION OF THE RULE, not a detail. (d)(15) opens
+       with "The qualified individual ... IS ENROLLED IN COBRA continuation
+       coverage for which an employer is paying all or part of the premiums".
+       A severance promise to subsidise COBRA is not enough — someone who never
+       elects has no contribution to cease, so no window opens. Drawing a dated
+       window for them would be a fabricated deadline in the most damaging
+       place: they would believe they had a fallback they do not have. */
+    if (f.elected === 'yes') {
+      items.push(range('subsidy_sep', 'Marketplace window opened by the contribution ending',
+        addDays(f.subsidyEnd, -60), addDays(f.subsidyEnd, 60),
+        'marketplace.sep.employer_cobra_contribution_ceases',
+        `${fmt(f.subsidyEnd)} − 60 days to + 60 days. 45 CFR 155.420(d)(15) treats an employer completely ceasing its COBRA contribution as a triggering event in its own right, with the trigger being the last day of the subsidised period, and (c)(2) gives it 60 days on each side.`));
+
+      items.push(known('subsidy_sep_effective', 'Select by this date for coverage starting ' + fmt(firstOfNextMonth(f.subsidyEnd)),
+        f.subsidyEnd, 'marketplace.sep.employer_cobra_contribution_ceases',
+        `If a Marketplace plan is selected on or before the day the contribution ends, 45 CFR 155.420(b)(2)(iv) requires the coverage to start on the first day of the following month — ${fmt(firstOfNextMonth(f.subsidyEnd))}. Selecting later can mean a later start date.`));
+    } else {
+      items.push(waiting('subsidy_sep', 'Marketplace window opened by the contribution ending',
+        f.elected === 'no'
+          ? 'This window exists only for someone who is enrolled in COBRA when the employer contribution stops — 45 CFR 155.420(d)(15) requires enrolment, and there is no contribution to cease without it. You have told us you have not elected COBRA, so we have not drawn it. Your window from the original loss of coverage is unaffected.'
+          : 'This window exists only for someone who is enrolled in COBRA when the employer contribution stops (45 CFR 155.420(d)(15) requires enrolment). We do not know yet whether you have elected.',
+        f.elected === 'no'
+          ? 'Electing COBRA and still being enrolled on ' + fmt(f.subsidyEnd)
+          : 'Whether you have elected COBRA'));
+    }
+
+    notes.push({ id: 'subsidy_sep_pairing', rule: 'cobra.early_termination_by_choice',
+      text: 'These two are not the same thing. The employer\'s contribution ending is something that happens to you, and it opens the window above. Ending COBRA yourself is something you do — HealthCare.gov states that if you choose to end COBRA coverage early, you have to wait until the next Open Enrollment unless another life event applies.',
+      action: 'If your plans depend on that window, confirm it with the Marketplace before you end any coverage.' });
+
+    notes.push({ id: 'subsidy_cessation_is_complete', rule: 'marketplace.sep.employer_cobra_contribution_ceases',
+      text: 'The regulation says the window opens when the employer COMPLETELY ceases its contribution. An employer that keeps paying a smaller share has not.',
+      action: 'Check whether your agreement ends the contribution entirely on that date, or only reduces it.' });
+  }
+
+  /* The premium is on the election notice, never in the severance agreement,
+     and it is never estimated here. A number we made up would be worse than no
+     number: it is the figure a person compares options with. */
+  if (f.cobraMonthlyCost && f.subsidyEnd) {
+    notes.push({ id: 'cobra_cost_after', rule: null,
+      text: `You told us COBRA costs ${money(f.cobraMonthlyCost)} a month. From ${fmt(addDays(f.subsidyEnd, 1))} that amount is yours to pay, rather than your employer's.`,
+      action: 'That change of cost is the event that opens the Marketplace window above.' });
+  } else if (f.subsidyEnd) {
+    items.push(waiting('cobra_cost_after', 'What COBRA will cost you after the contribution ends',
+      'Your severance agreement says when the employer contribution stops, but not what the premium is. That figure is on the COBRA election notice, and we will not estimate it.',
+      'The monthly premium printed on your COBRA election notice'));
+  }
+
+  /* ── 4 · COBRA clocks. Two anchors, and the printed date governs. ────── */
+  if (cobra !== 'no') {
+    if (f.printedDeadline) {
+      const floor = (f.coverageEnd && f.noticeDate)
+        ? addDays(new Date(Math.max(f.coverageEnd, f.noticeDate)), 60) : null;
+      const later = floor && daysBetween(f.printedDeadline, floor) > 0;
+      items.push(known('cobra_election', 'Elect COBRA by', f.printedDeadline,
+        'cobra.election.notice_deadline_governs_action',
+        'This is the date printed on your notice. Act by it.'));
+      if (later) notes.push({ id: 'deadline_conflict', rule: 'cobra.election.notice_deadline_governs_action',
+        text: `Your notice says ${fmt(f.printedDeadline)}. The general federal minimum appears to run to ${fmt(floor)}.`,
+        action: `Act by ${fmt(f.printedDeadline)} if you can, and raise the difference with the plan administrator or the Department of Labor.` });
+    } else if (f.coverageEnd && f.noticeDate) {
+      const end = addDays(new Date(Math.max(f.coverageEnd, f.noticeDate)), 60);
+      const lat = f.noticeDate > f.coverageEnd ? 'notice date' : 'coverage end date';
+      items.push(known('cobra_election', 'COBRA election period ends no earlier than', end,
+        'cobra.election.deadline',
+        `60 days after the later of coverage loss (${fmt(f.coverageEnd)}) and notice (${fmt(f.noticeDate)}) — here, the ${lat}.`));
+    } else if (!f.noticeDate && f.coverageEnd) {
+      /* ⚠️ An expected-arrival date is shown ONLY when the document stated the
+         interval AND its starting event is known. A hard-coded "about two
+         weeks" was invented here — the exact false-precision failure this
+         project keeps repeating. */
+      const anchor = f.noticeIntervalFrom === 'employment_end' ? f.employmentEnd
+                   : f.noticeIntervalFrom === 'coverage_end'   ? f.coverageEnd : null;
+      const extra = (f.noticeExpectedDays && anchor)
+        ? ` Your document says the notice goes out within about ${f.noticeExpectedDays} days of ${fmt(anchor)} — so around ${fmt(addDays(anchor, f.noticeExpectedDays))}. If nothing has arrived by then, chase the plan administrator.`
+        : (f.noticeExpectedDays
+            ? ` Your document mentions a timeframe for the notice but does not say what it runs from, so we have not turned it into a date. Ask the plan administrator when it was sent.`
+            : ' Ask the plan administrator when the notice was sent.');
+      items.push(waiting('cobra_election', 'COBRA election deadline',
+        'This runs 60 days from the LATER of the date coverage ends and the date your election notice is provided. Your notice has not arrived yet, so it cannot be calculated.' + extra,
+        'The date your COBRA election notice arrives'));
+    } else {
+      items.push(waiting('cobra_election', 'COBRA election deadline',
+        'This runs 60 days from the LATER of the date coverage ends and the date your election notice is provided. ' +
+        (f.noticeDate ? 'We still need your coverage end date.' : 'Your notice has not arrived yet, so this cannot be calculated.'),
+        f.noticeDate ? 'Your coverage end date' : 'The date your COBRA election notice arrives'));
+    }
+
+    if (f.elected === 'yes' && f.electionDate) {
+      items.push(known('cobra_payment', 'First COBRA payment cannot be required before',
+        addDays(f.electionDate, 45), 'cobra.payment.first',
+        `${fmt(f.electionDate)} + 45 days. Runs from the election date, not from coverage loss.`));
+    } else {
+      items.push(waiting('cobra_payment', 'First COBRA payment deadline',
+        'This runs 45 days from the date you elect COBRA, so it does not exist until you elect.',
+        'Your election date, once you elect'));
+    }
+  }
+
+  /* ── 5 · Order: shortest known deadline first ────────────────────────── */
+  const key = i => i.date || i.to || null;
+  const knowns = items.filter(i => i.kind === 'known').sort((a, b) => (key(a) ?? 0) - (key(b) ?? 0));
+  const waits  = items.filter(i => i.kind === 'waiting');
+
+  return { branches, known: knowns, waiting: waits, notes, cobraApplicable: cobra, today };
+}
+
+const fmt = d => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+return { addDays, partBSepEnd, daysBetween, endOfMonth, firstOfNextMonth, buildPlan };
+})();
+const { parseDateish, parseDateishAfter, scan, conflicts, stillNeeded } = (() => {
+/**
+ * Find-and-confirm scanner for pasted benefit text.
+ *
+ * ⭐ This is NOT a parser in the accuracy-gated sense, and the distinction is
+ * the whole design. It never supplies a fact to the engine. It points at a
+ * sentence and asks "is this yours?". The user confirms or corrects, and the
+ * ENGINE CONSUMES ONLY CONFIRMED FACTS — the rule that has been load-bearing
+ * since the /offer spec.
+ *
+ * Consequences of that framing:
+ *   • a miss costs a question, not a wrong answer
+ *   • a false hit costs a rejection, not a wrong date
+ *   • so this needs no precision gate before it can ship
+ *
+ * Every finding carries the sentence it came from. Nothing is ever shown
+ * without its source text.
+ */
+
+const MONTH = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
+const DATE_LITERAL = `(?:${MONTH}\\s+\\d{1,2},?\\s+\\d{4}|\\d{1,2}/\\d{1,2}/\\d{2,4})`;
+const DATE_RE = new RegExp(`\\b(${DATE_LITERAL})\\b`, 'i');
+
+/* ── Coverage-only hard-wrap recovery ─────────────────────────────────────
+ *
+ * A PDF copy commonly puts a physical newline in the middle of a sentence.
+ * Treating every newline as a sentence boundary silently loses the coverage
+ * date; joining every newline can attach an unrelated date to a coverage cue.
+ * The asymmetry is deliberate: a missed join costs one follow-up question,
+ * while a wrong join can put a fabricated date on screen.
+ *
+ * These helpers stay PRIVATE to this module. `scanSeverance()` depends on raw
+ * line starts to find section boundaries and must never receive this view.
+ */
+const CLOSED_LINE = /[.;:!?](?:["'\u2018\u2019\u201c\u201d)\]}]+)?\s*$/u;
+/* A terminal comma, semicolon, or colon explicitly announces omitted prose.
+   At paste EOF that is a partial clause, so every exact cue must abstain. */
+const CLAUSE_END = `["'\\u2018\\u2019\\u201c\\u201d)\\]}]*\\s*[.!]?\\s*["'\\u2018\\u2019\\u201c\\u201d)\\]}]*\\s*$`;
+const DATE_ONLY_LINE = new RegExp(`^${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const RECORD_START = '^["\'\\u2018\\u2019\\u201c\\u201d(\\[]*\\s*';
+const EMPLOYMENT_EVENT_PREFIX = `(?:(?:following|after)\\s+(?:(?:your|the)\\s+)?(?:${DATE_LITERAL}\\s+)?(?:separation|termination|employment(?:\\s+end)?|last\\s+day)(?:\\s+date)?,\\s*)?`;
+const HEALTH_COVERAGE_SUBJECT = '(?:health|medical|dental|vision)(?:\\s+(?:care|insurance))?\\s+coverage';
+const HEALTH_BENEFIT_SINGULAR = '(?:health|medical|dental|vision)(?:\\s+(?:care|insurance))?\\s+benefit';
+const HEALTH_BENEFITS_PLURAL = '(?:health|medical|dental|vision)(?:\\s+(?:care|insurance))?\\s+benefits';
+const HEALTH_SINGULAR_END_ACTION = '(?:(?:will|shall)\\s+(?:end|terminate|cease)|(?:ends|terminates|ceases))';
+const HEALTH_PLURAL_END_ACTION = '(?:(?:will|shall)\\s+(?:end|terminate|cease)|(?:end|terminate|cease))';
+const HEALTH_SINGULAR_CONTINUE_ACTION = '(?:(?:will|shall)\\s+continue|continues)';
+const HEALTH_PLURAL_CONTINUE_ACTION = '(?:(?:will|shall)\\s+continue|continue)';
+const HEALTH_RECORD_PREFIX =
+  `${RECORD_START}${EMPLOYMENT_EVENT_PREFIX}(?:(?:your|the\\s+employee(?:'s)?)\\s+)?`;
+const HEALTH_SINGULAR_SUBJECT = `(?:${HEALTH_COVERAGE_SUBJECT}|${HEALTH_BENEFIT_SINGULAR})`;
+const HEALTH_END_PROPOSITION =
+  `${HEALTH_RECORD_PREFIX}(?:${HEALTH_SINGULAR_SUBJECT}\\s+${HEALTH_SINGULAR_END_ACTION}|` +
+  `${HEALTH_BENEFITS_PLURAL}\\s+${HEALTH_PLURAL_END_ACTION})\\b`;
+const HEALTH_CONTINUE_PROPOSITION =
+  `${HEALTH_RECORD_PREFIX}(?:${HEALTH_SINGULAR_SUBJECT}\\s+${HEALTH_SINGULAR_CONTINUE_ACTION}|` +
+  `${HEALTH_BENEFITS_PLURAL}\\s+${HEALTH_PLURAL_CONTINUE_ACTION})\\b`;
+const HEALTH_BENEFIT_NAME =
+  '(?:health(?:\\s+care)?|medical|dental|vision)(?:\\s+(?:insurance|benefits?))?';
+const COORDINATED_HEALTH_BENEFITS =
+  `${HEALTH_BENEFIT_NAME}(?:\\s*,\\s*${HEALTH_BENEFIT_NAME})*` +
+  `(?:\\s*,?\\s+and\\s+${HEALTH_BENEFIT_NAME})?`;
+const COVERAGE_FOR_HEALTH_SUBJECT =
+  `coverage\\s+for\\s+${COORDINATED_HEALTH_BENEFITS}`;
+const COVERAGE_FOR_HEALTH_END_PROPOSITION =
+  `${RECORD_START}${EMPLOYMENT_EVENT_PREFIX}(?:(?:your|the\\s+employee(?:'s)?)\\s+)?` +
+  `${COVERAGE_FOR_HEALTH_SUBJECT}\\s+${HEALTH_SINGULAR_END_ACTION}\\b`;
+const AFFIRMATIVE_HEALTH_END_OF_MONTH = new RegExp(
+  `(?:${HEALTH_END_PROPOSITION}|${COVERAGE_FOR_HEALTH_END_PROPOSITION})` +
+  `\\s+(?:(?:at|on)\\s+)?(?:the\\s+)?end\\s+of\\s+the\\s+month` +
+  `(?:\\s+in\\s+which\\s+(?:your\\s+)?employment(?:\\s+with\\s+(?:the\\s+)?company)?\\s+(?:ends?|terminates?))?${CLAUSE_END}`, 'i');
+const AFFIRMATIVE_HEALTH_LAST_DAY = new RegExp(
+  `${HEALTH_END_PROPOSITION}\\s+(?:on|as\\s+of)\\s+` +
+  `(?:(?:your|the\\s+employee(?:'s)?)\\s+)?last\\s+day(?:\\s+of\\s+(?:your\\s+)?employment)?${CLAUSE_END}`, 'i');
+/* Action and connector are a semantic pair: continuation may run through or
+   until a date; being active "on" a date does not say when coverage ends. */
+const HEALTH_DATE_LINK = `(?:${HEALTH_END_PROPOSITION}\\s+(?:on|as\\s+of)|${HEALTH_CONTINUE_PROPOSITION}\\s+(?:through|until))`;
+const AFFIRMATIVE_HEALTH_END = new RegExp(HEALTH_END_PROPOSITION, 'i');
+const AFFIRMATIVE_HEALTH_END_DATE_SLOT = new RegExp(`${HEALTH_DATE_LINK}\\s*$`, 'i');
+const AFFIRMATIVE_HEALTH_END_DATE = new RegExp(
+  `${HEALTH_DATE_LINK}\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+function isAffirmativeHealthEnd(text) {
+  return AFFIRMATIVE_HEALTH_END.test(text);
+}
+function isAffirmativeHealthEndDateSlot(text) {
+  return AFFIRMATIVE_HEALTH_END_DATE_SLOT.test(text);
+}
+const COBRA_SUBSIDY_DATE_SLOT = /\bCOBRA\s+premiums?[^,;:!?\r\n]{0,40}(?:through|until|up\s+to\s+and\s+including|end(?:s|ing)?\s+on)\s*$/i;
+/* The full candidate regex below owns whole-clause exactness. These two only
+   identify which known physical split occurred after that full check passes. */
+const BARE_PREMIUM_TAIL = new RegExp(`^premiums?\\s+(?:through|until|up\\s+to\\s+and\\s+including|end(?:s|ing)?\\s+on)\\s+${DATE_LITERAL}`, 'i');
+const NAMED_PREMIUM_TAIL = new RegExp(`^COBRA\\s+premiums?\\s+(?:through|until|up\\s+to\\s+and\\s+including|end(?:s|ing)?\\s+on)\\s+${DATE_LITERAL}`, 'i');
+const PREMIUM_SHARE_SLOT = /\b(?:portion|share|cost)\s+of\s*$/i;
+const EMPLOYER_SUBJECT = '(?:the\\s+)?(?:compan(?:y|ies)|employer|corporation|organi[sz]ation|firm|we)';
+const PAYMENT_ACTION = '(?:(?:will|shall)\\s+(?:pay|subsidi[sz]e)|(?:agrees?|has\\s+agreed)\\s+to\\s+(?:pay|subsidi[sz]e)|(?:pays|subsidi[sz]es))';
+const CONTRIBUTION_ACTION = '(?:(?:will|shall)\\s+contribute|(?:agrees?|has\\s+agreed)\\s+to\\s+contribute|contributes)';
+const PREMIUM_OBJECT = '(?:(?:(?:the\\s+)?(?:employer\\s+)?(?:portion|share|cost)\\s+of\\s+)?(?:your\\s+)?COBRA\\s+premiums?|to\\s+(?:(?:the\\s+)?cost\\s+of\\s+)?(?:your\\s+)?COBRA\\s+premiums?)';
+const PAYMENT_OBJECT_JOIN = '\\s*[,([]?\\s*';
+const AFFIRMATIVE_COBRA_PAYMENT_STEM = `${RECORD_START}${EMPLOYMENT_EVENT_PREFIX}${EMPLOYER_SUBJECT}\\s+(?:${PAYMENT_ACTION}${PAYMENT_OBJECT_JOIN}${PREMIUM_OBJECT}|${CONTRIBUTION_ACTION}${PAYMENT_OBJECT_JOIN}${PREMIUM_OBJECT})`;
+const AFFIRMATIVE_COBRA_SUBSIDY_DATE = new RegExp(
+  `${AFFIRMATIVE_COBRA_PAYMENT_STEM}\\s+(?:through|until|up\\s+to\\s+and\\s+including|end(?:s|ing)?\\s+on)\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const AFFIRMATIVE_COBRA_SUBSIDY_MONTHS = new RegExp(
+  `${AFFIRMATIVE_COBRA_PAYMENT_STEM}\\s+for\\s+\\d{1,2}\\s*months?(?:\\s+following\\s+(?:the\\s+)?(?:separation|termination)(?:\\s+date)?)?${CLAUSE_END}`, 'i');
+
+/* NEX-37 · closed affirmative one-line additions.
+ *
+ * These are deliberately eight independent, record-anchored grammar entries,
+ * not a larger keyword window. Each entry accepts only the definite form in
+ * the frozen battery. The sole admitted condition is the exact leading clause
+ * "If you timely elect COBRA,"; every other condition, modality, negation,
+ * payer reversal, alternative endpoint, or open-ended clause abstains.
+ * Matching may normalize whitespace, but the scanner always returns the raw
+ * record as evidence. Do not reuse these expressions for hard-wrap joining. */
+const NEX37_HEALTH_INSURANCE_DATE = new RegExp(
+  `${RECORD_START}your\\s+health\\s+insurance\\s+will\\s+end\\s+on\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_GROUP_HEALTH_PLAN_DATE = new RegExp(
+  `${RECORD_START}your\\s+group\\s+health\\s+plan\\s+coverage\\s+will\\s+terminate\\s+on\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_HEALTH_ENDS_WITHOUT_ON_DATE = new RegExp(
+  `${RECORD_START}health\\s+coverage\\s+ends\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_COVERAGE_UNDER_COMPANY_PLAN_DATE = new RegExp(
+  `${RECORD_START}coverage\\s+under\\s+the\\s+company\\s+health\\s+plan\\s+will\\s+end\\s+on\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_ENUMERATED_HEALTH_COVERAGE_DATE = new RegExp(
+  `${RECORD_START}your\\s+medical\\s*,\\s*dental\\s+and\\s+vision\\s+coverage\\s+will\\s+end\\s+on\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_COBRA_REIMBURSEMENT_DATE = new RegExp(
+  `${RECORD_START}the\\s+company\\s+will\\s+reimburse\\s+you\\s+for\\s+COBRA\\s+premiums\\s+through\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_COBRA_FULL_COST_DATE = new RegExp(
+  `${RECORD_START}the\\s+company\\s+will\\s+pay\\s+the\\s+full\\s+cost\\s+of\\s+COBRA\\s+coverage\\s+through\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+const NEX37_TIMELY_ELECTION_COBRA_DATE = new RegExp(
+  `^If\\s+you\\s+timely\\s+elect\\s+COBRA,\\s+the\\s+company\\s+will\\s+pay\\s+your\\s+COBRA\\s+premiums\\s+through\\s+${DATE_LITERAL}${CLAUSE_END}`, 'i');
+
+function isNex37HealthEndDate(text) {
+  return NEX37_HEALTH_INSURANCE_DATE.test(text) ||
+    NEX37_GROUP_HEALTH_PLAN_DATE.test(text) ||
+    NEX37_HEALTH_ENDS_WITHOUT_ON_DATE.test(text) ||
+    NEX37_COVERAGE_UNDER_COMPANY_PLAN_DATE.test(text) ||
+    NEX37_ENUMERATED_HEALTH_COVERAGE_DATE.test(text);
+}
+
+function isNex37CobraSubsidyDate(text) {
+  return NEX37_COBRA_REIMBURSEMENT_DATE.test(text) ||
+    NEX37_COBRA_FULL_COST_DATE.test(text) ||
+    NEX37_TIMELY_ELECTION_COBRA_DATE.test(text);
+}
+const FIRM_SENTENCE_END = /[.!?](?:["'\u2018\u2019\u201c\u201d)\]}]+)?\s*$/u;
+/* This is deliberately a short allowlist, not a general "heading-looking"
+ * heuristic. An uncertain line is operative prose. Only these exact coverage
+ * labels may form a boundary before an otherwise complete coverage fact. */
+const COVERAGE_HEADING_LINE = /^(?:\d{1,2}(?:\.\d{1,2})*[.)]?\s+)?(?:benefits|health\s+(?:coverage|benefits)|COBRA(?:\s+(?:benefits?|continuation\s+coverage))?|continuation\s+coverage):?$/i;
+const COVERAGE_BOUNDARY_TITLE = '(?:benefits|health\\s+(?:coverage|benefits)|COBRA(?:\\s+(?:benefits?|continuation\\s+coverage))?|continuation\\s+coverage)';
+const STRONG_COVERAGE_HEADING = new RegExp(
+  `^(?:section|article|paragraph)\\s+` +
+  `(?:\\d{1,3}(?:\\.\\d{1,3})*|[IVXLCDM]{1,8}|[A-Z])(?:[.)])?` +
+  `(?:\\s*[-\\u2013\\u2014:]\\s*|\\s+)${COVERAGE_BOUNDARY_TITLE}:?$`, 'i');
+/* A salutation is structural only in this closed, name-shaped form. Generic
+ * "Hello" text and sentence-like "Dear ..." prose remain operative. */
+const STRUCTURAL_SALUTATION =
+  /^Dear\s+(?:(?:Mr|Mrs|Ms|Mx|Dr)\.?\s+)?[A-Z][\p{L}'\u2019.-]*(?:\s+[A-Z][\p{L}'\u2019.-]*){0,3}[,:]$/u;
+/* A document title is a boundary only at the beginning of the paste. The
+ * parenthetical is also closed-world: an unknown parenthetical may contain a
+ * condition, so it stays operative instead of being stripped as decoration. */
+const BOF_COVERAGE_DOCUMENT_TITLE = new RegExp(
+  '^(?:separation\\s+(?:terms?|agreement)|benefits\\s+at\\s+termination|' +
+  'termination\\s+benefits?|health\\s+(?:coverage|benefits)|COBRA\\s+(?:benefits?|continuation\\s+coverage))' +
+  '(?:\\s+\\((?:synthetic(?:\\s+fixture)?|sample|template|draft|employee\\s+copy|confidential)\\))?:?$', 'i');
+
+function isCoverageHeading(text) {
+  return COVERAGE_HEADING_LINE.test(String(text).trim());
+}
+
+/** Closed positive set of structural boundaries. It intentionally has no
+ * fallback for short, capitalized, title-shaped, or legal-looking text: if a
+ * line is uncertain, it is operative prose, not a heading. */
+function isClosedCoverageBoundary(text, atDocumentStart) {
+  const line = String(text).trim();
+  if (!line || /[\r\n]/.test(line)) return false;
+  return isCoverageHeading(line) || STRONG_COVERAGE_HEADING.test(line) ||
+    STRUCTURAL_SALUTATION.test(line) ||
+    (Boolean(atDocumentStart) && BOF_COVERAGE_DOCUMENT_TITLE.test(line));
+}
+
+function mustQuarantineCoverageAdjacency(sourceSoFar, leftLine, rightLine, atDocumentStart) {
+  if (isClosedCoverageBoundary(sourceSoFar, atDocumentStart)) return false;
+  /* This runs only AFTER an exact supported join has been refused. Any other
+   * open physical-line adjacency is unresolved operative prose, regardless of
+   * vocabulary. Quarantining it propagates through later lines, so a condition
+   * cannot be discarded before a three-line fact eventually becomes complete. */
+  return !FIRM_SENTENCE_END.test(String(leftLine).trimEnd());
+}
+
+/** Closed-world, fail-closed decision. Each accepted right line must complete
+ * one supported fact shape in full. Punctuation, lowercase, a coverage noun,
+ * or a duration is never continuation evidence by itself. */
+function shouldJoinCoverageLines(sourceSoFar, leftLine, rightLine) {
+  const context = String(sourceSoFar).replace(/\s+/g, ' ').trim();
+  const left = String(leftLine).trimEnd();
+  const right = String(rightLine).trimStart();
+
+  if (!left || !right) return false;                    // blank boundary
+  if (CLOSED_LINE.test(left)) return false;             // already closed
+  if (DATE_ONLY_LINE.test(right)) {
+    if (isAffirmativeHealthEndDateSlot(context)) return true;
+    if (COBRA_SUBSIDY_DATE_SLOT.test(context))
+      return AFFIRMATIVE_COBRA_SUBSIDY_DATE.test(`${context} ${right}`);
+    return false;
+  }
+
+  const candidate = `${context} ${right}`;
+  if (!AFFIRMATIVE_COBRA_SUBSIDY_DATE.test(candidate)) return false;
+
+  if (/\bCOBRA\s*$/i.test(context)) return BARE_PREMIUM_TAIL.test(right);
+  if (PREMIUM_SHARE_SLOT.test(context)) return NAMED_PREMIUM_TAIL.test(right);
+  if (/\b(?:pay|subsidi[sz]e|contribute)\s*[,([]?\s*$/i.test(context)) return NAMED_PREMIUM_TAIL.test(right);
+  return false; // uncertain means boundary, never an inferred continuation
+}
+
+/** Split a raw logical record at punctuation that already occurs on one line,
+ * preserving the exact source slice for display. */
+function splitCoverageSentences(raw) {
+  const out = [];
+  /* Preserve physical CR/LF inside a recovered record, but retain the old
+     scanner's broader sentence boundary for every other whitespace form.
+     Legal text copied from PDFs commonly contains NBSP or narrow NBSP. */
+  /* A generic colon or semicolon is not permission to discard the prefix: it
+     may say "for illustration only:" or introduce a condition. Keeping the
+     whole clause makes the anchored grammar abstain. Only a full stop,
+     exclamation point, or question mark starts a new scannable sentence. */
+  const boundary = /[.!?](?:["'\u2018\u2019\u201c\u201d)\]}]*)[^\S\r\n]+/gu;
+  let start = 0;
+  for (const m of raw.matchAll(boundary)) {
+    out.push(raw.slice(start, m.index + m[0].length));
+    start = m.index + m[0].length;
+  }
+  out.push(raw.slice(start));
+  return out;
+}
+
+/** Coverage matching view plus the untouched source text it came from. */
+function coverageSentenceRecords(text) {
+  const source = String(text ?? '');
+  const parts = source.split(/(\r\n|\n|\r)/);
+  const lines = [];
+  for (let i = 0; i < parts.length; i += 2)
+    lines.push({ body: parts[i], eol: parts[i + 1] || '' });
+
+  const logical = [];
+  let current = null;
+  let seenNonBlank = false;
+  const flush = () => {
+    if (current !== null && !current.quarantined) logical.push(current.raw);
+    current = null;
+  };
+
+  for (const line of lines) {
+    if (!line.body.trim()) { flush(); continue; }
+    if (current === null) {
+      current = { raw: line.body, last: line.body, eol: line.eol,
+        quarantined: false, atDocumentStart: !seenNonBlank };
+      seenNonBlank = true;
+      continue;
+    }
+    if (current.quarantined) {
+      current.raw += current.eol + line.body;
+      current.last = line.body;
+      current.eol = line.eol;
+      continue;
+    }
+    if (shouldJoinCoverageLines(current.raw, current.last, line.body)) {
+      current.raw += current.eol + line.body;
+      current.last = line.body;
+      current.eol = line.eol;
+    } else if (mustQuarantineCoverageAdjacency(
+      current.raw, current.last, line.body, current.atDocumentStart)) {
+      current.raw += current.eol + line.body;
+      current.last = line.body;
+      current.eol = line.eol;
+      current.quarantined = true;
+    } else {
+      flush();
+      current = { raw: line.body, last: line.body, eol: line.eol,
+        quarantined: false, atDocumentStart: false };
+    }
+  }
+  flush();
+
+  return logical.flatMap(splitCoverageSentences)
+    .map(sourceText => ({
+      source: sourceText,
+      matchText: sourceText.replace(/\s+/g, ' ').trim(),
+    }))
+    .filter(r => r.matchText.length > 12);
+}
+
+/** ⚠️ IMPOSSIBLE DATES MUST ABSTAIN, NOT ROLL OVER. JavaScript's Date silently
+ *  normalises out-of-range components: "February 30, 2026" became March 2 and
+ *  "February 31" became March 3. A typo or an OCR misread therefore produced a
+ *  perfectly plausible date two days from the one written, with a confident
+ *  label and no way for the reader to notice.
+ *
+ *  ⚠️⚠️ The first fix only covered the "Month D, YYYY" shape. It re-read the day
+ *  with a regex that skipped any number followed by "/", so EVERY SLASH DATE
+ *  went round the guard untouched — `02/31/2026` still came back as March 3.
+ *  The components are now pulled out per format and checked, rather than
+ *  fished out of the string. */
+function exactDate(y, mIdx, day) {
+  if (!(y >= 1900 && y <= 2200) || !(mIdx >= 0 && mIdx <= 11) || !(day >= 1 && day <= 31)) return null;
+  const d = new Date(y, mIdx, day);
+  return (d.getFullYear() === y && d.getMonth() === mIdx && d.getDate() === day) ? d : null;
+}
+
+const MONTH_INDEX = ('january february march april may june july august september october ' +
+  'november december').split(' ');
+
+/** Parse ONE date literal exactly, or return null. No rollover, ever. */
+function parseOneDate(lit) {
+  const txt = String(lit).replace(/(\d)(st|nd|rd|th)/gi, '$1').trim();
+  let m = txt.match(/^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$/);
+  if (m) {
+    const name = m[1].toLowerCase();
+    const idx = MONTH_INDEX.findIndex(x => x.startsWith(name.slice(0, 3)));
+    return idx < 0 ? null : exactDate(Number(m[3]), idx, Number(m[2]));
+  }
+  m = txt.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (m) {
+    let y = Number(m[3]);
+    if (y < 100) y += y < 70 ? 2000 : 1900;          // 2-digit years, US convention
+    return exactDate(y, Number(m[1]) - 1, Number(m[2]));   // US order: M/D/Y
+  }
+  return null;
+}
+
+/** Every date LITERAL in the string, in order — including the ones that failed
+ *  to parse, which carry `date: null`.
+ *
+ *  ⭐⭐ REJECTING A DATE IS ONLY HALF A GUARD. THE OTHER HALF IS WHAT HAPPENS
+ *  NEXT. This list used to hold only the literals that parsed, so a rejected
+ *  one vanished and the cue simply bound to the NEXT date in the sentence:
+ *    "Coverage ends February 30, 2026, and your last day of employment is
+ *     March 15, 2026."
+ *  reported **coverage ends March 15** — a date the document never states, for
+ *  a fact it never asserts. The impossible-date guard worked perfectly and its
+ *  correct refusal was laundered into a confident fabrication one line later.
+ *
+ *  Keeping the rejected literal in the list is what lets `parseDateishAfter`
+ *  tell "no date after the cue" apart from "a date after the cue that we could
+ *  not read" — the second must ABSTAIN, never skip ahead. A miss costs a
+ *  question; a wrong date is the thing this file exists to prevent. */
+function allDates(s) {
+  const re = new RegExp(DATE_RE.source, 'gi');
+  const out = [];
+  for (const m of String(s).matchAll(re))
+    out.push({ date: parseOneDate(m[1]), index: m.index, literal: m[1] });
+  return out;
+}
+
+function parseDateish(s) {
+  const all = allDates(s);
+  /* `all[0].date` is null when the FIRST literal is one we refused. That is
+     deliberate: we do not walk past a date we could not read to find one we
+     can. See allDates(). */
+  return all.length ? all[0].date : null;
+}
+
+/**
+ * ⭐ The date a CUE governs, not merely the first one in the sentence.
+ *
+ * ⚠️ The bug this fixes fabricated an attribution rather than a value:
+ *   "Following your August 1, 2026 separation, the Company will pay COBRA
+ *    premiums through November 30, 2026."
+ * reported **August 1** as the date employer-paid COBRA ends, because the
+ * extractor took the first date literal in the sentence. The label was
+ * "Employer pays COBRA premiums through …" — so the page stated, confidently,
+ * something the sentence plainly contradicts, and three months early.
+ *
+ * Takes the first date appearing AFTER the cue; falls back to the first date
+ * only when the cue is absent, which is the pre-existing behaviour for
+ * sentences that have no governing word.
+ *
+ * ⭐ And "the first date after the cue" means the first date LITERAL, not the
+ * first one that happened to parse. When that literal is one we refused,
+ * `.date` is null and this abstains — it does not go looking for a later date
+ * to attach the cue to. See allDates() for the fabrication that caused.
+ */
+function parseDateishAfter(s, cue) {
+  const src = String(s);
+  const c = src.search(cue);
+  const all = allDates(src);
+  if (c < 0) return all.length ? all[0].date : null;
+  const after = all.find(d => d.index > c);
+  return after ? after.date : null;
+}
+
+/* ⛔ Cash-equivalent guard (2026-08-14, from a real executive severance plan
+   on EDGAR — see corpus/visa-fixtures/). "A taxable lump sum payment equal to
+   the cost of ... COBRA for 24 months" is money, not an employer paying or
+   subsidizing COBRA: the recipient may spend it on anything and must still
+   elect COBRA and pay the full premium themselves, and 45 CFR 155.420(d)(15)
+   anchors on a period COBRA "is paid for or subsidized". Labelling it
+   "employer-paid COBRA" invites a wrong confirm — a wrong label is not
+   neutralised by confirmation — and a DATED cash equivalent would wrongly
+   feed the (d)(15) window.
+   Same-sentence only, deliberately: a neighbouring-sentence veto would kill a
+   genuine subsidy followed by "thereafter you pay the full premium", and the
+   asymmetry favours abstention — a missed cash equivalent costs a question,
+   never a wrong label. Cross-sentence context belongs to the benefit-type
+   classification work, post-pilot. */
+const CASH_EQUIVALENT =
+  /(lump[- ]?sum|equal to the cost|(payment|amount) (equal|equivalent) to|in lieu of|cash equivalent|regardless of whether)/i;
+
+/**
+ * Each cue: { field, label, test, value }
+ * `value` may return a Date, a string enum, or true (a flag to confirm).
+ */
+/* ⛔ WHO PAYS IS PART OF THE CLAIM. A label reading "Employer pays COBRA
+   premiums through <date>" asserts something about the employer's obligation,
+   and until now the cues never checked the payer at all. Measured false
+   positives, every one of which rendered as employer-paid COBRA:
+
+     "COBRA coverage is available for 18 months."
+     "You may elect COBRA coverage through November 30, 2026."
+     "You are eligible to continue COBRA for 18 months at your own expense."
+     "Employee must pay COBRA premiums for 18 months."
+
+   The last two say the OPPOSITE of the label they were given. Two causes:
+   the verb list contained bare `cover`, which matches the word "coverage" in
+   almost every COBRA sentence ever written, and nothing required an employer
+   to be the one paying.
+
+   AFFIRMATIVE_COBRA_PAYMENT_STEM requires one complete, record-anchored
+   employer-to-COBRA-premium relation and one of a closed set of definite
+   payment forms. Modal, intended, expected, negated, unrelated-payment, and
+   open-class forms abstain; widening by denylist is unsafe. */
+
+const CUES = [
+  { field: 'coverageEndRule', label: 'When your coverage ends',
+    hint: 'end_of_month',
+    test: s => AFFIRMATIVE_HEALTH_END_OF_MONTH.test(s),
+    value: () => 'end_of_month',
+    say: 'Coverage runs to the end of the month your employment ends' },
+
+  { field: 'coverageEndRule', label: 'When your coverage ends',
+    // ⚠️ Must NOT match life/AD&D/disability sentences. "Your basic life and
+    // AD&D benefits will end on your last day" is about a different benefit
+    // entirely, and matched here until this exclusion was added.
+    test: s => AFFIRMATIVE_HEALTH_LAST_DAY.test(s)
+            && !/(life|AD&D|disability|401)/i.test(s),
+    value: () => 'last_day',
+    say: 'Coverage stops on your last day' },
+
+  { field: 'coverageEnd', label: 'Date coverage ends',
+    // The cash-equivalent guard applies here too: "a lump sum equal to the
+    // cost of COBRA coverage through November 30" matched this cue and would
+    // have offered Nov 30 as the date COVERAGE ends — a payment window is not
+    // a coverage end. Caught by the dated-cash-equivalent canary.
+    // ⚠️ And it must NOT fire on a COBRA sentence. "You may elect COBRA
+    // coverage through November 30, 2026" was reported as the date ACTIVE
+    // coverage ends — but COBRA is what happens AFTER active coverage ends, so
+    // this is the three-date confusion the product exists to prevent, made by
+    // the product itself. Continuation coverage is never the active-coverage
+    // end date.
+    test: s => (AFFIRMATIVE_HEALTH_END_DATE.test(s) || isNex37HealthEndDate(s))
+            && !/\b(COBRA|continuation coverage)\b/i.test(s)
+            && !CASH_EQUIVALENT.test(s),
+    value: s => parseDateishAfter(s, /(ends?|terminates?|ceases?|continues?|through|until|as\s+of)/i) },
+
+  { field: 'employmentEnd', label: 'Last day of employment',
+    test: s => /(separation date|termination date|last day of (your )?employment|employment (will )?end)/i.test(s) && DATE_RE.test(s),
+    value: s => parseDateish(s) },
+
+  /* ⭐ This date is the anchor for the 45 CFR 155.420(d)(15) Marketplace
+     window, so it is worth more than it looks. Two fixes here:
+     (a) the cue required COBRA to appear BEFORE the verb, so the commonest
+         real phrasing — "the Company will PAY the employer portion of your
+         COBRA premiums through November 30" — never matched at all;
+     (b) it required only COBRA + a verb + any date, so "will pay COBRA
+         premiums for 6 months following the Separation Date of August 14"
+         would have offered August 14 as the date the subsidy ENDS.
+     Now the sentence must also carry a through/until cue. */
+  { field: 'subsidyEnd', label: 'Employer pays COBRA premiums through',
+    // ⚠️ `cover` is GONE from the verb list: it matches "coverage", which
+    // appears in essentially every COBRA sentence, so the cue was satisfied by
+    // the noun it was meant to be looking past.
+    test: s => (AFFIRMATIVE_COBRA_SUBSIDY_DATE.test(s) || isNex37CobraSubsidyDate(s))
+            && DATE_RE.test(s)
+            && !CASH_EQUIVALENT.test(s),
+    /* ⭐ The date AFTER the governing word, not the first in the sentence.
+       "Following your August 1, 2026 separation, the Company will pay COBRA
+       premiums through November 30, 2026" reported August 1 as the subsidy
+       end — three months early, under a label asserting the opposite of what
+       the sentence says. */
+    value: s => parseDateishAfter(s, /(through|until|up to and including|end(s|ing)? on)/i) },
+
+  { field: 'subsidyMonths', label: 'Months of employer-paid COBRA',
+    // ⚠️ The second branch used to be COBRA + "for N months" with no payer at
+    // all, so "COBRA coverage is available for 18 months" — a statement of the
+    // continuation period, which is federal law, not a benefit — was reported
+    // as months of EMPLOYER-PAID COBRA.
+    test: s => AFFIRMATIVE_COBRA_SUBSIDY_MONTHS.test(s)
+            && /\b(\d{1,2})\s*months?/i.test(s)
+            && !CASH_EQUIVALENT.test(s),
+    value: s => { const m = s.match(/(\d{1,2})\s*months?/i); return m ? parseInt(m[1], 10) : null; } },
+
+  { field: 'noticeExpected', label: 'When the COBRA notice will arrive',
+    test: s => /(receive|sent|mailed)[^.]{0,60}COBRA[^.]{0,60}(notice|packet|election)/i.test(s)
+            || /COBRA (notice|packet)[^.]{0,60}(within|in the next)/i.test(s),
+    value: s => { const m = s.match(/within (?:the next )?(?:approximately )?(\w+|\d{1,2})\s*(week|day)s?/i);
+                  if (!m) return true;
+                  const n = /^\d+$/.test(m[1]) ? +m[1]
+                    : {one:1,two:2,three:3,four:4,five:5,six:6}[m[1].toLowerCase()];
+                  return n ? (m[2].toLowerCase()==='week' ? n*7 : n) : true; } },
+
+  /* ⚠️ REMOVED from this module: the group-life / AD&D cue. Life cover is not
+     health coverage, so surfacing it here costs the reader a decision that
+     cannot change any health deadline. The conversion window is a real thing to
+     lose, but it belongs to the severance analysis, not the coverage one. The
+     engine still handles hadLifeInsurance if a caller supplies it. */
+
+  { field: 'printedDeadline', label: 'COBRA election deadline stated in your document',
+    test: s => /(COBRA|continuation coverage)/i.test(s)
+            && /(elect|enroll)/i.test(s)
+            && /(by|no later than|on or before)/i.test(s)
+            && DATE_RE.test(s),
+    value: s => parseDateish(s) },
+];
+
+/**
+ * @returns {Array<{field,label,value,say,source}>} candidates for CONFIRMATION.
+ * Never a fact — always a question with its evidence attached.
+ */
+function scan(text) {
+  if (!text || text.trim().length < 20) return [];
+  const found = [], seen = new Set();
+  for (const record of coverageSentenceRecords(text)) {
+    const s = record.matchText;
+    for (const cue of CUES) {
+      if (!cue.test(s)) continue;
+      const v = cue.value(s);
+      if (v === null || v === undefined) continue;
+      const key = cue.field + '|' + (v instanceof Date ? v.toDateString() : String(v));
+      if (seen.has(key)) continue;
+      seen.add(key);
+      found.push({ field: cue.field, label: cue.label, value: v,
+                   say: cue.say || null, source: record.source });
+    }
+  }
+  return found;
+}
+
+/**
+ * Fields where the scan produced CONTRADICTORY answers. Surfacing these beats
+ * silently taking the first match — a contradiction is a signal the documents
+ * disagree, or that we misread one of them, and the reader is the only one who
+ * can settle it.
+ */
+function conflicts(found) {
+  const byField = {};
+  found.forEach(f => {
+    const v = f.value instanceof Date ? f.value.toDateString() : String(f.value);
+    (byField[f.field] ||= new Map()).set(v, f);
+  });
+  return Object.entries(byField)
+    .filter(([, m]) => m.size > 1)
+    .map(([field, m]) => ({ field, options: [...m.values()] }));
+}
+
+/** What the scan could NOT establish — drives the short question list. */
+function stillNeeded(confirmed) {
+  const need = [];
+  if (!confirmed.coverageEnd && !confirmed.coverageEndRule)
+    need.push({ field: 'coverageEndRule', why: 'Every other deadline counts from the day your coverage ends.' });
+  // These two are never in either document — they are facts about the person.
+  if (!confirmed.medicareEligible || confirmed.medicareEligible === 'unknown')
+    need.push({ field: 'medicareEligible', why: 'It changes which deadline matters most, and no document states it.' });
+  if (!confirmed.otherPlanAvailable || confirmed.otherPlanAvailable === 'unknown')
+    need.push({ field: 'otherPlanAvailable', why: 'A spouse or new employer plan often has the shortest deadline of all.' });
+  return need;
+}
+
+return { parseDateish, parseDateishAfter, scan, conflicts, stillNeeded };
+})();
+const { PLAN_YEAR, MARKETPLACE_TYPE, STATE_NAMES, STATE_MARKETPLACE_URL, routeFor } = (() => {
+/**
+ * Where to send someone to look at real plans, by the state they will live in.
+ *
+ * ⭐ The routing key is the PLATFORM, not the governance label. FFM and SBM-FP
+ * states both enrol through HealthCare.gov (27 + 3 = 30); the 21 SBM states run
+ * their own. "State-based marketplace" alone does not answer the question,
+ * because the three SBM-FP states are state-based and still use HealthCare.gov.
+ *
+ * ⚠️ The table below is a COPY of rules/marketplace-registry-2026.json, because
+ * the prototype is a single self-contained file and cannot fetch JSON. Copies
+ * drift, so eval/routing.test.mjs asserts the two are identical — the same
+ * guard the /offer parser needed after its vendored copy fell behind.
+ *
+ * ⚠️ Versioned by PLAN YEAR. States migrate between platforms and CMS
+ * republishes the list annually. Nothing here may be reused for 2027 without
+ * re-fetching the CMS page.
+ */
+
+const PLAN_YEAR = 2026;
+
+const MARKETPLACE_TYPE = {
+  AL:'ffm', AK:'ffm', AZ:'ffm', DE:'ffm', FL:'ffm', HI:'ffm', IN:'ffm', IA:'ffm',
+  KS:'ffm', LA:'ffm', MI:'ffm', MS:'ffm', MO:'ffm', MT:'ffm', NE:'ffm', NH:'ffm',
+  NC:'ffm', ND:'ffm', OH:'ffm', SC:'ffm', SD:'ffm', TN:'ffm', TX:'ffm', UT:'ffm',
+  WV:'ffm', WI:'ffm', WY:'ffm',
+  AR:'sbm_fp', OK:'sbm_fp', OR:'sbm_fp',
+  CA:'sbm', CO:'sbm', CT:'sbm', DC:'sbm', GA:'sbm', ID:'sbm', IL:'sbm', KY:'sbm',
+  ME:'sbm', MD:'sbm', MA:'sbm', MN:'sbm', NV:'sbm', NJ:'sbm', NM:'sbm', NY:'sbm',
+  PA:'sbm', RI:'sbm', VT:'sbm', VA:'sbm', WA:'sbm',
+};
+
+const STATE_NAMES = {
+  AL:'Alabama', AK:'Alaska', AZ:'Arizona', AR:'Arkansas', CA:'California', CO:'Colorado',
+  CT:'Connecticut', DE:'Delaware', DC:'District of Columbia', FL:'Florida', GA:'Georgia',
+  HI:'Hawaii', ID:'Idaho', IL:'Illinois', IN:'Indiana', IA:'Iowa', KS:'Kansas',
+  KY:'Kentucky', LA:'Louisiana', ME:'Maine', MD:'Maryland', MA:'Massachusetts',
+  MI:'Michigan', MN:'Minnesota', MS:'Mississippi', MO:'Missouri', MT:'Montana',
+  NE:'Nebraska', NV:'Nevada', NH:'New Hampshire', NJ:'New Jersey', NM:'New Mexico',
+  NY:'New York', NC:'North Carolina', ND:'North Dakota', OH:'Ohio', OK:'Oklahoma',
+  OR:'Oregon', PA:'Pennsylvania', RI:'Rhode Island', SC:'South Carolina',
+  SD:'South Dakota', TN:'Tennessee', TX:'Texas', UT:'Utah', VT:'Vermont',
+  VA:'Virginia', WA:'Washington', WV:'West Virginia', WI:'Wisconsin', WY:'Wyoming',
+};
+
+/** Direct destinations followed from CMS's 2026 State-based Exchanges page.
+ * Keeping them here removes a generic state-picker hop at the moment the user
+ * is ready to act. eval/routing.test.mjs pins this copy to the JSON registry. */
+const STATE_MARKETPLACE_URL = {
+  CA:'https://www.coveredca.com/', CO:'https://connectforhealthco.com/',
+  CT:'https://www.accesshealthct.com/', DC:'https://www.dchealthlink.com/',
+  GA:'https://georgiaaccess.gov/', ID:'https://www.yourhealthidaho.org/',
+  IL:'https://getcovered.illinois.gov/', KY:'https://kynect.ky.gov/',
+  ME:'https://www.coverme.gov/', MD:'https://www.marylandhealthconnection.gov/',
+  MA:'https://www.mahealthconnector.org/', MN:'https://www.mnsure.org/',
+  NV:'https://www.nevadahealthlink.com/', NJ:'https://nj.gov/getcoverednj/',
+  NM:'https://www.bewellnm.com/', NY:'https://nystateofhealth.ny.gov/',
+  PA:'https://www.pennie.com/', RI:'https://www.healthsourceri.com/',
+  VT:'https://healthconnect.vermont.gov/', VA:'https://www.marketplace.virginia.gov/',
+  WA:'https://www.wahealthplanfinder.org/'
+};
+
+const PLANS_HCGOV = 'https://www.healthcare.gov/see-plans/';
+const HELP        = 'https://www.healthcare.gov/find-assistance/';
+
+/**
+ * @returns {null | {state, stateName, type, plans:{url,label,note}, help:{url,label}}}
+ *   null when no state is chosen — the caller must then show no destination at
+ *   all rather than a national default. Sending someone to the wrong enrolment
+ *   platform wastes the one action we asked them to take.
+ *
+ * ⭐ No ZIP, no personal data, no query string. The link is the same for
+ * everyone in the state, which is what keeps "nothing leaves this device"
+ * literally true: the person enters their own details on the government site.
+ */
+function routeFor(state) {
+  const type = MARKETPLACE_TYPE[state];
+  if (!type) return null;
+  const stateName = STATE_NAMES[state];
+  const ownPlatform = type === 'sbm';
+  return {
+    state, stateName, type,
+    plans: ownPlatform
+      ? { url: STATE_MARKETPLACE_URL[state], label: `See plans through ${stateName}'s Marketplace`,
+          note: `${stateName} runs its own Marketplace. This opens the official state site verified from CMS's 2026 exchange list.` }
+      : { url: PLANS_HCGOV, label: `See ${PLAN_YEAR} plans and prices`,
+          note: `${stateName} enrols through HealthCare.gov. You can browse plans and estimated prices there without applying or logging in.` },
+    help: { url: HELP, label: 'Get free Marketplace-certified help' },
+  };
+}
+
+return { PLAN_YEAR, MARKETPLACE_TYPE, STATE_NAMES, STATE_MARKETPLACE_URL, routeFor };
+})();
+
+const $ = s => document.querySelector(s);
+const fmt = d => d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+const short = d => d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+const fromInput = v => { if(!/^\d{4}-\d{2}-\d{2}$/.test(v||'')) return null; const [y,m,d]=v.split('-').map(Number); const out=new Date(y,m-1,d); return out.getFullYear()===y&&out.getMonth()===m-1&&out.getDate()===d?out:null; };
+const iso = d => d ? `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}` : '';
+const todayStart = () => { const d=new Date(); return new Date(d.getFullYear(),d.getMonth(),d.getDate()); };
+const esc = s => String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
+const el = (tag, cls, text) => { const n=document.createElement(tag); if(cls)n.className=cls; if(text!=null)n.textContent=text; return n; };
+
+/* ⚠️ States the contribution end as an EXPLICIT DATE, matching the pilot
+   handout and the test fixtures. The old sample said "for 6 months following
+   the Separation Date", which the scanner correctly REFUSES to date (two
+   defensible readings differ by ~14 days) — so the built-in demo could never
+   reach the employer-contribution window, i.e. the one rule nothing else does.
+   Both phrasings occur in real agreements; the abstention path is still
+   exercised by eval/scan tests and by any reader who pastes a duration. */
+const SAMPLE = `Coverage for medical, dental, and vision ends at the end of the month in which your employment with the Company ends. Within the next two weeks you will receive a COBRA notice offering you the option to continue these benefits.\nThe Company will pay the employer portion of your COBRA premiums through November 30, 2026.\nYour Separation Date is August 14, 2026.`;
+const LABELS={coverageEndRule:'Coverage-end rule',coverageEnd:'Coverage end date',employmentEnd:'Last day of employment',subsidyEnd:'Employer-paid COBRA ends',subsidyMonths:'Employer-paid COBRA period',noticeExpected:'COBRA notice timing',printedDeadline:'COBRA election deadline'};
+const DRIVER=new Set(['coverageEndRule','coverageEnd','employmentEnd']);
+const answers={}; let findings=[],decision=new Map(),coverageMode='pending',proposal=null,lastPlan=null,cobraOpen=false;
+
+/* ⭐ "Where do I get this?" — the question a laid-off reader actually has at
+   each empty field. These say WHO HOLDS THE FACT. They never say what to ask
+   for, what to negotiate, or what the answer should be: that would turn a
+   lookup aid into advice.
+   ⚠️ Click-toggle, not hover. This is tested on phones, where hover does not
+   exist — a hover tooltip is an affordance half the users cannot reach. */
+const FIELD_HINTS = {
+  q_subsidyEnd:'Ask your HR team, in writing, for the last month the employer contribution covers. Severance agreements often state a length — "six months" — without saying what those months run from, and the readings can differ by weeks. Getting the date from HR removes the guess entirely.',
+  q_cobraCost:'The monthly premium is printed on your COBRA election notice. If the notice has not arrived, the plan administrator can quote it.',
+  q_noticeDate:'The date on the election notice itself, or its postmark. If it has not arrived, ask the plan administrator when it was sent.',
+  q_printedDeadline:'Printed on the COBRA election notice, usually beside the election form. If your notice does not print one, leave this empty.',
+  q_electionDate:'The date you SENT your election, not the date it was received — a plan counts it from sending. Check your confirmation email or postal receipt.',
+  q_coverageEndRule:'Your benefits-at-termination guide usually contains a sentence like "coverage ends at the end of the month in which your employment ends." If you cannot find it, HR can confirm which rule your plan uses.',
+  q_exactdate:'HR or the plan administrator can confirm the exact date active coverage ends. It is not always your last day worked.',
+  q_lastday:'Your separation or severance agreement states this, usually as the Separation Date.',
+};
+
+/* Attaches an (i) to a label and returns the panel to place after the control.
+   Returns null when the field has no hint, so callers stay unchanged. */
+function attachHint(labelEl,id){
+  const text=FIELD_HINTS[id]; if(!text) return null;
+  const panelId=id+'-hint';
+  const b=el('button','hint-btn','i'); b.type='button';
+  b.setAttribute('aria-label','Where to find this'); b.setAttribute('aria-expanded','false');
+  b.setAttribute('aria-controls',panelId);
+  const panel=el('div','hint',text); panel.id=panelId; panel.hidden=true;
+  b.addEventListener('click',()=>{
+    const open=panel.hidden;
+    panel.hidden=!open; b.setAttribute('aria-expanded',String(open));
+    if(open) track('hint_opened:'+id);   // which fields people cannot fill unaided
+  });
+  labelEl.appendChild(b);
+  return panel;
+}
+
+/* ⭐ Beacon allowlist — a STRICT SUBSET of the local events, and deliberately
+   not all of them. Every entry is a bare step name: no field names, no values,
+   no dates, no state, no prices, no identifiers. `hint_opened:<field>` carries
+   a field name, so it stays LOCAL-ONLY and is recorded by the moderator, never
+   sent. An unlisted name simply never reaches the network. */
+const BEACON=new Set(['view','sample_loaded','paste_real','document_skipped','scan_no_findings','scan_found_details',
+  'scan_detail_found','coverage_intake_started','state_selected','marketplace_link_revealed',
+  'marketplace_link_clicked','marketplace_primary_clicked','finding_reviewed',
+  'coverage_detail_updated','coverage_first_result']);
+
+function track(name){
+  const safe=String(name).replace(/[^a-z0-9_:-]/gi,'').slice(0,80);
+  window.dispatchEvent(new CustomEvent('nextact:event',{detail:{name:safe}}));
+  if(Array.isArray(window.dataLayer)) window.dataLayer.push({event:safe});
+  send(safe);
+}
+
+/* Fire-and-forget, and inert unless actually served over http(s) — on file://
+   (the test harness) and under an artifact CSP there is nothing to call.
+
+   ⚠️⚠️ NOT navigator.sendBeacon(). Measured 2026-08-15 against a server that
+   set a cookie: sendBeacon sent `Cookie:` AND `Referer:` on every call, because
+   the spec fixes its credentials mode to "include". The first version of this
+   function used it while the comment beside it claimed "no credentials" — the
+   claim was false, and on this project a privacy claim that outruns the
+   implementation is the defect, whether or not a cookie currently exists.
+   fetch() is the only form that lets us drop both. Reliability is unaffected:
+   these fire during interaction, never on unload. */
+function send(name){
+  try{
+    if(!BEACON.has(name)) return;
+    if(!/^https?:$/.test(location.protocol)) return;
+    fetch(`/nextact-reviews/r/3157d07/api/e/cov_${encodeURIComponent(name)}`,{
+      method:'POST',keepalive:true,mode:'same-origin',
+      credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',
+    }).catch(()=>{});
+  }catch{/* never surface a metrics failure to the reader */}
+}
+
+/* #q_coverageEndRule lives in the static markup, so it gets its hint once here
+   rather than through a field helper. */
+(()=>{const l=document.querySelector('label[for="q_coverageEndRule"]');
+  if(!l) return; const h=attachHint(l,'q_coverageEndRule');
+  if(h) l.parentNode.insertBefore(h,l.nextSibling.nextSibling||null);})();
+
+for(const [code,name] of Object.entries(STATE_NAMES).sort((a,b)=>a[1].localeCompare(b[1]))){ const o=el('option',null,name);o.value=code;$('#q_state').appendChild(o); }
+/* ⚠️ Fills the box and STOPS. It used to auto-click Find, so the screen just
+   jumped to the next step and the reader never saw the text being read —
+   "we found 4 details in your text" about text they had never laid eyes on.
+   Showing the sample is most of its value: it teaches what to paste. */
+$('[data-sample]').addEventListener('click',()=>{
+  const t=$('#paste'); t.value=SAMPLE; t.focus();
+  try{t.setSelectionRange(0,0);}catch{}
+  t.scrollIntoView({block:'center'});
+  track('sample_loaded');
+});
+/* Sample runs must be separable from real ones or they flatter every funnel
+   number — the lesson /offer already learned with paste_real vs sample. */
+$('#go').addEventListener('click',()=>{if($('#paste').value.trim()&&$('#paste').value!==SAMPLE)track('paste_real');});
+track('view');
+/* scanned=false on skip: nothing was read, so there is no scan outcome to
+   report. Saying "we found nothing" about text that was never supplied would
+   be an absence claim about a document that does not exist. */
+$('#go').addEventListener('click',()=>start(scan($('#paste').value),true));
+$('#skip').addEventListener('click',()=>{track('document_skipped');start([],false);});
+$('#back').addEventListener('click',()=>{$('#s2').classList.add('hidden');$('#s1').classList.remove('hidden');$('#progress2').classList.remove('on');});
+$('#q_state').addEventListener('change',e=>{answers.q_state=e.target.value;renderInstantDestination();updateGate();});
+
+/* ⭐ The whole one-input interaction. Answering the state question reveals a
+   real, official destination immediately — no submit, no second question.
+   Everything else on the page becomes optional from here.
+
+   ⚠️ It also names what the next input BUYS. A state link on its own is a thin
+   product; the differentiated value is knowing when to act, and that needs the
+   coverage-end date. Whether this prompt actually pulls people into supplying
+   it is the single most informative thing the pilot can measure. */
+function renderInstantDestination(){
+  const box=$('#instantDestination'); box.textContent='';
+  const route=answers.q_state?routeFor(answers.q_state):null;
+  $('#enhancements').classList.toggle('hidden',!route);
+  if(!route) return;
+
+  const card=el('div','card instant');
+  card.appendChild(el('h3',null,`Compare official health plans in ${route.stateName}`));
+  card.appendChild(el('p','help',route.plans.note));
+  const row=el('div','row actions');
+  const plans=makeLink(route.plans.label,route.plans.url,'marketplace_link_clicked',true);
+  const help=makeLink(route.help.label,route.help.url,'certified_help_clicked',false);
+  [plans,help].forEach(a=>a.addEventListener('click',()=>track(a.dataset.event)));
+  row.append(plans,help); card.appendChild(row);
+  card.appendChild(el('p','help','Next: add the date your job coverage ends and we will work out your enrollment deadline — the part the Marketplace site cannot tell you.'));
+  box.appendChild(card);
+
+  track('state_selected');
+  track('marketplace_link_revealed');
+}
+$('#q_coverageEndRule').addEventListener('change',e=>{answers.q_coverageEndRule=e.target.value;renderManualDates();updateGate();});
+$('#build').addEventListener('click',showResult);
+
+/* States the scan outcome in plain terms. Names the FIELDS found, never a
+   conclusion about them, and never a date — the values are confirmed below.
+   The no-findings branch says what was not found instead of shrugging, so
+   abstention reads as a result rather than a failure. */
+function renderScanOutcome(found,scanned){
+  const box=$('#scanOutcome'); if(!box) return;
+  box.textContent='';
+  if(!scanned) return;
+  if(!found.length){
+    box.appendChild(el('div','notice','We could not find your coverage dates in that text. That does not mean they are absent—only that we did not recognise them. You can still get your official Marketplace below and enter what you know yourself.'));
+    track('scan_no_findings');
+    return;
+  }
+  const labels=[...new Set(found.map(f=>LABELS[f.field]||f.field))];
+  const n=found.length;
+  const note=el('div','notice');
+  note.appendChild(el('strong',null,`We found ${n} detail${n===1?'':'s'} in your text.`));
+  note.appendChild(el('p',null,`${labels.join(' · ')}. Nothing is used until you confirm it below.`));
+  box.appendChild(note);
+  track('scan_found_details');
+  /* Generic on purpose. An event named for the COBRA field would put a fact
+     ABOUT THE READER'S DOCUMENT on the wire ("this agreement contains an
+     employer-paid COBRA provision"), which is not the navigation step the
+     footer discloses. The category stays local; only "a non-driver detail was
+     found" is counted. */
+  if(found.some(f=>!DRIVER.has(f.field))) track('scan_detail_found');
+}
+
+/* ⭐ A STEP TRANSITION GOES TO THE TOP OF THE PAGE, not to the new card.
+   Measured on the live page 2026-08-17 after pressing "I don't have it":
+   scrollY 250 with maxScroll 0 — the whole of step 2 fits on screen, yet the
+   page sat scrolled a quarter of a screen down with the heading cut off above
+   the fold. Hiding step 1 (a tall textarea) shrinks the document AFTER
+   scrollIntoView has already scrolled for the taller layout, and the browser
+   leaves the scroll position stranded.
+   Going to the top is also simply the right answer: these transitions replace
+   the whole content, the page header and progress bar are useful orientation,
+   and at scroll 0 nothing can hide under the sticky nav. Focus moves to the new
+   step so keyboard and screen-reader users are placed on it either way. */
+function goToStep(el){
+  window.scrollTo({top:0});
+  if(!el) return;
+  el.setAttribute('tabindex','-1');
+  try{ el.focus({preventScroll:true}); }catch{ el.focus(); }
+}
+function start(found,scanned=true){ findings=found; decision=new Map(); coverageMode='pending'; answers.q_state=''; $('#q_state').value=''; renderScanOutcome(found,scanned); renderInstantDestination(); renderEssentials(); renderSecondaryReview(); $('#s1').classList.add('hidden');$('#s2').classList.remove('hidden');$('#progress2').classList.add('on');goToStep($('#s2')); track('coverage_intake_started'); }
+
+function driverAnalysis(){
+  const fs=findings.map((f,i)=>({...f,index:i})).filter(f=>DRIVER.has(f.field));
+  const by=field=>fs.filter(f=>f.field===field);
+  const unique=field=>{const a=by(field), vals=new Set(a.map(f=>f.value instanceof Date?iso(f.value):String(f.value)));return vals.size===1?a[0]:null;};
+  const conflicted=['coverageEndRule','coverageEnd','employmentEnd'].filter(field=>new Set(by(field).map(f=>f.value instanceof Date?iso(f.value):String(f.value))).size>1);
+  if(conflicted.length) return {kind:'conflict',fs,conflicted};
+  const exact=unique('coverageEnd'),rule=unique('coverageEndRule'),last=unique('employmentEnd');
+  if(exact) return {kind:'date',date:exact.value,used:[exact],sources:[exact]};
+  if(rule&&last){const date=rule.value==='end_of_month'?endOfMonth(last.value):last.value;return {kind:'date',date,used:[rule,last],sources:[rule,last],derived:true,rule:rule.value};}
+  if(rule) return {kind:'rule',rule:rule.value,used:[rule],sources:[rule]};
+  if(last) return {kind:'last_only',last:last.value,used:[last],sources:[last]};
+  return {kind:'none',fs:[]};
+}
+
+function renderEssentials(){
+  proposal=driverAnalysis(); const box=$('#coverageReview');box.textContent='';
+  $('#manualCoverage').classList.add('hidden');
+  if(proposal.kind==='date'){
+    const c=el('div','coverage-answer');c.append(el('div','tiny','We think your active health coverage ends'),el('div','date',short(proposal.date)));
+    c.appendChild(el('p','help',proposal.derived?'Calculated from the rule and last day found in your text. Confirm both below.':'Found as an explicit coverage date in your text.'));
+    proposal.sources.forEach(f=>c.appendChild(el('div','source',`“${f.source}”`)));
+    const row=el('div','row'); const use=el('button','primary','Use this date');use.type='button';use.addEventListener('click',()=>acceptProposal());
+    const no=el('button',null,'Enter a different answer');no.type='button';no.addEventListener('click',()=>manualMode());row.append(use,no);c.appendChild(row);box.appendChild(c);
+  } else if(proposal.kind==='rule'){
+    const c=el('div','coverage-answer');c.append(el('div','tiny','Your document appears to say'),el('div','date',proposal.rule==='end_of_month'?'Coverage ends at month-end':'Coverage ends on your last day'));
+    c.appendChild(el('div','source',`“${proposal.sources[0].source}”`));
+    const row=el('div','row'); const use=el('button','primary','Use this rule');use.type='button';use.addEventListener('click',()=>acceptProposal());const no=el('button',null,'Enter it myself');no.type='button';no.addEventListener('click',manualMode);row.append(use,no);c.appendChild(row);box.appendChild(c);
+  } else if(proposal.kind==='conflict'){
+    const n=el('div','notice stop');n.appendChild(el('strong',null,'Your text gives more than one answer.'));
+    n.appendChild(el('p',null,'We will not pick between them. Enter the date or rule yourself, or choose “I don’t know yet.”'));
+    proposal.fs.forEach(f=>n.appendChild(el('div','source',`“${f.source}”`)));box.appendChild(n);manualMode(false);
+  } else {
+    const n=el('div','notice');n.textContent=proposal.kind==='last_only'?`We found your last day (${short(proposal.last)}), but still need the rule your health plan uses.`:'No problem—answer the coverage question below.';box.appendChild(n);manualMode(false);
+  }
+  updateGate();
+}
+
+function acceptProposal(){
+  coverageMode='accepted'; findings.forEach((f,i)=>{if(DRIVER.has(f.field))decision.set(i,'no');}); proposal.used.forEach(f=>decision.set(f.index,'use'));
+  if(proposal.kind==='rule'){answers.q_coverageEndRule=proposal.rule;$('#q_coverageEndRule').value=proposal.rule;$('#manualCoverage').classList.remove('hidden');renderManualDates();}
+  renderEssentialsAccepted(); updateGate();
+}
+function renderEssentialsAccepted(){const box=$('#coverageReview');box.textContent='';const n=el('div','notice');n.appendChild(el('strong',null,proposal.kind==='date'?`Using ${short(proposal.date)} as your coverage-end date.`:'Using the coverage rule from your document.'));const b=el('button','small', 'Change');b.type='button';b.style.marginLeft='10px';b.addEventListener('click',manualMode);n.appendChild(b);box.appendChild(n);if(proposal.kind==='rule')$('#manualCoverage').classList.remove('hidden');}
+function manualMode(refresh=true){coverageMode='manual';findings.forEach((f,i)=>{if(DRIVER.has(f.field))decision.set(i,'no');});$('#manualCoverage').classList.remove('hidden');if(refresh){const box=$('#coverageReview');box.textContent='';box.appendChild(el('div','notice','Tell us what you know. “I don’t know yet” is a complete answer—we will not invent a date.'));}renderManualDates();updateGate();}
+
+function renderManualDates(){
+  const box=$('#manualDates');box.textContent='';const rule=answers.q_coverageEndRule||'';
+  if(rule==='date') addInput(box,'q_exactdate','date','The date active coverage ends');
+  if(rule==='end_of_month'||rule==='last_day') addInput(box,'q_lastday','date','Your last day of employment');
+}
+function addInput(parent,id,type,label,help){const l=el('label',null,label);l.htmlFor=id;const i=el('input');i.id=id;i.type=type;i.value=answers[id]||'';const save=e=>{answers[id]=e.target.value;updateGate();};i.addEventListener('input',save);i.addEventListener('change',save);const h=attachHint(l,id);parent.append(l,i);if(h)parent.appendChild(h);if(help)parent.appendChild(el('p','help',help));}
+
+function coreState(){
+  if(!answers.q_state)return {ok:false,msg:'Choose the state where you will live.'};
+  if(coverageMode==='accepted'&&proposal.kind==='date')return {ok:true};
+  const rule=answers.q_coverageEndRule;
+  if(coverageMode==='accepted'&&proposal.kind==='rule'&&fromInput(answers.q_lastday))return {ok:true};
+  if(coverageMode!=='manual')return {ok:false,msg:'Confirm the coverage date or enter a different answer.'};
+  if(rule==='unsure')return {ok:true};
+  if(rule==='date'&&fromInput(answers.q_exactdate))return {ok:true};
+  if((rule==='end_of_month'||rule==='last_day')&&fromInput(answers.q_lastday))return {ok:true};
+  return {ok:false,msg:rule?'Add the date needed for that coverage rule.':'Choose what you know about when active coverage ends.'};
+}
+function updateGate(){const s=coreState(),g=$('#gate');$('#build').disabled=!s.ok;g.textContent=s.ok?'':s.msg;g.classList.toggle('hidden',s.ok);}
+
+function confirmed(){const c={};findings.forEach((f,i)=>{if(decision.get(i)==='use'&&c[f.field]===undefined)c[f.field]=f.value;});return c;}
+function facts(){
+  const c=confirmed(),f={...c,state:answers.q_state||null,employerType:answers.q_employerType||'unknown',employerSize:answers.q_employerSize||'unknown',medicareEligible:answers.q_medicareEligible||'unknown',otherPlanAvailable:answers.q_otherPlanAvailable||'unknown',elected:answers.q_elected||'unknown'};
+  if(coverageMode==='manual'){
+    delete f.coverageEnd;delete f.coverageEndRule;delete f.employmentEnd;
+    const rule=answers.q_coverageEndRule;
+    if(rule==='date')f.coverageEnd=fromInput(answers.q_exactdate);
+    if(rule==='end_of_month'||rule==='last_day'){f.coverageEndRule=rule;f.employmentEnd=fromInput(answers.q_lastday);}
+  } else if(proposal.kind==='rule'){f.coverageEndRule=proposal.rule;f.employmentEnd=fromInput(answers.q_lastday);}
+  if(answers.q_noticeArrived==='yes')f.noticeDate=fromInput(answers.q_noticeDate);
+  if(answers.q_printedDeadline)f.printedDeadline=fromInput(answers.q_printedDeadline);
+  if(answers.q_subsidyEnd)f.subsidyEnd=fromInput(answers.q_subsidyEnd);
+  if(answers.q_cobraCost&&/^\d+(?:\.\d{1,2})?$/.test(answers.q_cobraCost))f.cobraMonthlyCost=Number(answers.q_cobraCost);
+  if(f.elected==='yes')f.electionDate=fromInput(answers.q_electionDate);
+  if(c.noticeExpected&&!f.noticeExpectedDays){f.noticeExpectedDays=c.noticeExpected;f.noticeIntervalFrom=answers.q_noticeIntervalFrom||null;}
+  return f;
+}
+
+function showResult(){const s=coreState();if(!s.ok){updateGate();return;} lastPlan=buildPlan(facts());$('#s2').classList.add('hidden');$('#out').classList.remove('hidden');$('#progress3').classList.add('on');renderResult(lastPlan);goToStep($('#out'));track('coverage_first_result');}
+
+function marketplaceItem(p){return p.known.find(x=>x.id==='marketplace');}
+function itemDate(i){return i?.date||i?.to||null;}
+function relativeLabel(d){const n=daysBetween(todayStart(),d);return n<0?`${Math.abs(n)} days ago`:n===0?'today':`in ${n} days`;}
+function actionState(p,route){
+  const medicare=facts().medicareEligible==='yes',m=marketplaceItem(p),now=todayStart();
+  if(medicare)return {cls:'urgent',title:'Check Medicare timing before relying on COBRA',body:'Medicare states that choosing COBRA does not extend the Part B special-enrollment period. Confirm your dates with Medicare or a SHIP counselor.',date:'',kind:'medicare'};
+  if(!m)return {cls:'',title:`Start with official coverage options for ${route.stateName}`,body:'We cannot calculate the enrollment window without the coverage-end date, but you can still see where to compare official Marketplace plans and get certified help.',date:'',kind:'marketplace'};
+  if(now>=m.from&&now<=m.to)return {cls:'open',title:'Your Marketplace enrollment window is open now',body:'You can compare Marketplace plans before deciding what to do about COBRA. NextAct does not rank the choices.',date:`Window shown: ${short(m.from)} through ${short(m.to)}`,kind:'marketplace'};
+  if(now<m.from)return {cls:'',title:`Your Marketplace window opens ${short(m.from)}`,body:'You can use the official Marketplace now to understand options, then return when the enrollment window opens.',date:`Opens ${relativeLabel(m.from)} · closes ${short(m.to)}`,kind:'marketplace'};
+  return {cls:'urgent',title:'The loss-of-coverage Marketplace window appears to have ended',body:'Another life event may open a different window. A Marketplace-certified assister can check before you assume you are out of options.',date:`This window ended ${short(m.to)}`,kind:'marketplace'};
+}
+
+function renderResult(p){
+  const f=facts(),route=routeFor(f.state),action=actionState(p,route),m=marketplaceItem(p),cobra=p.known.find(x=>x.id==='cobra_election'),other=p.known.find(x=>x.id==='other_plan');
+  const cobraStatus=f.cobraMonthlyCost?`$${Number(f.cobraMonthlyCost).toLocaleString('en-US',{maximumFractionDigits:2})} per month — from your notice`:cobra?`Election date: ${short(cobra.date)}`:'Notice details still needed';
+  $('#out').innerHTML=`
+    <p class="eyebrow">Your next step</p>
+    <div class="action-card ${action.cls}" id="actionCard"><h2>${action.title}</h2>${action.date?`<div class="date">${action.date}</div>`:''}<p>${action.body}</p><div class="row actions" id="primaryCtas"></div></div>
+    <div id="subsidyCallout"></div>
+    <!-- NOT "side by side": at 375px (the tested device) all three cards stack,
+         and none of them carries the reader's own prices. A layout claim the
+         page does not honour is the same defect class as a mislabelled date. -->
+    <h2 class="section-title">What to compare before choosing coverage</h2>
+    <div class="option-grid">
+      <article class="option"><h3>Marketplace plan</h3><p class="status">${m?(todayStart()>=m.from&&todayStart()<=m.to?'Enrollment window open':'Enrollment window calculated'):'Official destination ready'}</p><p>Compare available plan premiums, networks, deductibles, and any savings on the official Marketplace.</p></article>
+      <article class="option"><h3>COBRA</h3><p class="status">${cobraStatus}</p><p>COBRA generally continues the same plan available to similarly situated active employees. The plan may charge up to 102% of its total cost.</p><a class="button small secondary track-cta" data-event="dol_cobra_clicked" href="https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/cobra" target="_blank" rel="noopener">Read the DOL COBRA guide</a></article>
+      <article class="option"><h3>Another job-based plan</h3><p class="status">${other?`Request by ${short(other.date)}`:'Check whether one is available'}</p><p>A spouse, parent, partner, or new employer plan may have a shorter request window—often at least 30 days after losing coverage.</p></article>
+    </div>
+    <p class="tiny">This is a factual comparison, not a price quote or recommendation. Marketplace prices depend on the household information you enter on the official site; NextAct does not transmit it.</p>
+    <h2 class="section-title">Two quick checks can change what comes first</h2><div class="quick" id="quickChecks"></div>
+    <h2 class="section-title">Dates to keep</h2><div id="knownDates"></div><div class="row actions" id="calendarRow"></div>
+    <details id="cobraDetails" ${cobraOpen?'open':''}><summary>Add COBRA notice or employer-contribution details</summary><div class="details-body"><p class="help">Only open this if you want a fuller COBRA timeline. These answers are not required to use the Marketplace links above.</p><div id="secondaryFindings"></div><div class="field-grid" id="cobraQuestions"></div></div></details>
+    <details><summary>What is still waiting on information?</summary><div class="details-body" id="waiting"></div></details>
+    <details><summary>Important notes and sources</summary><div class="details-body" id="notes"></div></details>
+    <div class="row actions"><button id="editCore" type="button">Change coverage date or state</button></div>`;
+  renderPrimaryCtas(action,route);renderSubsidyCallout();renderQuickChecks();renderKnown(p);renderSecondary();renderCobraQuestions();renderWaiting(p);renderNotes(p);wireResult();
+}
+
+/* ⭐ The marquee rule, made discoverable WITHOUT a new mandatory input.
+   Measured 2026-08-15: with the contribution end date confirmed, the date was
+   shown but its CONSEQUENCE sat inside a closed "What is still waiting"
+   panel, and the one question that resolves it (#q_elected) sat inside a
+   different closed panel — so nothing ever told the reader that an answer was
+   available to give.
+
+   Discipline: states the regulation, never attaches it to the reader with a
+   possessive ("a complete stop … is an enrollment event", not "you qualify"),
+   and carries the OPPOSITE direction in the same breath, because showing the
+   opening without the ending-it-yourself case is what invites the wrong move.
+   Renders only while the answer is genuinely unknown — once answered either
+   way it disappears rather than nagging. */
+function renderSubsidyCallout(){
+  const box=$('#subsidyCallout'); if(!box) return;
+  box.textContent='';
+  const f=facts();
+  if(!f.subsidyEnd||f.elected!=='unknown') return;
+  const c=el('div','notice');
+  c.appendChild(el('strong',null,`The employer contribution to COBRA in your document ends ${short(f.subsidyEnd)}.`));
+  c.appendChild(el('p',null,'A complete stop to an employer COBRA contribution is a separate Marketplace enrollment event for a person who is enrolled in COBRA at the time (45 CFR 155.420(d)(15)). Ending COBRA yourself is a different situation and does not open one. Whether the first applies here depends on something this page has not been told.'));
+  const b=el('button','small','Answer the COBRA election question');b.type='button';
+  b.addEventListener('click',()=>{
+    const d=$('#cobraDetails'); if(d){d.open=true;cobraOpen=true;}
+    const q=$('#q_elected'); if(q){q.scrollIntoView({block:'center'});q.focus();}
+    track('coverage_detail_updated');
+  });
+  c.appendChild(b);
+  box.appendChild(c);
+}
+
+function renderPrimaryCtas(action,route){const box=$('#primaryCtas');
+  if(action.kind==='medicare'){
+    box.append(makeLink('Talk to Medicare','https://www.medicare.gov/talk-to-someone','medicare_help_clicked',true),makeLink('Find free SHIP counseling','https://www.shiphelp.org/','ship_clicked',false));
+  } else box.append(makeLink(route.plans.label,route.plans.url,'marketplace_primary_clicked',true),makeLink(route.help.label,route.help.url,'marketplace_help_clicked',false));
+}
+function makeLink(label,href,event,primary){const a=el('a',`button ${primary?'primary':'secondary'}`,label);a.href=href;a.target='_blank';a.rel='noopener';a.dataset.event=event;return a;}
+
+function renderQuickChecks(){const box=$('#quickChecks');box.textContent='';addSelectCard(box,'q_medicareEligible','Is anyone losing coverage eligible for Medicare?','This can make Medicare timing more urgent than COBRA.',[['','Not answered'],['yes','Yes'],['no','No'],['unknown','Not sure']]);addSelectCard(box,'q_otherPlanAvailable','Could you join another employer plan?','Include a spouse, partner, parent, or new employer plan.',[['','Not answered'],['yes','Yes'],['no','No'],['unknown','Not sure']]);}
+function addSelectCard(parent,id,label,help,opts){const c=el('div','card');const l=el('label',null,label);l.htmlFor=id;const s=el('select');s.id=id;opts.forEach(([v,t])=>{const o=el('option',null,t);o.value=v;s.appendChild(o);});s.value=answers[id]||'';s.addEventListener('change',e=>{answers[id]=e.target.value;cobraOpen=$('#cobraDetails')?.open||false;lastPlan=buildPlan(facts());renderResult(lastPlan);track('coverage_detail_updated');});c.append(l,el('p','help',help),s);parent.appendChild(c);}
+
+function renderKnown(p){const box=$('#knownDates');box.textContent='';const useful=p.known.filter(i=>!['subsidy_sep_effective'].includes(i.id));if(!useful.length){box.appendChild(el('div','notice','No date has been calculated. Your official Marketplace destination is still ready above.'));return;}useful.forEach(i=>{const n=el('div','timeline');n.appendChild(el('div','what',i.label));n.appendChild(el('div','when',i.date?fmt(i.date):`${short(i.from)} – ${short(i.to)}`));if(itemDate(i))n.appendChild(el('div','tiny',relativeLabel(itemDate(i))));const d=el('details');d.appendChild(el('summary',null,'Why this date?'));d.appendChild(el('div','details-body calc',i.calc||'You supplied this date.'));n.appendChild(d);box.appendChild(n);});const b=el('button','small','Add these dates to my calendar');b.id='calendar';b.type='button';b.addEventListener('click',()=>downloadCalendar(useful));$('#calendarRow').appendChild(b);}
+
+function secondaryFindings(){return findings.map((f,i)=>({...f,index:i})).filter(f=>!DRIVER.has(f.field));}
+/* Every finding renders WITH ITS UNIT. A bare "14" under the label "COBRA
+   notice timing" is not something a reader can check against their document —
+   14 what, counted from when? The unit is part of the fact. */
+function findingValue(f){
+  if(f.value instanceof Date) return short(f.value);
+  if(f.field==='subsidyMonths') return `${f.value} months`;
+  if(f.field==='noticeExpected') return `Within ${f.value} days`;
+  if(f.value===true) return 'Mentioned';
+  return String(f.value);
+}
+
+/* One renderer, two homes: the confirmation screen (before the first result)
+   and the COBRA panel inside the result. Values render via textContent only. */
+function renderSecondaryInto(box,onChange,opts={}){
+  if(!box) return;
+  box.textContent='';
+  const fs=secondaryFindings();
+  if(!fs.length){ if(opts.emptyText) box.appendChild(el('p','help',opts.emptyText)); return; }
+  if(opts.heading) box.appendChild(el('p','eyebrow',opts.heading));
+  box.appendChild(el('p','help','We found these in your text. They remain unused unless you explicitly confirm them.'));
+  fs.forEach(f=>{
+    const c=el('div',`finding ${decision.get(f.index)==='use'?'used':decision.get(f.index)==='no'?'rejected':''}`);
+    c.append(el('div','tiny',LABELS[f.field]||f.field),
+             el('div','value',findingValue(f)),
+             el('div','source',`“${f.source}”`));
+    const r=el('div','row');
+    /* State must not be colour-only: the selected control says so in words and
+       carries aria-pressed, so it survives greyscale and a screen reader. */
+    for(const [v,t,sel] of [['use','Use this','Using this'],['no','Leave it out','Left out']]){
+      const on=decision.get(f.index)===v;
+      const b=el('button',on?'primary small':'small',on?sel:t);b.type='button';
+      b.setAttribute('aria-pressed',on?'true':'false');
+      b.addEventListener('click',()=>{
+        if(v==='use')findings.forEach((g,j)=>{if(g.field===f.field&&j!==f.index)decision.set(j,'no');});
+        decision.set(f.index,v);
+        track('finding_reviewed');
+        onChange();
+      });
+      r.appendChild(b);
+    }
+    c.appendChild(r);box.appendChild(c);
+  });
+}
+function renderSecondary(){renderSecondaryInto($('#secondaryFindings'),()=>{cobraOpen=true;lastPlan=buildPlan(facts());renderResult(lastPlan);},
+  {emptyText:'No additional COBRA facts were found in the pasted text. You can answer only what you know below.'});}
+function renderSecondaryReview(){renderSecondaryInto($('#secondaryReview'),()=>{renderSecondaryReview();updateGate();},
+  {heading:'Also found in your document'});}
+
+function renderCobraQuestions(){const box=$('#cobraQuestions');box.textContent='';addFieldSelect(box,'q_employerType','Employer type',[['','Not answered'],['private','Private company, nonprofit, or union'],['state_local','State or local government'],['federal','Federal government'],['church','Church or church-related'],['unknown','Not sure']]);if(!['federal','church'].includes(answers.q_employerType))addFieldSelect(box,'q_employerSize','Employer size',[['','Not answered'],['20plus','20 or more employees'],['under20','Fewer than 20'],['unknown','Not sure']]);addFieldSelect(box,'q_noticeArrived','Has the COBRA election notice arrived?',[['','Not answered'],['yes','Yes'],['no','No'],['unknown','Not sure']]);if(answers.q_noticeArrived==='yes'){addFieldInput(box,'q_noticeDate','date','Date the notice arrived');addFieldInput(box,'q_printedDeadline','date','Election deadline printed on the notice');addFieldInput(box,'q_cobraCost','number','Monthly COBRA premium printed on the notice');}
+  addFieldInput(box,'q_subsidyEnd','date','Date employer COBRA payments end');addFieldSelect(box,'q_elected','Have you elected COBRA?',[['','Not answered'],['yes','Yes'],['no','No'],['unknown','Not sure']]);if(answers.q_elected==='yes')addFieldInput(box,'q_electionDate','date','Date you elected COBRA');
+}
+function addFieldSelect(parent,id,label,opts){const w=el('div');const l=el('label',null,label);l.htmlFor=id;const s=el('select');s.id=id;opts.forEach(([v,t])=>{const o=el('option',null,t);o.value=v;s.appendChild(o);});s.value=answers[id]||'';s.addEventListener('change',e=>{answers[id]=e.target.value;if(id==='q_noticeArrived'&&e.target.value!=='yes'){delete answers.q_noticeDate;delete answers.q_printedDeadline;delete answers.q_cobraCost;}if(id==='q_elected'&&e.target.value!=='yes')delete answers.q_electionDate;cobraOpen=true;lastPlan=buildPlan(facts());renderResult(lastPlan);});const h=attachHint(l,id);w.append(l,s);if(h)w.appendChild(h);parent.appendChild(w);}
+function addFieldInput(parent,id,type,label){const w=el('div');const l=el('label',null,label);l.htmlFor=id;const i=el('input');i.id=id;i.type=type;i.value=answers[id]||'';if(type==='number'){i.min='0';i.step='0.01';i.inputMode='decimal';}i.addEventListener('change',e=>{answers[id]=e.target.value;cobraOpen=true;lastPlan=buildPlan(facts());renderResult(lastPlan);});const h=attachHint(l,id);w.append(l,i);if(h)w.appendChild(h);parent.appendChild(w);}
+
+function renderWaiting(p){const box=$('#waiting');box.textContent='';if(!p.waiting.length){box.appendChild(el('p','help','Nothing else is waiting.'));return;}p.waiting.forEach(i=>{const n=el('div','waiting');n.append(el('b',null,i.label),el('div',null,i.why),el('div','tiny',`Needed: ${i.need}`));box.appendChild(n);});}
+function renderNotes(p){const box=$('#notes');box.textContent='';p.branches.forEach(b=>{const n=el('div',`branch ${b.severity==='ask'?'ask':''}`);n.append(el('b',null,b.text),el('p',null,b.detail||''));box.appendChild(n);});p.notes.forEach(x=>{const n=el('div','waiting');n.append(el('div',null,x.text),el('div','tiny',x.action||''));box.appendChild(n);});const src=el('p','help');src.append('Marketplace routing: CMS, Plan Year 2026. COBRA continuity and 102% limit: ');const a=makeLink('U.S. Department of Labor','https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/cobra','dol_source_clicked',false);a.className='';src.appendChild(a);box.appendChild(src);}
+function wireResult(){document.querySelectorAll('[data-event]').forEach(n=>n.addEventListener('click',()=>track(n.dataset.event)));$('#editCore').addEventListener('click',()=>{$('#out').classList.add('hidden');$('#s2').classList.remove('hidden');$('#progress3').classList.remove('on');goToStep($('#s2'));});$('#cobraDetails').addEventListener('toggle',e=>{cobraOpen=e.target.open;if(cobraOpen)track('cobra_details_opened');});}
+
+function downloadCalendar(items){
+  const dated=items.filter(i=>i.date||i.from||i.to);if(!dated.length)return;
+  const stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//NextAct//Coverage timeline//EN','CALSCALE:GREGORIAN'];
+  dated.forEach((i,n)=>{const dates=i.date?[i.date]:[i.from,i.to];dates.filter(Boolean).forEach((d,j)=>{const y=iso(d).replace(/-/g,'');lines.push('BEGIN:VEVENT',`UID:${stamp}-${n}-${j}@nextact.work`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${y}`,`SUMMARY:${esc(i.label+(i.from?(j===0?' opens':' closes'):''))}`,'DESCRIPTION:Date calculated from information you confirmed in NextAct. Confirm against the governing notice.','END:VEVENT');});});lines.push('END:VCALENDAR');
+  const url=URL.createObjectURL(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'}));const a=el('a');a.href=url;a.download='nextact-health-coverage-dates.ics';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);track('coverage_calendar_downloaded');
+}
+</script>
