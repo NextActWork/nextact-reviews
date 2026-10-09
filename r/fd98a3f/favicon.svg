@@ -1,0 +1,8 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NextAct logo (simplified)">
+  <g transform="rotate(-9 32 32)">
+    <rect x="9" y="10" width="22" height="32" rx="2.5" fill="#14213D" opacity="0.22"/>
+    <rect x="17" y="15" width="22" height="32" rx="2.5" fill="#14213D" opacity="0.55"/>
+    <rect x="25" y="20" width="22" height="32" rx="2.5" fill="#14213D"/>
+    <path d="M28 41 L33 46 L44 35" stroke="#BC4749" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

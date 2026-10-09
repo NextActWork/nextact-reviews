@@ -1,0 +1,79 @@
+# Strict-Transport-Security tells browsers to refuse plain HTTP for this host.
+# Six months, and deliberately WITHOUT includeSubDomains or preload: both are
+# hard to walk back, includeSubDomains would commit every current and future
+# subdomain of nextacts.xyz sight unseen, and preload is effectively permanent.
+# Raise to a year and add the others once this has run without incident.
+#
+# Content-Security-Policy comes in two, which is intentional.
+#
+# The ENFORCED one is what the site can honour today. It stops an injected
+# <script src="evil"> from loading, an injected <base> from rewriting every
+# relative URL, an injected form from posting off-site, plugin/object
+# embedding, and framing by another origin. It does NOT stop an injected
+# INLINE script, because five pages -- /blog, /coverage, /offer, /reporting and
+# /severance -- carry hand-written inline scripts and 'unsafe-inline' is what
+# keeps them running. That is a real limit, not a formality: /coverage and
+# /severance are the two pages that read documents a reader pastes in.
+#
+# The REPORT-ONLY one drops 'unsafe-inline' from script-src and nothing else,
+# so the console reports exactly which inline scripts would have to move into
+# files before the strict policy can be enforced. It cannot break a page.
+#
+# style-src keeps 'unsafe-inline' in BOTH: /severance alone has 62 inline style
+# attributes, and reporting them would bury the script violations that matter.
+#
+# frame-src names Substack because /blog embeds their subscribe form. It is the
+# only external origin the site loads anything from; every other external URL
+# in the markup is a link, which CSP does not govern.
+#
+# ⚠️ MEASURED 2026-08-20, and it decides how far this can ever go: CLOUDFLARE
+# ITSELF INJECTS AN INLINE SCRIPT into every response -- the bot-detection
+# bootstrap that sets window.__CF$cv$params and loads
+# /cdn-cgi/challenge-platform/scripts/jsd/main.js. It is not in our build, which
+# is why reading the repository does not reveal it, and it carries a token that
+# CHANGES ON EVERY REQUEST (r:'a2e4c97abc2b67a6', then '...c09ca0653', then
+# '...d1bd6238f' on three consecutive fetches). Its hash therefore differs every
+# time, so no hash-based policy can ever cover it.
+#
+# So moving our own inline scripts into files would NOT let script-src go
+# strict. While Cloudflare injects that script the only options are
+# 'unsafe-inline' or turning the Cloudflare feature off, and that is a trade
+# against bot protection rather than a code change. The report-only policy is
+# still worth keeping: it is what surfaced this, and it will show any NEW inline
+# script we add ourselves.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=15768000
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://nextacts.substack.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://nextacts.substack.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The employer files change four times a year, when DOL publishes a new
+# quarterly release -- and a new release is written to a new path, because the
+# release id is part of the URL (see stateDataPath in src/lib/sponsor-search.mjs).
+# A given path therefore never changes content, which is what makes `immutable`
+# safe here. Previously these were served must-revalidate, so every reader paid
+# a round trip to the origin for a file that had not moved in months.
+#
+# The `:release` segment is load-bearing, NOT decoration. A bare
+# /data/sponsors/* also matches the unversioned paths this layout replaced --
+# and Cloudflare Pages keeps serving deleted assets from its own cache, so
+# /data/sponsors/CA.json still answers 200 with the old file. Marking THAT
+# immutable would freeze a superseded quarter in readers' browsers for a year.
+# Anything without a release segment must fall through to the default.
+/data/sponsors/:release/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=86400

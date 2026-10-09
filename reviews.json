@@ -7,5 +7,14 @@
     "source_manifest_sha256": "abe21f6ab68c935a521536134c921549019a795a9c48e2fd6f42d1a8a38e151e",
     "review_manifest_sha256": "5874b7cc7955cdf17569ac6cfaa74797caf8cd77e52c97053c810d0523bcf3c2",
     "retention": "delete this review path after the candidate merges"
+  },
+  {
+    "source_sha": "fd98a3fd685c21a00d3ef6e415afd20c9f836c51",
+    "short_sha": "fd98a3f",
+    "path": "r/fd98a3f/",
+    "built_at": "2026-10-09T06:30:20.536Z",
+    "source_manifest_sha256": "ba55b0995926d7f7aa810387f2c8ff468789a71a6c439000e84573a360d0b298",
+    "review_manifest_sha256": "c4ff086d2067270ee9b7b0e7ce0298c6a4d275c475cda4dd9102a17b0083bf64",
+    "retention": "delete this review path after the candidate merges"
   }
 ]

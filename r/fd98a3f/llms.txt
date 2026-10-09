@@ -1,0 +1,27 @@
+# NextActs.xyz
+
+> A weekly read on the US labor market — jobless claims, the unemployment rate, and where the jobs are.
+
+NextActs follows US labor-market data on the government's release schedule and explains it for a general audience:
+
+- **Initial jobless claims** (DOL/ETA, released Thursdays) — new unemployment filings, weekly.
+- **Continued claims** — people still receiving benefits, weekly.
+- **Unemployment rate & nonfarm payrolls** (BLS Employment Situation, jobs-report Friday) — monthly.
+
+Data source: U.S. Department of Labor and Bureau of Labor Statistics, retrieved via FRED (Federal Reserve Bank of St. Louis).
+
+## Publishing cadence
+- New post every **Thursday** after the initial-claims release.
+- On weeks the BLS jobs report lands (its Friday), that week's post publishes **Friday** instead.
+- Weekly claims data is tracked **every** week, including jobs-report weeks.
+
+## NextAct.work — our first product
+NextAct.work (https://nextact.work) helps people file for unemployment. At launch, it prepares the correct state unemployment-claim forms, filled in and ready for you to review and submit — it is not an e-filing service.
+
+## Tools
+- **Offer Letter Reader (BETA)**: https://nextacts.xyz/offer — paste an employment offer letter and see its deadlines, its compensation terms, and which terms it never states. Runs entirely in the reader's browser; the document is never uploaded. Notable behaviour: where wording is ambiguous it abstains rather than guessing, and deadlines expressed as intervals ("valid for three working days from the date of this letter") are calculated and labelled as calculated. BETA — accuracy is not yet validated on an independent sample, and it is not legal or tax advice.
+
+## Key pages
+- Trends dashboard: https://nextacts.xyz/
+- Blog: https://nextacts.xyz/blog
+- About NextActs: https://nextacts.xyz/about
