@@ -1,0 +1,610 @@
+<!DOCTYPE html><html lang="en"> <head><meta name="robots" content="noindex"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>What your offer letter doesn’t say — Offer Letter Reader (BETA) | NextActs</title><meta name="description" content="Paste an offer letter and see its deadlines, its terms, and — the part most tools skip — what it never states. Runs entirely in your browser. Beta."><link rel="canonical" href="https://nextacts.xyz/offer/"><link rel="icon" type="image/svg+xml" href="/nextact-reviews/r/2329eb3/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/nextact-reviews/r/2329eb3/favicon-32.png"><link rel="icon" href="/nextact-reviews/r/2329eb3/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/nextact-reviews/r/2329eb3/apple-touch-icon.png"><meta property="og:type" content="website"><meta property="og:title" content="What your offer letter doesn’t say — Offer Letter Reader (BETA) | NextActs"><meta property="og:description" content="Paste an offer letter and see its deadlines, its terms, and — the part most tools skip — what it never states. Runs entirely in your browser. Beta."><meta property="og:url" content="https://nextacts.xyz/offer/"><meta property="og:image" content="https://nextacts.xyz/img/og-card.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="What your offer letter doesn’t say — Offer Letter Reader (BETA) | NextActs"><meta name="twitter:description" content="Paste an offer letter and see its deadlines, its terms, and — the part most tools skip — what it never states. Runs entirely in your browser. Beta."><meta name="twitter:image" content="https://nextacts.xyz/img/og-card.png"><link rel="preload" href="/nextact-reviews/r/2329eb3/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Offer Letter Reader","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","url":"https://nextacts.xyz/offer","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NextActs"},"description":"A browser-based tool that extracts stated deadlines and compensation terms from an employment offer letter, resolves deadlines expressed as intervals, and reports which terms the letter does not state. Beta: accuracy is not yet validated on an independent sample."}</script><link rel="stylesheet" href="/nextact-reviews/r/2329eb3/_astro/Base.DxqflEdI.css">
+<link rel="stylesheet" href="/nextact-reviews/r/2329eb3/_astro/offer.CAMeZVIT.css"></head> <body> <header class="nav" data-astro-cid-dmqpwcec> <div class="wrap nav-inner" data-astro-cid-dmqpwcec> <a href="/nextact-reviews/r/2329eb3/" class="wordmark" aria-label="NextActs home" data-astro-cid-dmqpwcec> <span class="n" data-astro-cid-dmqpwcec>Next</span><span class="a" data-astro-cid-dmqpwcec>Acts</span> </a> <nav aria-label="Primary" data-astro-cid-dmqpwcec> <a href="/nextact-reviews/r/2329eb3/trends" class="nav-link" data-astro-cid-dmqpwcec>Trends</a><a href="/nextact-reviews/r/2329eb3/research" class="nav-link" data-astro-cid-dmqpwcec>Research</a><a href="/nextact-reviews/r/2329eb3/blog" class="nav-link" data-astro-cid-dmqpwcec>Blog</a><a href="/nextact-reviews/r/2329eb3/about" class="nav-link" data-astro-cid-dmqpwcec>About</a> <a class="btn btn-primary nav-cta" href="https://nextact.work" data-astro-cid-dmqpwcec>NextAct.work →</a> </nav> </div> </header> <div class="banner">BETA — accuracy is not independently validated. Confirm any date against your letter before you act on it.</div> <main>  <div class="offer"> <header class="intro"> <h1>What your offer letter doesn’t say</h1> <p class="lede">
+NextActs follows the labor market in aggregate — claims, payrolls, the unemployment rate.
+        This does the opposite: it reads the single document at the center of one person’s move,
+        and tells you what’s in it and when the clocks run out.
+</p> </header> <!-- STEP 1 --> <section id="s1" class="card"> <h2><label for="inp">Paste your offer letter</label></h2> <textarea id="inp" name="offer-letter" aria-describedby="paste-help" placeholder="Paste the text of your offer letter, or the email it arrived in…"></textarea> <p id="paste-help" class="hint"><strong>Got a PDF?</strong> Open it, press
+<kbd>&#8984;A</kbd> / <kbd>Ctrl A</kbd> to select all, <kbd>&#8984;C</kbd> / <kbd>Ctrl C</kbd>
+to copy, then paste here. If the PDF is a scan there’s no text to copy — paste the email the
+        offer arrived in instead.</p> <div class="row"> <button class="primary" id="go" disabled>Read my offer</button> <button class="ghost" id="sample">Use a sample letter</button> </div> <p class="privacy"> <span aria-hidden="true">&#128274;</span> <span><strong>Processed on this device.</strong> The letter is read by code running in your
+        browser. It is never uploaded, never logged, and nothing is kept when you close this tab.
+        If you want to check that claim rather than take our word for it: load this page, disconnect
+        from the network, and it still works.<br> <strong>What we do count:</strong> anonymous event names — <code>parsed</code>,
+<code>ics</code>, or which field you corrected. That name is the entire message; no text
+        from your letter, no IP, no cookies, no tracking. We count it because this is a beta and
+        we need to know whether it works.</span> </p> </section> <div class="finding" id="why"> <p><strong>Why this exists.</strong> We built it against real offer letters, and the most
+      useful thing we learned was how little they commit to. Of the small set we tested, most
+      expressed the response deadline as an interval — <em>“valid for three (3) working days from
+      the date of this letter”</em> — rather than naming a date. None of them stated a start date;
+      that was a blank line, “a mutually agreed date”, or a form field.</p> <p>It’s a handful of letters, not a survey — but it was enough to change what we built. The
+      deadline you’re working to often isn’t written down anywhere. It has to be counted. That’s
+      the job this does.</p> </div> <!-- STEP 2 --> <section id="s2" class="hide"> <h2 class="step">Step 2 of 2 — check our reading</h2> <p class="lede small">Nothing below is used until you confirm it. Every value shows the
+        sentence it came from, and anything we couldn’t find is left blank rather than guessed.</p> <div class="card"><h3>Terms</h3><div id="fields"></div></div> <div class="card"> <h3>Two things the letter can’t tell us</h3> <div class="f"> <div class="k"><label for="empstatus">Right now you are</label></div> <div><select id="empstatus" name="employment-status"> <option value="employed">Employed somewhere else</option> <option value="between">Between jobs</option> <option value="ui">Between jobs and claiming unemployment</option> </select></div> </div> <div class="f"> <div class="k"><label for="jur">Where you’ll mainly do this work</label></div> <div> <select id="jur" name="work-state" aria-describedby="jur-help"> <option value="">Choose a state (optional)</option> <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option> <option value="multi">More than one state, or remote</option> <option value="unsure">I’m not sure</option> </select>  <div class="src" id="jur-help">Optional. The letter names an office; if you’ll work
+              somewhere else, say where. We use this only to show legal-help resources for that
+              state further down — it does not decide which state’s law applies to you, and it is
+              not sent anywhere.</div> </div> </div> <div class="row"> <button class="primary" id="build">Build my plan</button> <button class="ghost" id="back">← Paste a different letter</button> </div> </div> </section> <!-- STEP 3 --> <section id="s3" class="hide"> <div id="hero" class="hero"></div> <div class="card"><h3>1 · Dates we found</h3><ul id="o-dates"></ul></div> <div class="card"><h3>2 · Terms we found</h3><div id="o-terms"></div></div> <div class="card"><h3>3 · Not stated in this letter</h3><ul id="o-missing" class="notstated"></ul> <p class="note">These aren’t problems. They’re simply absent from the document — some will
+          live in a separate grant notice, plan document, or benefits packet.</p></div> <div class="card"><h3>4 · Questions you may want to consider</h3><div id="o-questions"></div> <p class="note">Questions, not advice. Whether any of these is worth raising depends on your
+          situation, and some won’t apply to you at all.</p></div> <div class="card"><h3>5 · Put it on your calendar</h3> <p class="lede small">Downloads to your device. No email required.</p> <div id="confirm-gate" class="gate hide"> <label for="confirm-calc"> <input type="checkbox" id="confirm-calc"> <span><strong>One of these dates was calculated, not stated.</strong> <span id="gate-detail"></span> Tick to confirm you’ve checked it against the
+              letter — we’d rather you catch our arithmetic than inherit it.</span> </label> </div> <div class="row"> <button class="primary" id="ics">Download calendar file (.ics)</button> <button class="ghost" id="copy">Copy my summary</button> <button class="ghost" id="restart">Start over</button> </div> <p class="note" id="dl-status" role="status" aria-live="polite"></p></div> <div class="card"> <h3>6 · If you want to talk to a lawyer</h3> <p class="lede small">Not a recommendation, and not a referral. NextActs selects no lawyer,
+          takes no payment from any of them, and no listing here is an endorsement — each one is
+          shown with a sentence from its own page so you can judge it yourself.</p> <div id="o-legalhelp"></div> </div> <div class="card"> <h3>7 · Tell us what it got wrong</h3> <p class="lede small">This is a beta and your correction is the most useful thing we can
+          get. What did it miss, mislabel, or claim that wasn’t in your letter?</p> <label class="sr-only" for="fb">Feedback</label> <textarea id="fb" rows="3" aria-describedby="fb-help" placeholder="e.g. it missed the deadline — my letter said &quot;please respond by close of business Friday&quot;"></textarea> <p id="fb-help" class="hint"><strong>Please don’t paste your letter here.</strong> Unlike
+          everything above, this box <em>is</em> sent to us. Describe the wording, don’t include
+          the document.</p> <div class="row"><button class="ghost" id="fb-send">Send feedback</button></div> <p class="note" id="fb-status" role="status" aria-live="polite"></p> </div> </section> <section class="limits"> <h2>What this can’t do yet</h2> <p class="limits-lede">It is a beta, and the honest version of that word:
+<strong>accuracy is not independently validated</strong>, it abstains where the wording is
+        ambiguous rather than guessing, and any deadline it calculates is an estimate worth
+        confirming.</p> <details class="limits-more"><summary>Every limit, in full</summary> <ul> <li><strong>Accuracy is not independently validated.</strong> It’s been built and checked
+          against a small number of real letters and a synthetic test set we wrote ourselves. That
+          catches regressions; it does not prove it generalises to your letter.</li> <li><strong>It abstains a lot, on purpose.</strong> Naming the wrong deadline is far worse
+          than naming none, so where the wording is ambiguous it leaves the field blank and says so.</li> <li><strong>Calculated deadlines are estimates.</strong> When a letter says “three working
+          days”, we count weekdays — we don’t know your employer’s holiday calendar, and whether the
+          count includes the letter’s own date is genuinely ambiguous. Confirm anything we compute.</li> <li><strong>Scanned PDFs won’t work.</strong> There’s no text to read in an image. Paste the
+          email instead.</li> <li><strong>It doesn’t tell you whether your offer is good.</strong> That needs market data
+          this tool doesn’t have. It reports what the document says and what it leaves out.</li> </ul> </details> <p class="note">Not legal or tax advice. It reports the contents of a document you already
+        have, and flags dates worth confirming with the people who sent it.</p> </section> </div>  </main> <footer data-dark data-astro-cid-sz7xmlte> <div class="wrap foot" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span class="wordmark" data-astro-cid-sz7xmlte><span class="n" data-astro-cid-sz7xmlte>Next</span><span class="a" data-astro-cid-sz7xmlte>Acts</span></span> <p class="muted" style="margin-top:.6rem; max-width: 38ch;" data-astro-cid-sz7xmlte>
+A weekly read on the US labor market. NextAct.work helps people file for unemployment.
+</p> <p class="foot-parent" data-astro-cid-sz7xmlte>An initiative of <a class="parent-link" href="https://250tech.com" data-astro-cid-sz7xmlte><strong data-astro-cid-sz7xmlte>250tech&nbsp;Labs</strong></a></p> </div> <div class="foot-links" data-astro-cid-sz7xmlte> <a href="/nextact-reviews/r/2329eb3/trends" data-astro-cid-sz7xmlte>Trends</a> <a href="/nextact-reviews/r/2329eb3/research" data-astro-cid-sz7xmlte>Research</a> <a href="/nextact-reviews/r/2329eb3/blog" data-astro-cid-sz7xmlte>Blog</a> <a href="/nextact-reviews/r/2329eb3/about" data-astro-cid-sz7xmlte>About</a> <a href="https://nextact.work" data-astro-cid-sz7xmlte>NextAct.work</a> </div> </div> <div class="wrap foot-legal" data-astro-cid-sz7xmlte> <span class="muted" data-astro-cid-sz7xmlte>© 2026 NextActs, an initiative of <a class="parent-link" href="https://250tech.com" data-astro-cid-sz7xmlte>250tech Labs</a>. Data sourced from the U.S. Department of Labor &amp; Bureau of Labor Statistics via FRED (Federal Reserve Bank of St. Louis).</span> </div> </footer> </body></html> <script>(function(){const LH_VIEW = {"national":[{"id":"nela_national","name":"NELA Find-A-Lawyer","url":"https://engagement.nela.org/NELA/NELA/findalawyer.aspx","quote":"We offer this directory to help individuals connect with attorneys; however, NELA does not operate a lawyer referral service. Inclusion in this directory should not be considered a recommendation.","quote_source":"https://engagement.nela.org/NELA/NELA/findalawyer.aspx","route_type":"national_directory","coverage_scope":"national, filterable by state","last_verified":"2026-08-18","is_referral_service":false}],"jurisdictions":{"AZ":[{"id":"azela","name":"Arizona Employment Lawyers Association (AzELA)","url":"https://azela.org/azela-find-lawyer-directory","quote":"The Arizona Employment Lawyers Association (AzELA) is an Arizona-statewide specialty bar association of lawyers and related professionals who exclusively or primarily represent employees in employment-related legal matters.","quote_source":"https://azela.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"CA":[{"id":"cela","name":"California Employment Lawyers Association (CELA)","url":"https://cela.org/?pg=FindaLawyer","quote":"CELA is a statewide organization of over 1,400 California attorneys who devote the major portion of their practices to representing employees in individual employment cases and class actions, including cases involving unpaid wages, discrimination, harassment, retaliation and whistleblowing.","quote_source":"https://cela.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"CO":[{"id":"co_pela","name":"Colorado Plaintiff Employment Lawyers Association (PELA)","url":"https://coloradopela.wildapricot.org/find-a-lawyer","quote":"All PELA members specialize in the representation of employees in a broad range of employment related matters.","quote_source":"https://coloradopela.wildapricot.org/find-a-lawyer","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"FL":[{"id":"fl_nela","name":"Florida NELA","url":"https://floridanela.org/lawyers/","quote":"Our membership is restricted to attorneys who primarily represent employees when handling employment-related legal matters.","quote_source":"https://floridanela.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"GA":[{"id":"nela_ga","name":"NELA Georgia","url":"https://exchange.nela.org/nelaga/publicdirectory","quote":"Members have paid a fee to have a listing within this directory.","quote_source":"https://nelaga.org/lawyers/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true,"paid_quote":"Members have paid a fee to have a listing within this directory."}],"IL":[{"id":"nela_il","name":"NELA-Illinois","url":"https://nela-illinois.org/content.aspx?page_id=78&club_id=853437","quote":"Founded in 1985, NELA is the country's first and only bar association that is exclusively comprised of lawyers who solely or primarily represent individuals in employment-related matters.","quote_source":"https://nela-illinois.org/content.aspx?page_id=22&club_id=853437&module_id=242697","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"LA":[{"id":"pela_south_la","name":"PELA of South Louisiana","url":"https://louisianaemploymentlawyers.wordpress.com/find-a-lawyer-2/","quote":"Plaintiffs' Employment Lawyers Association (PELA) – South Louisiana is an organization that promotes public awareness of employee rights and provides collaboration with attorneys who represent employees.","quote_source":"https://louisianaemploymentlawyers.org/","route_type":"specialized_regional","coverage_scope":"regional — South Louisiana only","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":false}],"MA":[{"id":"ma_mela","name":"Massachusetts Employment Lawyers Association (MELA)","url":"https://www.massnela.org/sectiondirectory","quote":"We are an organization of attorneys who devote a majority of their practice to representing employees, rather than companies.","quote_source":"https://www.massnela.org/about/about","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"MD":[{"id":"md_mela","name":"Maryland Employment Lawyers Association (MELA)","url":"https://www.marylandemploymentlawyers.org/directory","quote":"MELA members are attorneys who dedicate 60% or more of their employment practice to representing people, not companies.","quote_source":"https://www.marylandemploymentlawyers.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true},{"id":"mwela_md","name":"Metropolitan Washington Employment Lawyers Association (MWELA)","url":"https://www.mwela.org/find-a-lawyer","quote":"MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.","quote_source":"https://www.mwela.org/find-a-lawyer","route_type":"specialized_regional","coverage_scope":"regional — DC, Maryland and Northern Virginia only","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":false,"paid_quote":"the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"}],"MI":[{"id":"bar_mi","name":"State Bar of Michigan Lawyer Referral Service","url":"https://lrs.michbar.org/LRS-Info/Lawyer-Referral-Service","quote":"For a $25 administrative fee for up to a 25-minute initial consultation, a referral assistant will match you with a participating lawyer referral attorney who will provide up to a 25-minute initial consultation free of charge.","quote_source":"https://lrs.michbar.org/LRS-Info/Lawyer-Referral-Service","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"MN":[{"id":"mn_nela","name":"Minnesota NELA","url":"https://mn-nela.org/about-us/member-list/","quote":"Please note, MN-NELA is not a law firm and makes no representation about the legal services provided by its member attorneys.","quote_source":"https://mn-nela.org/about-us/member-list/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"NE":[{"id":"nenela","name":"Nebraska NELA","url":"https://exchange.nela.org/nenela/publicdirectory","quote":"NE NELA is dedicated to promoting the interests of individual or classes of employees and assisting the lawyers who represent them through professional networking, information sharing, continuing education, and advocacy on issues important to the members of NE NELA and the employees they represent.","quote_source":"https://exchange.nela.org/nenela/aboutus","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"NJ":[{"id":"nela_nj","name":"NELA-NJ","url":"https://www.nelanj.org/find-a-lawyer/","quote":"The members of the National Employment Lawyers Association of New Jersey practice employment law as well as other areas of specialty in all 21 New Jersey counties.","quote_source":"https://www.nelanj.org/find-a-lawyer/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"NY":[{"id":"nelars","name":"NELA/NY Referral Service (NELARS)","url":"https://nelany.com/nelars_main.php","quote":"The NELA/NY referral service was established as a public service to provide individuals with a need with the ability to find knowledgeable lawyers in specific areas of employment law.","quote_source":"https://nelany.com/nelars_main.php","route_type":"employee_side_referral_service","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":true,"covers_jurisdiction_fully":true}],"OH":[{"id":"oh_oela","name":"Ohio Employment Lawyers Association (OELA)","url":"https://ohioela.org/members","quote":"OELA members dedicate 70% or more of their employment practice to protecting and promoting the rights of employees, rather than employers.","quote_source":"https://ohioela.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"OK":[{"id":"ok_oela","name":"Oklahoma Employment Lawyers Association (OELA)","url":"https://www.oela.org/","quote":"OELA is dedicated to the diligent representation of victims of employment discrimination, harassment, wage theft, wrongful termination or other unlawful conduct by their employer.","quote_source":"https://www.oela.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"PA":[{"id":"bar_pa","name":"Pennsylvania Bar Association Lawyer Referral Service","url":"https://www.pabar.org/site/For-the-Public/Find-a-Lawyer","quote":"The PBA Lawyer Referral Service (LRS) will refer you to a qualified attorney ready to help you.","quote_source":"https://www.pabar.org/site/For-the-Public/Find-a-Lawyer","route_type":"bar_referral","coverage_scope":"partial — 47 of Pennsylvania’s 67 counties","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":false}],"TX":[{"id":"tela","name":"Texas Employment Lawyers Association (TELA)","url":"https://www.mytela.org/?pg=FindALawyer","quote":"TELA was founded in 1992 as the voluntary bar association of Texas attorneys who represent people rather than companies.","quote_source":"https://www.mytela.org/?pg=Welcome_To_TELA","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"UT":[{"id":"uela","name":"Utah Employment Lawyers Association (UELA)","url":"https://www.utahemploymentlawyers.org/directory","quote":"Representing workers and seeking to promote equality and justice in the Utah workplace.","quote_source":"https://www.utahemploymentlawyers.org/about-1","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"VA":[{"id":"mwela_va","name":"Metropolitan Washington Employment Lawyers Association (MWELA)","url":"https://www.mwela.org/find-a-lawyer","quote":"MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.","quote_source":"https://www.mwela.org/find-a-lawyer","route_type":"specialized_regional","coverage_scope":"regional — Northern Virginia only","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":false,"paid_quote":"the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"}],"WA":[{"id":"wela","name":"Washington Employment Lawyers Association (WELA)","url":"https://welalaw.org/members/","quote":"WELA is composed of attorneys, law professors, paralegals and law students devoted to the promotion of employee rights.","quote_source":"https://welalaw.org/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"WV":[{"id":"wvela","name":"West Virginia Employment Lawyers Association (WVELA)","url":"https://www.wvela.com/members/default.html","quote":"WVELA is a state wide organization of employment lawyers providing representation and protection to employees who have been wrongfully terminated, harassed, discriminated against, or injured in the workplace.","quote_source":"https://wvela.com/","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"DC":[{"id":"mwela","name":"Metropolitan Washington Employment Lawyers Association (MWELA)","url":"https://www.mwela.org/find-a-lawyer","quote":"MWELA offers this directory as a public service. As an organization, MWELA does not endorse or make any representations or warranties of any kind, express or implied, about the services our members provide.","quote_source":"https://www.mwela.org/find-a-lawyer","route_type":"specialized_regional","coverage_scope":"regional — DC, Maryland and Northern Virginia only","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true,"paid_quote":"the search will provide you with MWELA members who practice in that area and who have paid an additional fee to be listed in the search directory"}],"NC":[{"id":"ncaj","name":"North Carolina Advocates for Justice (NCAJ)","url":"https://www.ncaj.com/for-the-public","quote":"If you need a lawyer referral near you, please feel free to search our membership directory below to explore your options. Please note that attorney members of NCAJ may require compensation for their time in working with you to resolve your issue or to provide legal advice.","quote_source":"https://www.ncaj.com/for-the-public","route_type":"general_directory","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"CT":[{"id":"ctnela","name":"Connecticut Employment Lawyers Association (CTNELA)","url":"https://exchange.nela.org/ctnela/new-item/ctnela-members","quote":"The Connecticut Employment Lawyers Association (CELA) is a nonprofit organization comprised of employment law attorneys from around the state who share in a common mission; providing quality representation to employees and vindicating employees’ rights.","quote_source":"https://exchange.nela.org/ctnela/home","route_type":"specialized_statewide","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"NV":[{"id":"bar_nv","name":"State Bar of Nevada Lawyer Referral Service","url":"https://nvbar.org/lawyerreferral/lrs/","quote":"The LRS staff are not lawyers and therefore cannot give you legal advice, but will help you find the right resource for your situation.","quote_source":"https://nvbar.org/lawyerreferral/lrs/","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"OR":[{"id":"or_boli_complainants","name":"Oregon BOLI attorney list — Complainants","url":"https://www.oregon.gov/boli/about/Documents/20260424%20Attorney%20List%20Complainants%20ENG.pdf","quote":"You can find a list of attorneys who may be willing to represent Respondents (Empresas) and Complainants (Empleados) updated April 29, 2026.","quote_source":"https://www.oregon.gov/boli/about/pages/contact-us.aspx","route_type":"government_directory","coverage_scope":"statewide","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"NM":[{"id":"tela_nm","name":"Texas Employment Lawyers Association (TELA) — cross-state search","url":"https://www.mytela.org/?pg=FindALawyer","quote":"TELA was founded in 1992 as the voluntary bar association of Texas attorneys who represent people rather than companies.","quote_source":"https://www.mytela.org/?pg=Welcome_To_TELA","route_type":"specialized_regional","coverage_scope":"cross-state — TELA's own search offers Texas, Colorado and New Mexico","last_verified":"2026-08-18","is_referral_service":false,"covers_jurisdiction_fully":true}],"AK":[{"id":"bar_ak","name":"Alaska Lawyer Referral Service","url":"https://alaskabar.org/for-the-public/lawyer-referral-service/","quote":"The Alaska Lawyer Referral Service is made up of Alaska lawyers who have signed up to be listed on the Lawyer Referral Service.","quote_source":"https://alaskabar.org/for-the-public/lawyer-referral-service/","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"HI":[{"id":"bar_hi","name":"Hawaii State Bar Lawyer Referral & Information Service","url":"https://hsba.org/find-a-lawyer/attorney-client-relations/lris","quote":"The Lawyer Referral & Information Service (LRIS) is a public service provided by the Hawaii State Bar Association, a 501(c)(6) non-profit organization.","quote_source":"https://hsba.org/find-a-lawyer/attorney-client-relations/lris","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"KS":[{"id":"bar_ks","name":"Kansas Bar Association Lawyer Referral Service","url":"https://www.ksbar.org/?pg=lrs_public","quote":"The LRS refers clients to licensed and experienced attorneys who have registered to receive referrals in specific areas of law and who are in good standing with the Kansas Supreme Court.","quote_source":"https://www.ksbar.org/?pg=lrs_public","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"MT":[{"id":"bar_mt","name":"Licensed Lawyer Montana (State Bar of Montana)","url":"https://www.montanabar.org/For-the-Public","quote":"The State Bar also provides a lawyer referral service, Licensed Lawyer Montana, which is available free of charge to the public.","quote_source":"https://www.montanabar.org/For-the-Public","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"NH":[{"id":"bar_nh","name":"New Hampshire Bar Association Lawyer Referral Service","url":"https://www.nhbar.org/lawyer-referral-service/","quote":"A Referral Specialist will help clarify your legal issue and attempt to match you with the right attorney or another resource.","quote_source":"https://www.nhbar.org/lawyer-referral-service/","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"RI":[{"id":"bar_ri","name":"Rhode Island Bar Association Lawyer Referral Service","url":"https://ribar.com/?pg=lawyerreferralservice","quote":"Every year, the Rhode Island Bar Association’s Lawyer Referral Service (LRS) receives thousands of calls from individuals seeking help finding the right attorney.","quote_source":"https://ribar.com/?pg=lawyerreferralservice","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"WI":[{"id":"bar_wi","name":"State Bar of Wisconsin Lawyer Referral Service","url":"https://www.wisbar.org/forPublic/INeedaLawyer/pages/lrs.aspx","quote":"When you contact the Lawyer Referral Service, you won’t receive legal advice, but you will speak with a trained legal assistant who can assess your situation and connect you with the most appropriate resource.","quote_source":"https://www.wisbar.org/forPublic/INeedaLawyer/pages/lrs.aspx","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}],"WY":[{"id":"bar_wy","name":"Wyoming State Bar Lawyer Referral Directory","url":"https://www.wyomingbar.org/for-the-public/hire-a-lawyer/lawyer-search/","quote":"The Lawyer Referral Directory consists only of attorneys who are part of our referral program","quote_source":"https://www.wyomingbar.org/for-the-public/hire-a-lawyer/lawyer-search/","route_type":"bar_referral","coverage_scope":"statewide","last_verified":"2026-08-19","is_referral_service":true,"covers_jurisdiction_fully":true}]}};
+const LH_NAMES = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","DC":"District of Columbia"};
+const LH_ACTION = {"specialized_statewide":"Browse employee-side employment lawyers","specialized_regional":"Browse employee-side employment lawyers","general_directory":"Search this directory and filter it to employment law","government_directory":"Open the list this agency publishes","national_directory":"Search a national directory of workers’ rights lawyers","bar_referral":"Ask the state bar for a referral","employee_side_referral_service":"Ask this service for a referral"};
+const LH_KIND = {"specialized_statewide":"A member directory of an association of lawyers who represent employees.","specialized_regional":"A member directory of an association of lawyers who represent employees.","general_directory":"A directory of lawyers in many practice areas, not only employment.","government_directory":"A list published by a government agency, not by an association.","national_directory":"A national directory of lawyers who represent employees, filterable by state.","bar_referral":"A general lawyer referral service run by the state bar. It covers every area of law, not only employment, and it is not limited to lawyers who represent employees.","employee_side_referral_service":"A referral service run by an association of lawyers who represent employees. You contact it and it puts you in touch with a lawyer."};
+
+  /* Inlined at build time. No fetch: this page does its work in the browser and
+     must keep working with the network off, which is a promise made on it. */
+  window.LEGAL_HELP = { view: LH_VIEW, names: LH_NAMES, action: LH_ACTION, kind: LH_KIND };
+})();</script> <script src="/nextact-reviews/r/2329eb3/js/offer-parser.js"></script> <script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  /* ⭐ A step transition goes to the TOP of the page, not to the new section.
+     Hiding the previous step shrinks the document after scrollIntoView has
+     already scrolled for the taller layout, which strands the scroll position
+     and cuts the page heading off above the fold — measured on /coverage as
+     scrollY 250 with maxScroll 0. Going to the top also means nothing can sit
+     under the sticky nav. Focus moves to the new step so keyboard and
+     screen-reader users are placed on it either way. */
+  var goToStep = function (el) {
+    window.scrollTo({ top: 0 });
+    if (!el) return;
+    el.setAttribute('tabindex', '-1');
+    try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); }
+  };
+
+  var esc = function (s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+
+  var offset = function (n) {
+    var d = new Date(); d.setDate(d.getDate() + n);
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  };
+
+  var SAMPLE = 'Northwind Systems\n412 Market Street, Austin, TX\n\n' + offset(-2) + '\n\n'
+    + 'Dear Priya Raman,\n\nWe are pleased to offer you the position of Senior Security Engineer at '
+    + 'Northwind Systems, reporting to Marcus Bennett. This is a full-time, exempt position based in '
+    + 'our Austin, TX office.\n\nYour annual base salary will be $218,000, paid semi-monthly in '
+    + 'accordance with the Company’s standard payroll practices. You will also be eligible for an '
+    + 'annual target bonus of 20% of your base salary, subject to Company and individual performance.\n\n'
+    + 'You will receive a one-time signing bonus of $35,000, payable in the first regular payroll cycle '
+    + 'following your start date. Should you voluntarily terminate your employment within twelve (12) '
+    + 'months of your start date, you agree to repay the full amount of this signing bonus.\n\n'
+    + 'Subject to approval by the Board of Directors, you will be granted 24,000 restricted stock units '
+    + '(RSUs). Your grant will vest over four years with a one-year cliff.\n\n'
+    + 'Your anticipated start date is ' + offset(47) + '.\n\n'
+    + 'Please indicate your acceptance by signing and returning this letter no later than ' + offset(9) + '.\n\n'
+    + 'Sincerely,\nDana Fitzgerald\nTalent Acquisition, Northwind Systems';
+
+  var ROLE_LABEL = {
+    response_deadline: 'Deadline to respond',
+    start_date: 'Start date',
+    grant_date: 'Equity grant date'
+  };
+  var FIELD_LABEL = {
+    base_salary: 'Base salary',
+    signon_bonus: 'Sign-on bonus',
+    bonus_amount: 'Bonus (amount)',
+    relocation_bonus: 'Relocation bonus',
+    bonus_target_pct: 'Bonus (target %)',
+    equity: 'Equity'
+  };
+  var FIELD_KEYS = ['base_salary', 'signon_bonus', 'bonus_amount', 'relocation_bonus', 'bonus_target_pct', 'equity'];
+
+  var parsed = null, confirmedDates = null, confirmedTerms = null;
+
+  // Beacon: an event NAME and nothing else. Fire-and-forget, never awaited, never throws —
+  // the tool has to keep working with the network off, which is a promise made on this page.
+  function track(event) {
+    try {
+      var url = '/nextact-reviews/r/2329eb3/api/e/' + encodeURIComponent(event);
+      if (navigator.sendBeacon) navigator.sendBeacon(url);
+      else fetch(url, { method: 'POST', keepalive: true, mode: 'no-cors' }).catch(function () {});
+    } catch (e) { /* no-op */ }
+  }
+  track('view');
+
+  // Prefill the work state from the letter so the field starts answered rather than blank —
+  // but it stays an editable question, because the letter names an OFFICE and the person may
+  // work remotely from somewhere else entirely.
+  var ST = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
+  /* ⚠️ This table used to omit ELEVEN jurisdictions — every two-word state plus
+     DC: New Hampshire, New Jersey, New Mexico, New York, North Carolina, North
+     Dakota, Rhode Island, South Carolina, South Dakota, West Virginia and the
+     District of Columbia. A letter naming "Newark, New Jersey" simply failed to
+     prefill. It was invisible because nothing ever read the field. Built from
+     the vendored jurisdiction list so it cannot fall behind again. */
+  var STATE_NAMES = (function () {
+    var m = {}, names = (window.LEGAL_HELP && window.LEGAL_HELP.names) || {};
+    for (var code in names) m[names[code]] = code;
+    return m;
+  })();
+  function guessState(text) {
+    var m = text.match(/,\s*([A-Z]{2})\b/g) || [];
+    for (var i = 0; i < m.length; i++) {
+      var code = m[i].replace(/[,\s]/g, '');
+      if (ST.indexOf(code) !== -1) return code;
+    }
+    for (var name in STATE_NAMES) {
+      if (new RegExp(',\\s*' + name + '\\b', 'i').test(text)) return STATE_NAMES[name];
+    }
+    return '';
+  }
+
+  var money = function (v, c) {
+    return (c === 'GBP' ? '£' : c === 'EUR' ? '€' : '$') + Number(v).toLocaleString('en-US');
+  };
+  var pretty = function (iso) {
+    return new Date(iso + 'T00:00:00').toLocaleDateString('en-US',
+      { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+  };
+  var days = function (iso) {
+    return Math.round((new Date(iso + 'T00:00:00') - new Date(new Date().toDateString())) / 86400000);
+  };
+  var relLabel = function (iso) {
+    var n = days(iso);
+    if (n === 0) return 'today';
+    if (n === 1) return 'tomorrow';
+    if (n > 0) return n + ' days away';
+    if (n === -1) return 'yesterday';
+    return Math.abs(n) + ' days ago';
+  };
+
+  $('inp').addEventListener('input', function () { $('go').disabled = !$('inp').value.trim(); });
+  $('sample').addEventListener('click', function () {
+    $('inp').value = SAMPLE; $('go').disabled = false; track('sample');
+  });
+  $('restart').addEventListener('click', function () { location.reload(); });
+  $('back').addEventListener('click', function () {
+    track('back');
+    $('s2').classList.add('hide');
+    $('s1').classList.remove('hide');
+    $('inp').focus();
+    goToStep($('s1'));
+  });
+
+  $('go').addEventListener('click', function () {
+    // "Did anyone use this on a REAL letter" is the only adoption number that matters —
+    // sample runs would otherwise flatter every funnel figure.
+    track($('inp').value.trim() === SAMPLE.trim() ? 'parsed' : 'paste_real');
+    if ($('inp').value.trim() !== SAMPLE.trim()) track('parsed');
+    parsed = window.parseOffer($('inp').value);
+    var box = $('fields');
+    box.innerHTML = '';
+
+    // One visual row per CONCEPT, not per parser field — and a row may mix a term with a
+    // date when they belong to the same thing. An equity award and its grant date are one
+    // subject to a reader; splitting them put an unrelated row between them.
+    var ROWS = [
+      { label: 'Base salary',        fields: [{ k: 'base_salary' }] },
+      { label: 'Sign-on bonus',      fields: [{ k: 'signon_bonus' }] },
+      { label: 'Bonus',              fields: [{ k: 'bonus_target_pct', sub: 'Target (%)' },
+                                              { k: 'bonus_amount',     sub: 'Stated as ($)' }] },
+      { label: 'Relocation bonus',   fields: [{ k: 'relocation_bonus' }] },
+      { label: 'Equity',             fields: [{ k: 'equity',     sub: 'Award' },
+                                              { d: 'grant_date', sub: 'Grant date' }] },
+      { label: 'Deadline to respond', fields: [{ d: 'response_deadline' }] },
+      { label: 'Start date',          fields: [{ d: 'start_date' }] },
+    ];
+
+    // green = we're confident · orange = check it · red = we found nothing.
+    // Red is not an error: "not found" is a legitimate and useful answer here.
+    function chipFor(state, text) { return '<span class="conf ' + state + '">' + text + '</span>'; }
+
+    function termCell(key) {
+      var f = parsed.fields[key], fid = 'fld-' + key;
+      var val = '';
+      if (!f.abstain) {
+        val = key === 'equity' ? f.amount.toLocaleString() + ' ' + (f.type === 'RSU' ? 'RSUs' : 'options')
+            : key === 'bonus_target_pct' ? f.value + '%'
+            : money(f.value, f.currency);
+      }
+      var chip = f.abstain ? chipFor('c-none', 'not found')
+        : chipFor(f.confidence >= 0.9 ? 'c-hi' : 'c-mid', f.confidence >= 0.9 ? 'high confidence' : 'check this');
+      var src = f.abstain ? '' : 'from: \u201C' + esc(f.sentence.slice(0, 150)) + '\u201D';
+      return { id: fid, attr: 'data-k="' + key + '"', type: 'text',
+               value: esc(val), placeholder: f.abstain ? 'Not stated \u2014 add it if you like' : '',
+               chip: chip, src: src };
+    }
+
+    function dateCell(role) {
+      var d = parsed.dates[role], rid = 'dt-' + role, chip, src = '';
+      if (!d) {
+        // Real letters almost never state a start date — it's agreed separately. Asking is
+        // honest; calling it "not found" would imply we failed at something.
+        var ask = role === 'start_date';
+        var needsAnchor = role === 'response_deadline' && parsed.needsLetterDate;
+        chip = chipFor(ask ? 'c-mid' : 'c-none', ask ? 'over to you' : 'not found');
+        src = needsAnchor
+          ? 'This letter sets its deadline as a period of time after its own date \u2014 but we couldn\u2019t identify that date with confidence, so we haven\u2019t calculated anything. Enter it yourself.'
+          : ask ? 'Offer letters usually leave this open \u2014 it\u2019s agreed separately. Add it if you know it.'
+                : '';
+      } else if (d.anchor_provenance === 'relative-to-document-date') {
+        // Our arithmetic must never wear the same badge as something the document stated.
+        chip = chipFor('c-mid', 'we calculated this');
+        src = 'The letter doesn\u2019t name a date. It says \u201C' + esc(d.raw) + '\u201D, so we counted '
+            + d.computed.n + ' ' + d.computed.unit + ' from the letter date (' + pretty(d.computed.from) + '). Worth confirming.';
+      } else {
+        var hi = d.confidence >= 0.9;
+        chip = chipFor(hi ? 'c-hi' : 'c-mid', hi ? 'high confidence' : 'check this');
+        src = 'from: \u201C' + esc(d.sentence.slice(0, 150)) + '\u201D';
+      }
+      return { id: rid, attr: 'data-d="' + role + '"', type: 'date',
+               value: d ? d.iso : '', placeholder: '', chip: chip, src: src };
+    }
+
+    ROWS.forEach(function (rowDef) {
+      var row = document.createElement('div');
+      row.className = 'f';
+
+      var cells = rowDef.fields.map(function (fd) {
+        return fd.k ? termCell(fd.k) : dateCell(fd.d);
+      });
+
+      // Every fieldline uses the SAME three-column grid — sub-label · input · pill — with the
+      // sub-label cell left empty when a row has only one field. That is what makes every box
+      // on the card exactly the same width regardless of how long its pill text happens to be.
+      var lines = cells.map(function (c, i) {
+        var sub = rowDef.fields[i].sub;
+        return '<div class="fieldline">'
+          + (sub ? '<label class="sublabel" for="' + c.id + '">' + sub + '</label>'
+                 : '<span class="sublabel" aria-hidden="true"></span>')
+          + '<input id="' + c.id + '" ' + c.attr + ' type="' + c.type + '" value="' + c.value + '"'
+          + (c.placeholder ? ' placeholder="' + c.placeholder + '"' : '') + '>'
+          + c.chip + '</div>';
+      }).join('');
+
+      var srcs = cells.filter(function (c) { return c.src; })
+        .map(function (c) { return '<div class="src">' + c.src + '</div>'; }).join('');
+
+      row.innerHTML = '<div class="k"><label for="' + cells[0].id + '">' + rowDef.label + '</label></div>'
+        + '<div class="v">' + lines + srcs + '</div>';
+      box.appendChild(row);
+    });
+
+    var g = guessState($('inp').value);
+    if (g && !$('jur').value) $('jur').value = g;
+
+    $('s1').classList.add('hide');
+    $('s2').classList.remove('hide');
+    goToStep($('s2'));
+  });
+
+  $('build').addEventListener('click', function () {
+    var dates = {}, terms = {};
+    [].forEach.call(document.querySelectorAll('[data-d]'), function (el) { if (el.value) dates[el.dataset.d] = el.value; });
+    [].forEach.call(document.querySelectorAll('[data-k]'), function (el) { if (el.value.trim()) terms[el.dataset.k] = el.value.trim(); });
+    confirmedDates = dates; confirmedTerms = terms;
+    track('plan_built');
+
+    // Precision signal: did the reader CHANGE a value we extracted? Field name only — we
+    // never learn what it was or what they changed it to, only that we got it wrong. This
+    // is the single most useful number for improving the parser and it costs no privacy.
+    FIELD_KEYS.forEach(function (k) {
+      var f = parsed.fields[k];
+      if (f.abstain || !terms[k]) return;
+      var shown = k === 'equity' ? f.amount.toLocaleString() + ' ' + (f.type === 'RSU' ? 'RSUs' : 'options')
+        : k === 'bonus_target_pct' ? f.value + '%' : money(f.value, f.currency);
+      if (terms[k] !== shown) track('corrected_' + k);
+    });
+    ['response_deadline', 'start_date', 'grant_date'].forEach(function (r) {
+      var pd = parsed.dates[r];
+      if (pd && dates[r] && dates[r] !== pd.iso) track('corrected_' + r);
+    });
+
+    // A calculated date is prefilled, so it can flow into the plan and the calendar without
+    // the reader ever looking at it. Gate export on an explicit check — the whole product
+    // rests on not letting our arithmetic pass as the document's word.
+    var calc = null;
+    ['response_deadline', 'start_date', 'grant_date'].forEach(function (r) {
+      var pd = parsed.dates[r];
+      if (pd && pd.anchor_provenance === 'relative-to-document-date' && dates[r] === pd.iso) calc = pd;
+    });
+    if (calc) {
+      $('gate-detail').textContent = 'We read “' + calc.raw + '” and counted ' + calc.computed.n
+        + ' ' + calc.computed.unit + ' from ' + pretty(calc.computed.from) + '.';
+      $('confirm-gate').classList.remove('hide');
+      $('ics').disabled = true;
+      $('confirm-calc').checked = false;
+    } else {
+      $('confirm-gate').classList.add('hide');
+      $('ics').disabled = false;
+    }
+    var emp = $('empstatus').value, raw = $('inp').value;
+
+    var dl = dates.response_deadline;
+    $('hero').innerHTML = dl
+      ? '<div class="lbl">Deadline to respond</div><div class="big">' + pretty(dl) + ' — <em>' + relLabel(dl) + '</em></div>'
+        + (days(dl) < 0 ? '<div class="hnote">This date has passed. If you’re reviewing an old letter that’s expected — the rest of the plan still reads normally.</div>' : '')
+      : '<div class="lbl">Deadline to respond</div><div class="big">Not stated</div>'
+        + '<div class="hnote">This letter doesn’t give one. That isn’t unusual — but it also isn’t the same as having no deadline. Worth asking.</div>';
+
+    // Explicit order, not DOM order. Grant date now sits inside the Equity row, so relying
+    // on document position lists it ahead of the response deadline — the opposite of how
+    // urgently the reader needs them.
+    var DATE_ORDER = ['response_deadline', 'start_date', 'grant_date'];
+    var dk = DATE_ORDER.filter(function (r) { return dates[r]; });
+    $('o-dates').innerHTML = dk.length
+      ? dk.map(function (r) { return '<li><strong>' + ROLE_LABEL[r] + '</strong> — ' + pretty(dates[r]) + ' <span class="muted">(' + relLabel(dates[r]) + ')</span></li>'; }).join('')
+      : '<li class="muted">No dates confirmed.</li>';
+
+    var tk = Object.keys(terms);
+    $('o-terms').innerHTML = tk.length
+      ? tk.map(function (k) { return '<div class="f"><div class="k">' + FIELD_LABEL[k] + '</div><div class="v">' + esc(terms[k]) + '</div></div>'; }).join('')
+      : '<p class="muted">No terms confirmed.</p>';
+
+    var missing = [], detected = [], found = {};
+    // Group by CONCEPT, matching what step 2 showed. A reader who saw one "Bonus" row with a
+    // percentage in it would be baffled to then read that "Bonus (stated as $)" is missing —
+    // it isn't missing, it's just the other way of expressing the same thing.
+    var MISSING_GROUPS = [
+      { label: 'Base salary',      keys: ['base_salary'] },
+      { label: 'Sign-on bonus',    keys: ['signon_bonus'] },
+      { label: 'Bonus',            keys: ['bonus_target_pct', 'bonus_amount'] },
+      { label: 'Relocation bonus', keys: ['relocation_bonus'] },
+      { label: 'Equity',           keys: ['equity'] },
+    ];
+    MISSING_GROUPS.forEach(function (g) {
+      if (g.keys.every(function (k) { return !terms[k]; })) missing.push(g.label);
+    });
+    ['response_deadline', 'start_date', 'grant_date'].forEach(function (r) { if (!dates[r]) missing.push(ROLE_LABEL[r]); });
+
+    var CHECKS = [
+      { key: 'covenant', label: 'Non-compete or restrictive covenant language',
+        re: /non-?compet|restrictive covenant|non-?solicit|assignment of ideas|non-?disclosure|confidentiality agreement/i,
+        note: 'We’re showing you where, not interpreting what it means — enforceability varies by state and by wording.' },
+      { key: 'benefits', label: 'Benefits enrollment window',
+        re: /benefits?\s+(?:enroll|eligib|effective|package)|enrollment\s+(?:window|period)/i,
+        note: 'Benefits language appears here, but a specific enrollment deadline may sit in a separate benefits packet rather than the offer letter.' }
+    ];
+    CHECKS.forEach(function (c) {
+      var hit = c.re.exec(raw);
+      if (hit) {
+        var a = Math.max(raw.lastIndexOf('.', hit.index), raw.lastIndexOf('\n', hit.index));
+        var b = raw.indexOf('.', hit.index + hit[0].length); if (b === -1) b = raw.length;
+        found[c.key] = true;
+        detected.push([c.label + ' appears in this letter.',
+          c.note + ' “…' + esc(raw.slice(a + 1, b + 1).replace(/\s+/g, ' ').trim()) + '…”']);
+      } else { missing.push(c.label); }
+    });
+    $('o-missing').innerHTML = missing.map(function (m) { return '<li>' + m + '</li>'; }).join('');
+
+    var qs = [];
+    var repay = raw.split(/(?:[.!?])\s+|\n+/).filter(function (s) {
+      return /\brepay|\brepayment|\breimburse/i.test(s) && /\bbonus\b/i.test(s);
+    })[0];
+    if (repay) qs.push(['This letter ties a repayment obligation to a bonus.',
+      'We’re not interpreting whether it’s enforceable — that varies. Worth knowing exactly what triggers repayment and for how long. “' + esc(repay.replace(/\s+/g, ' ').trim().slice(0, 220)) + '”']);
+    if (terms.equity && /RSU/i.test(terms.equity)) qs.push(['Your equity is RSUs.',
+      'RSUs and restricted stock are taxed differently, and an 83(b) election applies to restricted stock or early-exercised options — not to standard RSUs. Worth confirming which you actually have.']);
+    if (terms.equity && /option/i.test(terms.equity)) qs.push(['Your equity is options.',
+      'The letter doesn’t state a strike price or a current valuation, so the grant’s value can’t be assessed from this document alone.']);
+    if (dates.start_date && !found.benefits) qs.push(['Benefits usually have an enrollment window that opens at hire.',
+      'This letter doesn’t mention one. If there’s a gap between your old coverage ending and the new plan starting, that gap has a cost.']);
+    if (emp === 'ui') qs.push(['You said you’re claiming unemployment.',
+      'Starting work changes what you have to report, and the rules differ by state — including whether you keep certifying and how earnings are reported. Your state agency’s instructions are the ones that govern.']);
+    if (emp === 'between' && dates.start_date && days(dates.start_date) > 21) qs.push(['Your start date is more than three weeks out and you’re between jobs.',
+      'That gap has a cost — coverage, income, or both.']);
+    qs.push(['What is negotiable here is not something this page can tell you.',
+      'That depends on the company, the role, and the market — none of which are in this document.']);
+
+    $('o-questions').innerHTML = detected.concat(qs).map(function (x) {
+      return '<div class="q"><strong>' + x[0] + '</strong><span>' + x[1] + '</span></div>';
+    }).join('');
+
+    renderLegalHelp($('jur').value);
+
+    $('s2').classList.add('hide');
+    $('s3').classList.remove('hide');
+    goToStep($('s3'));
+  });
+
+  /* ── Legal help for the jurisdiction picked in step 2 ────────────────────
+     Same contract as /reporting, and the same three rules. Nothing is ranked:
+     entries come back in registry order. An association with no public lawyer
+     search is never offered — swapping one dead end for a better-looking one
+     is not an improvement, so those are not in the data at all. And the
+     national directory renders whether or not a state was chosen, so a
+     jurisdiction we have not covered is never worse off than before.
+     ⚠️ The jurisdiction never leaves the page. It is not in the beacon, not in
+     a query string, and not in the feedback payload. */
+  function renderLegalHelp(code) {
+    var box = $('o-legalhelp');
+    if (!box || !window.LEGAL_HELP) return;
+    var LH = window.LEGAL_HELP, view = LH.view || {};
+    var local = (code && view.jurisdictions && view.jurisdictions[code]) || [];
+    var html = '';
+
+    if (code && code !== 'multi' && code !== 'unsure' && !local.length) {
+      html += '<p class="note">We have not verified a directory of employee-side employment '
+        + 'lawyers for ' + esc(LH.names[code] || code) + ' yet. The national directory below '
+        + 'covers every state and can be filtered to it.</p>';
+    } else if (code === 'multi' || code === 'unsure') {
+      html += '<p class="note">Then the national directory below is the honest place to start — '
+        + 'we are not going to pick a state for you.</p>';
+    } else if (!code) {
+      html += '<p class="note">You did not say where you will be working, so this is the national '
+        + 'directory. Choosing a state on the previous step adds directories for it.</p>';
+    }
+
+    /* Every route we have for the jurisdiction, then the national fallback. */
+    var partial = local.length > 0 && local.every(function (e) { return !e.covers_jurisdiction_fully; });
+    if (partial) html += '<p class="scope">Everything we found for ' + esc(LH.names[code])
+      + ' covers only part of the state. Read the scope on each one — if you will not be working '
+      + 'in that area, use the national directory below.</p>';
+
+    html += local.concat(view.national || []).map(function (e) { return lhCard(e, LH); }).join('');
+    box.innerHTML = html;
+    [].slice.call(box.querySelectorAll('a[data-lh]')).forEach(function (a) {
+      a.addEventListener('click', function () { track('legal_help_opened'); });
+    });
+  }
+
+  function lhCard(e, LH) {
+    var out = '<div class="q lh" data-lh="1"><strong>' + esc(e.name) + '</strong>';
+    out += '<span class="lh-kind">' + esc(LH.kind[e.route_type] || '') + '</span>';
+    /* Shown whenever the scope is not plainly statewide, not only when coverage
+       is partial: New Mexico's only route is a TEXAS association whose own
+       search offers New Mexico, and a reader deserves to know why. */
+    if (e.coverage_scope && e.coverage_scope !== 'statewide' && e.coverage_scope !== 'national, filterable by state')
+      out += '<span class="scope">Scope — ' + esc(scopeText(e.coverage_scope)) + '</span>';
+    if (e.quote) out += '<span class="lh-quote">\u201C' + esc(e.quote) + '\u201D</span>'
+      + '<span class="lh-src">' + esc(e.name) + ' \u00B7 read ' + esc(e.last_verified) + '</span>';
+    if (e.paid_quote && e.paid_quote !== e.quote)
+      out += '<span class="lh-quote">\u201C' + esc(e.paid_quote) + '\u201D</span>';
+    out += '<span class="lh-go"><a data-lh="1" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="'
+      + esc(e.url) + '">' + esc(LH.action[e.route_type] || 'Open') + '</a></span>';
+    return out + '</div>';
+  }
+
+  /* The scope string is stored as "kind — description" for the registry's own
+     taxonomy. Only the description half is the reader's. */
+  function scopeText(v) { var i = String(v).indexOf('\u2014'); return (i < 0 ? String(v) : String(v).slice(i + 1)).trim(); }
+  /* ⚠️ No local esc() here. This file already defines one at the top of the
+     script; a second `function esc` hoists above that assignment and is then
+     silently overwritten by it at runtime — dead code that reads like a
+     safeguard. The existing helper escapes & < > " which is what these
+     attribute and text insertions need. */
+
+  $('jur').addEventListener('change', function () { track('legal_help_state'); });
+
+  $('confirm-calc').addEventListener('change', function () {
+    $('ics').disabled = !this.checked;
+    if (this.checked) track('confirm_calc');
+  });
+
+  $('ics').addEventListener('click', function () {
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    var ev = Object.keys(confirmedDates || {}).map(function (role, i) {
+      var iso = confirmedDates[role], d = iso.replace(/-/g, '');
+      var end = new Date(iso + 'T00:00:00'); end.setDate(end.getDate() + 1);
+      return ['BEGIN:VEVENT', 'UID:nextacts-' + i + '-' + stamp + '@nextacts.xyz', 'DTSTAMP:' + stamp,
+        'DTSTART;VALUE=DATE:' + d, 'DTEND;VALUE=DATE:' + end.toISOString().slice(0, 10).replace(/-/g, ''),
+        'SUMMARY:' + ROLE_LABEL[role] + ' — new role', 'END:VEVENT'].join('\r\n');
+    }).join('\r\n');
+    var cal = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'PRODID:-//NextActs//offer//EN', ev, 'END:VCALENDAR'].join('\r\n');
+
+    // The anchor MUST be in the document and must not have its object URL revoked
+    // synchronously — a detached anchor plus an immediate revoke silently no-ops in
+    // several browsers, which is exactly the "clicked it, nothing happened, no error"
+    // failure reported in testing.
+    var blob = new Blob([cal], { type: 'text/calendar;charset=utf-8' });
+    try {
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, 'offer-dates.ics');
+      } else {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'offer-dates.ics';
+        a.rel = 'noopener';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 4000);
+      }
+      track('ics');
+      $('dl-status').textContent = 'Calendar file created (offer-dates.ics). If your browser '
+        + 'didn\u2019t offer a download \u2014 some in-app browsers block file saves \u2014 open this '
+        + 'page in Safari or Chrome, or use \u201cCopy my summary\u201d instead.';
+    } catch (e) {
+      $('dl-status').textContent = 'This browser blocked the download. Use \u201cCopy my summary\u201d '
+        + 'instead, or open the page in Safari or Chrome.';
+    }
+  });
+
+  // A plain-text checklist is often more immediately useful than an .ics — and it works
+  // in browsers that block file saves entirely.
+  $('copy').addEventListener('click', function () {
+    var lines = ['MY OFFER \u2014 SUMMARY', ''];
+    var dk = ['response_deadline', 'start_date', 'grant_date']
+      .filter(function (r) { return (confirmedDates || {})[r]; });
+    if (dk.length) {
+      lines.push('DATES');
+      dk.forEach(function (r) {
+        var pd = parsed.dates[r];
+        var calcNote = pd && pd.anchor_provenance === 'relative-to-document-date' ? '  (calculated \u2014 confirm)' : '';
+        lines.push('  ' + ROLE_LABEL[r] + ': ' + pretty(confirmedDates[r]) + ' (' + relLabel(confirmedDates[r]) + ')' + calcNote);
+      });
+      lines.push('');
+    }
+    var tk = Object.keys(confirmedTerms || {});
+    if (tk.length) {
+      lines.push('TERMS');
+      tk.forEach(function (k) { lines.push('  ' + FIELD_LABEL[k] + ': ' + confirmedTerms[k]); });
+      lines.push('');
+    }
+    var miss = $('o-missing').innerText.trim();
+    if (miss) { lines.push('NOT STATED IN THE LETTER'); miss.split('\n').forEach(function (m) { lines.push('  \u2022 ' + m.trim()); }); lines.push(''); }
+    var qs = [].map.call(document.querySelectorAll('#o-questions .q strong'), function (n) { return n.textContent.trim(); });
+    if (qs.length) { lines.push('QUESTIONS TO CONSIDER'); qs.forEach(function (q) { lines.push('  \u2022 ' + q); }); lines.push(''); }
+    lines.push('Generated by nextacts.xyz/offer (BETA). Not legal or tax advice.');
+    lines.push('Dates marked calculated were counted from the letter\u2019s own date \u2014 confirm them.');
+
+    var text = lines.join('\n');
+    var done = function () { track('copy'); $('dl-status').textContent = 'Summary copied to your clipboard.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e) { $('dl-status').textContent = 'Couldn\u2019t copy automatically \u2014 select the page text manually.'; }
+      document.body.removeChild(ta);
+    }
+  });
+  $('fb-send').addEventListener('click', function () {
+    var note = $('fb').value.trim();
+    if (!note) { $('fb-status').textContent = 'Type something first.'; return; }
+    var step = $('s3').classList.contains('hide') ? 'step2' : 'plan';
+    $('fb-send').disabled = true;
+    $('fb-status').textContent = 'Sending…';
+
+    fetch('/nextact-reviews/r/2329eb3/api/feedback', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ note: note.slice(0, 2000), step: step })
+    }).then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          track('feedback');
+          $('fb').value = '';
+          $('fb-status').textContent = 'Sent — thank you. That’s genuinely the most useful thing we get.';
+        } else { mailFallback(note); }
+      })
+      .catch(function () { mailFallback(note); })
+      .then(function () { $('fb-send').disabled = false; });
+
+    // Never swallow it. If the store isn't reachable, hand the text back to the user in a
+    // prefilled email rather than letting them believe they were heard.
+    function mailFallback(text) {
+      var href = 'mailto:hello@nextacts.xyz'
+        + '?subject=' + encodeURIComponent('/offer beta feedback')
+        + '&body=' + encodeURIComponent(text);
+      $('fb-status').innerHTML = 'We couldn’t save that automatically. '
+        + '<a href="' + href + '">Open it as an email instead</a> — your text is already in there.';
+    }
+  });
+})();
+</script>
